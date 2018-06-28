@@ -80,4 +80,21 @@ public class LeetcodeTest {
         rs = (new StringBuilder(rs)).reverse().toString();
         return (int)Long.parseLong(rs, 2);
     }
+
+    /**
+     * 多写几个例子。会发现n不能包含4
+     * @param n
+     * @return
+     */
+    public boolean isHappy(int n) {
+        while (n != 1 && n != 4) {
+            int t = 0;
+            while (n > 0) {
+                t = (n%10)*(n%10);
+                n /= 10;
+            }
+            n = t;
+        }
+        return n ==1;
+    }
 }
