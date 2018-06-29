@@ -2,6 +2,9 @@ package com.monster.leetcode_practices;
 
 import org.junit.Test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.Assert.*;
 
 /**
@@ -16,7 +19,8 @@ public class LeetcodeTest {
 //        trailingZeroes(25);
 //        rotate(new int[]{1,2,3,4,5,6,7}, 3);
 //        hammingWeight(  4294967295);
-        reverseBits(43261596);
+//        reverseBits(43261596);
+        System.out.print(isHappy(3));
     }
 
     public int trailingZeroes(int n) {
@@ -90,7 +94,7 @@ public class LeetcodeTest {
         while (n != 1 && n != 4) {
             int t = 0;
             while (n > 0) {
-                t = (n%10)*(n%10);
+                t += (n%10)*(n%10);
                 n /= 10;
             }
             n = t;
