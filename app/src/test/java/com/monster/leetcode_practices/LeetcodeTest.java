@@ -2,6 +2,11 @@ package com.monster.leetcode_practices;
 
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -15,7 +20,8 @@ public class LeetcodeTest {
 //        rotate(new int[]{1,2,3,4,5,6,7}, 3);
 //        hammingWeight(  4294967295);
 //        reverseBits(43261596);
-        System.out.print(isHappy(3));
+//        System.out.print(isHappy(3));
+        System.out.print(isIsomorphic("foo", "bar"));
     }
 
     public int trailingZeroes(int n) {
@@ -128,5 +134,50 @@ public class LeetcodeTest {
             }
         }
         return head;
+    }
+
+    // 2.35% ...
+    public boolean isIsomorphic(String s, String t) {
+        if (null == s && null == t) {
+            return true;
+        } else if (null == s || null == t) {
+            return false;
+        } else if (s.length() != t.length()) {
+            return false;
+        } else {
+            char[] s1 = new char[s.length()];
+            char[] t1 = new char[t.length()];
+            Map<Character, Character> sm1 = new HashMap<>();
+            Map<Character, Character> tm1 = new HashMap<>();
+            char start1 = 0;
+            char start2 = 0;
+            for (int i = 0; i < s.length(); i++){
+                boolean i1 = sm1.containsKey(s.charAt(i));
+                boolean i2 = tm1.containsKey(t.charAt(i));
+                if (i1 == i2) {
+                    if (i1) {
+                        s1[i] = sm1.get(s.charAt(i));
+                        t1[i] = tm1.get(t.charAt(i));
+                    } else {
+                        s1[i] = start1;
+                        sm1.put(s.charAt(i), start1);
+                        start1 += 1;
+
+                        t1[i] = start2;
+                        tm1.put(t.charAt(i), start2);
+                        start2 += 1;
+                    }
+                } else {
+                    return false;
+                }
+
+            }
+            for (int i = 0;i<s1.length; i++) {
+                if (s1[i]!= t1[i]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
