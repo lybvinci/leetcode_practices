@@ -2,10 +2,13 @@ package com.monster.leetcode_practices;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
 
 /**
@@ -210,5 +213,17 @@ public class LeetcodeTest {
         }
         reverseNode.next = null;
         return head;
+    }
+
+    // 33.75%
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> set = new HashSet<>(nums.length);
+        for (int i = 0;i<nums.length;i++) {
+            if (set.contains(nums[i])) {
+                return true;
+            }
+            set.add(nums[i]);
+        }
+        return false;
     }
 }
