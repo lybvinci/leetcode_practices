@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
 
@@ -26,12 +27,19 @@ public class LeetcodeTest {
 //        reverseBits(43261596);
 //        System.out.print(isHappy(3));
 //        System.out.print(isIsomorphic("foo", "bar"));
-        ListNode listNode = new ListNode(1);
-        listNode.next = new ListNode(2);
-        listNode.next.next = new ListNode(3);
-        listNode.next.next.next = new ListNode(4);
-        listNode.next.next.next.next = new ListNode(5);
-        reverseList(listNode);
+//        ListNode listNode = new ListNode(1);
+//        listNode.next = new ListNode(2);
+//        listNode.next.next = new ListNode(3);
+//        listNode.next.next.next = new ListNode(4);
+//        listNode.next.next.next.next = new ListNode(5);
+//        reverseList(listNode);
+        MyStack myStack = new MyStack();
+        myStack.push(1);
+        myStack.push(2);
+        myStack.push(3);
+        myStack.pop();
+        myStack.pop();
+        myStack.pop();
     }
 
     public int trailingZeroes(int n) {
@@ -243,5 +251,76 @@ public class LeetcodeTest {
             }
         }
         return false;
+    }
+
+    // 59.70%
+    class MyStack {
+
+        /** Initialize your data structure here. */
+        private Queue<Integer> mQueue = null;
+        private Queue<Integer> mQueue2 = null;
+        public MyStack() {
+            mQueue = new LinkedList<>();
+            mQueue2 = new LinkedList<>();
+        }
+
+        /** Push element x onto stack. */
+        public void push(int x) {
+            if (mQueue.isEmpty() && mQueue2.isEmpty()) {
+                mQueue.add(x);
+            } else if (mQueue.isEmpty()) {
+                mQueue2.add(x);
+            } else if (mQueue2.isEmpty()) {
+                mQueue.add(x);
+            }
+        }
+
+        /** Removes the element on top of the stack and returns that element. */
+        public int pop() {
+            if (!mQueue.isEmpty()) {
+                int size = mQueue.size() -1;
+                for (int i = 0; i<size; i++) {
+                    mQueue2.add(mQueue.poll());
+                }
+                return mQueue.poll();
+            } else if (!mQueue2.isEmpty()){
+                int size = mQueue2.size() -1;
+                for (int i = 0; i<size; i++) {
+                    mQueue.add(mQueue2.poll());
+                }
+                return mQueue2.poll();
+            }
+
+            return 0;
+        }
+
+        /** Get the top element. */
+        public int top() {
+            if (!mQueue.isEmpty()) {
+                int size = mQueue.size();
+                for (int i = 0; i<size - 1; i++) {
+                    mQueue2.add(mQueue.poll());
+                }
+                int res = mQueue.poll();
+                mQueue2.add(res);
+                return res;
+            } else if (!mQueue2.isEmpty()) {
+                int size = mQueue2.size();
+                for (int i = 0; i<size- 1; i++) {
+                    mQueue.add(mQueue2.poll());
+                }
+                int res = mQueue2.poll();
+                mQueue.add(res);
+                return res;
+            } else {
+                return 0;
+            }
+        }
+
+        /** Returns whether the stack is empty. */
+        public boolean empty() {
+            return mQueue2.isEmpty() && mQueue.isEmpty();
+
+        }
     }
 }
