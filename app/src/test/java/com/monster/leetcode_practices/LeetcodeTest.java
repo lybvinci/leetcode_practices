@@ -134,6 +134,7 @@ public class LeetcodeTest {
 
     /**
      * 29.61%
+     *
      * @param head
      * @param val
      * @return
@@ -169,7 +170,7 @@ public class LeetcodeTest {
             Map<Character, Character> tm1 = new HashMap<>();
             char start1 = 0;
             char start2 = 0;
-            for (int i = 0; i < s.length(); i++){
+            for (int i = 0; i < s.length(); i++) {
                 boolean i1 = sm1.containsKey(s.charAt(i));
                 boolean i2 = tm1.containsKey(t.charAt(i));
                 if (i1 == i2) {
@@ -190,8 +191,8 @@ public class LeetcodeTest {
                 }
 
             }
-            for (int i = 0;i<s1.length; i++) {
-                if (s1[i]!= t1[i]) {
+            for (int i = 0; i < s1.length; i++) {
+                if (s1[i] != t1[i]) {
                     return false;
                 }
             }
@@ -213,7 +214,7 @@ public class LeetcodeTest {
         if (!stack.empty()) {
             head = stack.peek();
         }
-        while (!stack.empty()){
+        while (!stack.empty()) {
             reverseNode = stack.pop();
             if (!stack.empty()) {
                 reverseNode.next = stack.peek();
@@ -226,7 +227,7 @@ public class LeetcodeTest {
     // 33.75%
     public boolean containsDuplicate(int[] nums) {
         Set<Integer> set = new HashSet<>(nums.length);
-        for (int i = 0;i<nums.length;i++) {
+        for (int i = 0; i < nums.length; i++) {
             if (set.contains(nums[i])) {
                 return true;
             }
@@ -237,8 +238,8 @@ public class LeetcodeTest {
 
     //19.84%
     public boolean containsNearbyDuplicate(int[] nums, int k) {
-        HashMap<Integer,Integer> map = new HashMap<>();
-        for (int i = 0; i< nums.length; i++) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
             if (map.containsKey(nums[i])) {
                 int index = map.get(nums[i]);
                 if (i - index <= k) {
@@ -256,15 +257,20 @@ public class LeetcodeTest {
     // 59.70%
     class MyStack {
 
-        /** Initialize your data structure here. */
+        /**
+         * Initialize your data structure here.
+         */
         private Queue<Integer> mQueue = null;
         private Queue<Integer> mQueue2 = null;
+
         public MyStack() {
             mQueue = new LinkedList<>();
             mQueue2 = new LinkedList<>();
         }
 
-        /** Push element x onto stack. */
+        /**
+         * Push element x onto stack.
+         */
         public void push(int x) {
             if (mQueue.isEmpty() && mQueue2.isEmpty()) {
                 mQueue.add(x);
@@ -275,17 +281,19 @@ public class LeetcodeTest {
             }
         }
 
-        /** Removes the element on top of the stack and returns that element. */
+        /**
+         * Removes the element on top of the stack and returns that element.
+         */
         public int pop() {
             if (!mQueue.isEmpty()) {
-                int size = mQueue.size() -1;
-                for (int i = 0; i<size; i++) {
+                int size = mQueue.size() - 1;
+                for (int i = 0; i < size; i++) {
                     mQueue2.add(mQueue.poll());
                 }
                 return mQueue.poll();
-            } else if (!mQueue2.isEmpty()){
-                int size = mQueue2.size() -1;
-                for (int i = 0; i<size; i++) {
+            } else if (!mQueue2.isEmpty()) {
+                int size = mQueue2.size() - 1;
+                for (int i = 0; i < size; i++) {
                     mQueue.add(mQueue2.poll());
                 }
                 return mQueue2.poll();
@@ -294,11 +302,13 @@ public class LeetcodeTest {
             return 0;
         }
 
-        /** Get the top element. */
+        /**
+         * Get the top element.
+         */
         public int top() {
             if (!mQueue.isEmpty()) {
                 int size = mQueue.size();
-                for (int i = 0; i<size - 1; i++) {
+                for (int i = 0; i < size - 1; i++) {
                     mQueue2.add(mQueue.poll());
                 }
                 int res = mQueue.poll();
@@ -306,7 +316,7 @@ public class LeetcodeTest {
                 return res;
             } else if (!mQueue2.isEmpty()) {
                 int size = mQueue2.size();
-                for (int i = 0; i<size- 1; i++) {
+                for (int i = 0; i < size - 1; i++) {
                     mQueue.add(mQueue2.poll());
                 }
                 int res = mQueue2.poll();
@@ -317,10 +327,40 @@ public class LeetcodeTest {
             }
         }
 
-        /** Returns whether the stack is empty. */
+        /**
+         * Returns whether the stack is empty.
+         */
         public boolean empty() {
             return mQueue2.isEmpty() && mQueue.isEmpty();
 
         }
+    }
+
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
+
+    // 100%
+    public TreeNode invertTree(TreeNode root) {
+        TreeNode head = root;
+        invertTreeHelper(root);
+        return head;
+    }
+
+    private void invertTreeHelper(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+        invertTreeHelper(root.left);
+        invertTreeHelper(root.right);
     }
 }
