@@ -374,4 +374,67 @@ public class LeetcodeTest {
         }
         return n == 1;
     }
+
+    // 79.87%
+    class MyQueue {
+
+        private Stack<Integer> mStack1;
+        private Stack<Integer> mStack2;
+
+        /** Initialize your data structure here. */
+        public MyQueue() {
+            mStack1 = new Stack<>();
+            mStack2 = new Stack<>();
+        }
+
+        /** Push element x to the back of queue. */
+        public void push(int x) {
+            if (mStack1.isEmpty() && mStack2.isEmpty()) {
+                mStack1.push(x);
+            } else if (mStack1.isEmpty()) {
+                int size = mStack2.size();
+                for (int i = 0; i< size ;i++) {
+                    mStack1.push(mStack2.pop());
+                }
+                mStack1.push(x);
+            } else {
+                mStack1.push(x);
+            }
+        }
+
+        /** Removes the element from in front of queue and returns that element. */
+        public int pop() {
+            if (mStack1.isEmpty() && mStack2.isEmpty()) {
+                return 0;
+            } else if (mStack1.isEmpty()) {
+                return mStack2.pop();
+            } else {
+                int size = mStack1.size() -1;
+                for (int i = 0; i< size;i++) {
+                    mStack2.push(mStack1.pop());
+                }
+                return mStack1.pop();
+            }
+        }
+
+        /** Get the front element. */
+        public int peek() {
+            if (mStack1.isEmpty() && mStack2.isEmpty()) {
+                return 0;
+            } else if (mStack1.isEmpty()) {
+                return mStack2.peek();
+            } else {
+                int size = mStack1.size();
+                for (int i = 0; i< size;i++) {
+                    mStack2.push(mStack1.pop());
+                }
+                return mStack2.peek();
+            }
+        }
+
+        /** Returns whether the queue is empty. */
+        public boolean empty() {
+            return mStack1.isEmpty() && mStack2.isEmpty();
+        }
+    }
 }
