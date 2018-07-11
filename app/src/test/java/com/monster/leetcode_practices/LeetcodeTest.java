@@ -437,4 +437,35 @@ public class LeetcodeTest {
             return mStack1.isEmpty() && mStack2.isEmpty();
         }
     }
+
+    // 66.09%
+    class NumArray {
+
+        private int[] sums;
+        private int[] nums;
+
+        public NumArray(int[] nums) {
+            this.nums = nums;
+            if (nums == null || nums.length == 0 ) {
+                return;
+            }
+
+        }
+
+        public int sumRange(int i, int j) {
+            if (sums == null) {
+                this.sums = new int[nums.length];
+                this.sums[0] = nums[0];
+                for (int k = 1; k< nums.length;k++) {
+                    sums[k] = sums[k-1] + nums[k];
+                }
+            }
+
+            if ( i <= 0) {
+                return sums[j];
+            } else {
+                return nums[i] + (sums[j] - sums[i] );
+            }
+        }
+    }
 }
