@@ -467,5 +467,14 @@ public class LeetcodeTest {
                 return nums[i] + (sums[j] - sums[i] );
             }
         }
+
+        // 100%
+        public boolean canWinNim(int n) {
+            if (n % 4 == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
     }
 }
