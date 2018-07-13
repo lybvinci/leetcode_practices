@@ -476,5 +476,30 @@ public class LeetcodeTest {
                 return true;
             }
         }
+
+        // 20.83%
+        public boolean wordPattern(String pattern, String str) {
+            int parLength = pattern.length();
+            String[] splits = str.split(" ");
+            if (parLength != splits.length) {
+                return false;
+            }
+            Map<Character, String> m = new HashMap<>();
+            for (int i = 0; i< parLength; i++) {
+                if (m.containsKey(pattern.charAt(i))) {
+                    String t = m.get(pattern.charAt(i));
+                    if (!t.equals(splits[i])) {
+                        return false;
+                    }
+                } else {
+                    if (m.containsValue(splits[i])) {
+                        return false;
+                    }
+                    m.put(pattern.charAt(i), splits[i]);
+                }
+            }
+
+            return true;
+        }
     }
 }
