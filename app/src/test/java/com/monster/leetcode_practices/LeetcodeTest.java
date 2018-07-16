@@ -33,13 +33,14 @@ public class LeetcodeTest {
 //        listNode.next.next.next = new ListNode(4);
 //        listNode.next.next.next.next = new ListNode(5);
 //        reverseList(listNode);
-        MyStack myStack = new MyStack();
-        myStack.push(1);
-        myStack.push(2);
-        myStack.push(3);
-        myStack.pop();
-        myStack.pop();
-        myStack.pop();
+//        MyStack myStack = new MyStack();
+//        myStack.push(1);
+//        myStack.push(2);
+//        myStack.push(3);
+//        myStack.pop();
+//        myStack.pop();
+//        myStack.pop();
+        moveZeroes(new int[]{0,1,0,3,12});
     }
 
     public int trailingZeroes(int n) {
@@ -500,6 +501,41 @@ public class LeetcodeTest {
             }
 
             return true;
+        }
+    }
+
+    public void moveZeroes(int[] nums) {
+        if (null == nums || nums.length < 2) {
+            return;
+        }
+        // 28.92%
+//        int loop = nums.length;
+//        int start = 0;
+//        for (int i = 0; i< loop;i++) {
+//            if (nums[i] == 0) {
+//                int j = i+1;
+//                if (j >= loop) {
+//                    return;
+//                }
+//                for (;j<loop;j++) {
+//                    if (nums[j] != 0) {
+//                        int tmp = nums[j];
+//                        nums[i] = tmp;
+//                        nums[j] =0;
+//                        break;
+//                    }
+//                }
+//            }
+//        }
+        // 100%
+        int index = 0;
+        for (int num : nums) {
+            if (num != 0) {
+                nums[index++] = num;
+            }
+        }
+        while (index < nums.length) {
+            nums[index++] =  0;
         }
     }
 }
