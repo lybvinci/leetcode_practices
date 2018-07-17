@@ -2,6 +2,7 @@ package com.monster.leetcode_practices;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -537,5 +538,22 @@ public class LeetcodeTest {
         while (index < nums.length) {
             nums[index++] =  0;
         }
+    }
+
+    //46.13%
+    public boolean isPalindrome(ListNode head) {
+        List<Integer> list = new ArrayList<>();
+        ListNode pos = head;
+        while(pos != null) {
+            list.add(pos.val);
+            pos = pos.next;
+        }
+        for (int i = list.size()-1; i>=0;i--) {
+            if (head.val != list.get(i)) {
+                return false;
+            }
+            head = head.next;
+        }
+        return true;
     }
 }
