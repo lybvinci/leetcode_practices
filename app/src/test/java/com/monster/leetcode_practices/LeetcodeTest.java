@@ -572,4 +572,12 @@ public class LeetcodeTest {
             return lowestCommonAncestor(root.right, p, q);
         }
     }
+
+    // 100%
+    // ??????????? don't understand
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        ListNode temp = node.next;
+        node.next = temp.next;
+    }
 }
