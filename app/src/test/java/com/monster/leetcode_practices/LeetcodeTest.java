@@ -580,4 +580,22 @@ public class LeetcodeTest {
         ListNode temp = node.next;
         node.next = temp.next;
     }
+
+    // 33.41%
+    public boolean isAnagram(String s, String t) {
+        if(t.length() != s.length()) {
+            return false;
+        }
+        int[] times = new int[26];
+        for (int i = 0; i<s.length();i++) {
+            times[s.charAt(i) - 'a']++;
+            times[t.charAt(i) - 'a']--;
+        }
+        for (int i = 0; i<times.length;i++) {
+            if (times[i] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
