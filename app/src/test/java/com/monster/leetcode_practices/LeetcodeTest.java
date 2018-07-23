@@ -600,4 +600,41 @@ public class LeetcodeTest {
         }
         return true;
     }
+
+    private List<String> binaryTreePathsRes;
+    public List<String> binaryTreePaths(TreeNode root) {
+        binaryTreePathsRes = new ArrayList<>();
+        if (root == null) {
+            return binaryTreePathsRes;
+        }
+        helperBinaryTreePaths(root, "");
+        return binaryTreePathsRes;
+    }
+
+    private void helperBinaryTreePaths(TreeNode root, String path) {
+        if (root == null) {
+            if (!"".equals(path)) {
+                binaryTreePathsRes.add(path);
+            }
+            return;
+        }
+        if ("".equals(path)) {
+            path += root.val;
+        } else {
+            path += "->" + root.val;
+        }
+        if (root.left == null && root.right == null) {
+            if (!"".equals(path)) {
+                binaryTreePathsRes.add(path);
+            }
+            return;
+        } else if (root.left == null) {
+            helperBinaryTreePaths(root.right, path);
+        } else if (root.right == null) {
+            helperBinaryTreePaths(root.left, path);
+        } else {
+            helperBinaryTreePaths(root.left, path);
+            helperBinaryTreePaths(root.right, path);
+        }
+    }
 }
