@@ -42,7 +42,11 @@ public class LeetcodeTest {
 //        myStack.pop();
 //        myStack.pop();
 //        moveZeroes(new int[]{0,1,0,3,12});
-        isUgly(-2147483648);
+        int i = -2147483648;
+        long ii = (long)i;
+        long num = i >0?i:-i;
+        System.out.print(num);
+//        isUgly(-2147483648);
     }
 
     public int trailingZeroes(int n) {
@@ -688,5 +692,19 @@ public class LeetcodeTest {
 
         return true;
 
+    }
+
+    // 95.74%
+    public int missingNumber(int[] nums) {
+        boolean[] b = new boolean[nums.length+1];
+        for (int i = 0; i < nums.length;i++) {
+            b[nums[i]] = true;
+        }
+        for (int i = 0; i < b.length;i++) {
+            if (b[i] == false) {
+                return i;
+            }
+        }
+        return 0;
     }
 }
