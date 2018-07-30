@@ -47,7 +47,8 @@ public class LeetcodeTest {
 //        long num = i >0?i:-i;
 //        System.out.print(num);
 //        isUgly(-2147483648);
-        firstBadVersion(5);
+//        firstBadVersion(5);
+        isPowerOfThree(27);
     }
 
     public int trailingZeroes(int n) {
@@ -726,5 +727,35 @@ public class LeetcodeTest {
     // for test
     private boolean isBadVersion(int n) {
         return n==4;
+    }
+
+    public boolean isPowerOfThree(int n) {
+        if (n < 1) {
+            return false;
+        }
+        if ( n == 1) {
+            return true;
+        }
+        int left = n % 10;
+        if (left != 3 && left != 9 && left != 7 && left != 1) {
+            return false;
+        }
+        int sum = 0;
+        int tmp = n;
+        while (tmp != 0) {
+            sum += tmp %10;
+            tmp /= 10;
+        }
+        if (sum % 3 != 0) {
+            return false;
+        }
+        while (n != 1) {
+            if (n % 3 != 0) {
+                return false;
+            }
+            n/=3;
+        }
+        return true;
+
     }
 }
