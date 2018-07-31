@@ -758,4 +758,26 @@ public class LeetcodeTest {
         return true;
 
     }
+
+    // 11.20%
+    public boolean isPowerOfFour(int num) {
+        if (num < 1) {
+            return false;
+        }
+        if ( num == 1) {
+            return true;
+        }
+        int left = num % 10;
+        if (left != 4 && left != 6) {
+            return false;
+        }
+
+        while (num != 1) {
+            if (num % 4 != 0) {
+                return false;
+            }
+            num/=4;
+        }
+        return true;
+    }
 }
