@@ -780,4 +780,10 @@ public class LeetcodeTest {
         }
         return true;
     }
+
+    //73.87%
+    public String reverseString(String s) {
+        StringBuilder sb = new StringBuilder(s);
+        return sb.reverse().toString();
+    }
 }
