@@ -1,5 +1,7 @@
 package com.monster.leetcode_practices;
 
+import android.util.ArraySet;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -785,5 +787,26 @@ public class LeetcodeTest {
     public String reverseString(String s) {
         StringBuilder sb = new StringBuilder(s);
         return sb.reverse().toString();
+    }
+
+    // 33.64%
+    public int[] intersection(int[] nums1, int[] nums2) {
+        if (nums1.length ==0 || nums2.length == 0) {
+            return new int[0];
+        }
+        Set<Integer> result = new HashSet<>();
+        List<Integer> nums2L = new ArrayList<>();
+        for (int i = 0; i<nums2.length;i++) {
+            nums2L.add(nums2[i]);
+        }
+        for (int i = 0; i< nums1.length;i++) {
+            if (nums2L.contains(nums1[i])) {
+                result.add(nums1[i]);
+                int index = nums2L.indexOf(nums1[i]);
+                nums2L.remove(index);
+            }
+        }
+        return result.stream().mapToInt(i -> i).toArray();
+
     }
 }
