@@ -809,4 +809,24 @@ public class LeetcodeTest {
         return result.stream().mapToInt(i -> i).toArray();
 
     }
+
+    // 18.67%
+    public int[] intersect(int[] nums1, int[] nums2) {
+        if (nums1.length ==0 || nums2.length == 0) {
+            return new int[0];
+        }
+        List<Integer> result = new ArrayList<>();
+        List<Integer> nums2L = new ArrayList<>();
+        for (int i = 0; i<nums2.length;i++) {
+            nums2L.add(nums2[i]);
+        }
+        for (int i = 0; i< nums1.length;i++) {
+            if (nums2L.contains(nums1[i])) {
+                result.add(nums1[i]);
+                int index = nums2L.indexOf(nums1[i]);
+                nums2L.remove(index);
+            }
+        }
+        return result.stream().mapToInt(i -> i).toArray();
+    }
 }
