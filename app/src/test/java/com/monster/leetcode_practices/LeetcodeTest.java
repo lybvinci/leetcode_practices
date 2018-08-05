@@ -829,4 +829,19 @@ public class LeetcodeTest {
         }
         return result.stream().mapToInt(i -> i).toArray();
     }
+
+    //56.79%
+    public boolean isPerfectSquare(int num) {
+        int left = num % 10;
+        if (left == 3 || left == 7 || left == 8) {
+            return false;
+        }
+        int start = 0;
+        int temp = 0;
+        while (temp < num) {
+            temp = start*start;
+            start++;
+        }
+        return temp == num;
+    }
 }
