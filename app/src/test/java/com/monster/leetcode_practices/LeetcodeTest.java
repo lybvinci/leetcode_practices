@@ -50,7 +50,8 @@ public class LeetcodeTest {
 //        System.out.print(num);
 //        isUgly(-2147483648);
 //        firstBadVersion(5);
-        isPowerOfThree(27);
+//        isPowerOfThree(27);
+        guessNumber(10);
     }
 
     public int trailingZeroes(int n) {
@@ -851,5 +852,27 @@ public class LeetcodeTest {
         int sum = a ^ b;
         int carry = (a & b) << 1;
         return getSum(sum, carry);
+    }
+
+    // 99.65%
+    public int guessNumber(int n) {
+        if (guess(n) == 0) return n;
+        int left = 1, right = n;
+        while (left < right) {
+            int mid = left + (right - left) / 2, t = guess(mid);
+            if (t == 0) return mid;
+            else if (t == 1) left = mid;
+            else right = mid;
+        }
+        return left;
+    }
+    private int guess(int n ){
+        if (n == 6) {
+            return 0;
+        } else if (n > 6) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }
