@@ -51,7 +51,8 @@ public class LeetcodeTest {
 //        isUgly(-2147483648);
 //        firstBadVersion(5);
 //        isPowerOfThree(27);
-        guessNumber(10);
+//        guessNumber(10);
+        canConstruct("fihjjjjei", "hjibagacbhadfaefdjaeaebgi");
     }
 
     public int trailingZeroes(int n) {
@@ -874,5 +875,24 @@ public class LeetcodeTest {
         } else {
             return -1;
         }
+    }
+
+    // 54.28%
+    public boolean canConstruct(String ransomNote, String magazine) {
+        char[] mC = magazine.toCharArray();
+        char[] rC = ransomNote.toCharArray();
+        for (int i = 0; i< rC.length;i++) {
+            int j = 0;
+            for (; j< mC.length;j++) {
+                if (rC[i] == mC[j]) {
+                    mC[j] = '\n';
+                    break;
+                }
+            }
+            if (j == mC.length) {
+                return false;
+            }
+        }
+        return true;
     }
 }
