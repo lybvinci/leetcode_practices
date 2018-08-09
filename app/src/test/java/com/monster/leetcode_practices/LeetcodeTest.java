@@ -52,7 +52,8 @@ public class LeetcodeTest {
 //        firstBadVersion(5);
 //        isPowerOfThree(27);
 //        guessNumber(10);
-        canConstruct("fihjjjjei", "hjibagacbhadfaefdjaeaebgi");
+//        canConstruct("fihjjjjei", "hjibagacbhadfaefdjaeaebgi");
+        firstUniqChar("loveleetcode");
     }
 
     public int trailingZeroes(int n) {
@@ -894,5 +895,22 @@ public class LeetcodeTest {
             }
         }
         return true;
+    }
+
+    //82.96%
+    public int firstUniqChar(String s) {
+        char[] chars = s.toCharArray();
+        for (int i =0;i<chars.length;i++) {
+            int index = s.indexOf(chars[i], i+1);
+            if (index != -1) {
+                continue;
+            } else {
+                int index2 = s.indexOf(chars[i]);
+                if (index2 == i) {
+                    return i;
+                }
+            }
+        }
+        return -1;
     }
 }
