@@ -913,4 +913,20 @@ public class LeetcodeTest {
         }
         return -1;
     }
+
+    // 56%
+    public char findTheDifference(String s, String t) {
+        int[] res = new int[26];
+        for (int i = 0; i < s.length();i++) {
+            res[s.charAt(i) - 'a']++;
+            res[t.charAt(i) - 'a']--;
+        }
+        res[t.charAt(t.length()-1) - 'a']--;
+        for (int i = 0; i<res.length;i++) {
+            if (res[i] == -1) {
+                return (char)('a'+i);
+            }
+        }
+        return ' ';
+    }
 }
