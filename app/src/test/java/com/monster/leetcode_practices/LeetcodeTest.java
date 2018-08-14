@@ -954,4 +954,39 @@ public class LeetcodeTest {
         }
         return builder.reverse().toString();
     }
+
+    // 52.84%
+    public int numberOfBoomerangs(int[][] points) {
+        // int result = 0;
+        // for (int i = 0; i<points.length;i++) {
+        //     for (int j = 0; j < points.length; j++) {
+        //         if (j == i) {
+        //             continue;
+        //         }
+        //         for (int k = 0; k<points.length;k++) {
+        //             if (k == i || k == j) {
+        //                 continue;
+        //             }
+        //             long dis1 = (long)(Math.pow((points[i][1] - points[j][1]),2) + Math.pow(points[i][0] - points[j][0],2));
+        //             long dis2 = (long)(Math.pow((points[i][1] - points[k][1]),2) + Math.pow(points[i][0] - points[k][0],2));
+        //             if (dis1 == dis2) {
+        //                 result ++;
+        //             }
+        //         }
+        //     }
+        // }
+        // return result;
+        int result = 0;
+        for (int[] pointA : points) {
+            Map<Integer, Integer> distances = new HashMap<>();
+            for (int[] pointB : points) {
+                int distance = (pointA[0] - pointB[0]) * (pointA[0] - pointB[0]) + (pointA[1] - pointB[1]) * (pointA[1] - pointB[1]);
+                distances.put(distance, distances.getOrDefault(distance, 0) + 1);
+            }
+            for (int item : distances.values()) {
+                result += item * (item - 1);
+            }
+        }
+        return result;
+    }
 }
