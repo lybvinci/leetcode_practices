@@ -54,7 +54,8 @@ public class LeetcodeTest {
 //        guessNumber(10);
 //        canConstruct("fihjjjjei", "hjibagacbhadfaefdjaeaebgi");
 //        firstUniqChar("loveleetcode");
-        addStrings("98", "9");
+//        addStrings("98", "9");
+        compress(new char[]{'a','a','a','b','b','a','a'});
     }
 
     public int trailingZeroes(int n) {
@@ -988,5 +989,35 @@ public class LeetcodeTest {
             }
         }
         return result;
+    }
+
+    // 52.53%
+    public int compress(char[] chars) {
+        int index = 0;
+        for (int i = 0; i<chars.length;i++) {
+            int num = 1;
+            int j = i+1;
+            for (;j<chars.length;j++) {
+                if (chars[i] == chars[j]) {
+                    num++;
+                } else {
+                    break;
+                }
+            }
+            chars[index] = chars[i];
+            index++;
+            if (num > 1) {
+                Stack<Integer> stack = new Stack<>();
+                while (num >0) {
+                    stack.push(num%10);
+                    num /= 10;
+                }
+                while (!stack.isEmpty()) {
+                    chars[index++] = (char)(stack.pop() + '0');
+                }
+                i = j-1;
+            }
+        }
+        return index;
     }
 }
