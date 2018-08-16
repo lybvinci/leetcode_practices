@@ -55,7 +55,8 @@ public class LeetcodeTest {
 //        canConstruct("fihjjjjei", "hjibagacbhadfaefdjaeaebgi");
 //        firstUniqChar("loveleetcode");
 //        addStrings("98", "9");
-        compress(new char[]{'a','a','a','b','b','a','a'});
+//        compress(new char[]{'a','a','a','b','b','a','a'});
+        arrangeCoins(1804289383);
     }
 
     public int trailingZeroes(int n) {
@@ -1019,5 +1020,11 @@ public class LeetcodeTest {
             }
         }
         return index;
+    }
+
+    //74.37%
+    public int arrangeCoins(int n) {
+        long t = (long)n;
+        return (int)(Math.sqrt(1+ 8*t) - 1)/2;
     }
 }
