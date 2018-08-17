@@ -23,7 +23,7 @@ import java.util.Stack;
 public class LeetcodeTest {
     @Test
     public void main() {
-        int n = 25;
+//        int n = 25;
 //        trailingZeroes(25);
 //        rotate(new int[]{1,2,3,4,5,6,7}, 3);
 //        hammingWeight(  4294967295);
@@ -56,7 +56,8 @@ public class LeetcodeTest {
 //        firstUniqChar("loveleetcode");
 //        addStrings("98", "9");
 //        compress(new char[]{'a','a','a','b','b','a','a'});
-        arrangeCoins(1804289383);
+//        arrangeCoins(1804289383);
+        findAnagrams("cbaebabacd", "abc");
     }
 
     public int trailingZeroes(int n) {
@@ -1026,5 +1027,57 @@ public class LeetcodeTest {
     public int arrangeCoins(int n) {
         long t = (long)n;
         return (int)(Math.sqrt(1+ 8*t) - 1)/2;
+    }
+
+    //6%
+    public List<Integer> findAnagrams(String s, String p) {
+//        List<Integer> result = new ArrayList<>();
+//        char[] sc = s.toCharArray();
+//        char[] sp = p.toCharArray();
+//        for (int i = 0 ; i< sc.length;i++) {
+//            if (i+sp.length > sc.length) {
+//                return result;
+//            }
+//            int startSc = i;
+//            int endSc = startSc + p.length();
+//            Set<Integer> temp = new HashSet<>();
+//            for (int j = 0; j < sp.length; j++) {
+//                for (int k = startSc; k < endSc; k++) {
+//                    if (temp.contains(k)) {
+//                        continue;
+//                    }
+//                    if (sc[k] == sp[j]) {
+//                        temp.add(k);
+//                        break;
+//                    }
+//                }
+//            }
+//            if (temp.size() == sp.length) {
+//                result.add(i);
+//            }
+//        }
+//        return result;
+        List<Integer> list = new ArrayList<>();
+        int m = s.length();
+        int n = p.length();
+        if (m < n)
+            return list;
+        for (int i = 0; i <= m - n; i++) {
+            int[] t = new int[26];
+            for (int j = 0; j < n; j++) {
+                t[s.charAt(i + j)-'a']++;
+                t[p.charAt(j)-'a']--;
+            }
+            boolean flag = true;
+            for (int j = 0; j < t.length; j++) {
+                if (t[j] != 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag)
+                list.add(i);
+        }
+        return list;
     }
 }
