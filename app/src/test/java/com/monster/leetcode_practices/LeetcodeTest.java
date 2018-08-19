@@ -1080,4 +1080,25 @@ public class LeetcodeTest {
         }
         return list;
     }
+
+    // 19.98%
+    public List<String> fizzBuzz(int n) {
+        List<String> result = new ArrayList<>();
+        int d3 = 0;
+        int d5 = 0;
+        for (int i = 1; i <= n;i++) {
+            d3 = i % 3;
+            d5 = i % 5;
+            if (d3 ==0 && d5 ==0) {
+                result.add("FizzBuzz");
+            } else if (d3 == 0) {
+                result.add("Fizz");
+            } else if (d5 == 0) {
+                result.add("Buzz");
+            } else {
+                result.add("" + i);
+            }
+        }
+        return result;
+    }
 }
