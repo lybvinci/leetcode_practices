@@ -1101,4 +1101,55 @@ public class LeetcodeTest {
         }
         return result;
     }
+
+    class Node {
+        public int val;
+        public List<Node> children;
+
+        public Node() {}
+
+        public Node(int _val,List<Node> _children) {
+            val = _val;
+            children = _children;
+        }
+    };
+
+    // 12.50%
+    public List<List<Integer>> levelOrder(Node root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Queue<List<Node>> temp = new LinkedList<>();
+        ArrayList<Integer> rootList = new ArrayList<>();
+        rootList.add(root.val);
+        result.add(rootList);
+        if (root.children != null) {
+            temp.add(root.children);
+        }
+        while(!temp.isEmpty()) {
+            int size = temp.size();
+            ArrayList<Integer> childList = new ArrayList<>();
+            for (int i = 0; i <size ; i++) {
+                List<Node> poll = temp.poll();
+                if (poll != null && poll.size() != 0) {
+                    for (Node n : poll) {
+                        childList.add(n.val);
+                        if (n.children != null) {
+                            temp.add(n.children);
+                        }
+                    }
+                }
+            }
+            if (childList.size() != 0) {
+                result.add(childList);
+            }
+
+
+        }
+
+        return result;
+
+
+    }
 }
