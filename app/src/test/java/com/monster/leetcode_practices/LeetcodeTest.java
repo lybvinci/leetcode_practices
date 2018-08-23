@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
+import java.util.function.BiConsumer;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -1190,5 +1191,23 @@ public class LeetcodeTest {
         }
 
         return sum;
+    }
+
+    // 14.81%
+    public int longestPalindrome(String s) {
+        Map<Character, Integer> container = new HashMap<>();
+        char[] chars = s.toCharArray();
+        for (int i = 0; i<chars.length; i++) {
+            if (container.containsKey(chars[i])) {
+                container.put(chars[i], container.get(chars[i]) + 1);
+            } else {
+                container.put(chars[i], 1);
+            }
+        }
+        int result = 0;
+        for (Character key : container.keySet()) {
+            result += container.get(key) / 2;
+        }
+        return result * 2 < s.length() ? result*2 + 1 : result * 2;
     }
 }
