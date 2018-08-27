@@ -58,7 +58,8 @@ public class LeetcodeTest {
 //        addStrings("98", "9");
 //        compress(new char[]{'a','a','a','b','b','a','a'});
 //        arrangeCoins(1804289383);
-        findAnagrams("cbaebabacd", "abc");
+//        findAnagrams("cbaebabacd", "abc");
+        findDisappearedNumbers(new int[]{4,3,2,7,8,2,3,1});
     }
 
     public int trailingZeroes(int n) {
@@ -1228,5 +1229,42 @@ public class LeetcodeTest {
         int num = (int)Math.pow(10,digitType - 1) + indexInSubRange ;
         int result = Integer.parseInt((""+num).charAt(indexInNum)+"");
         return result;
+    }
+
+    //56.78%
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        List<Integer> res = new ArrayList<>();
+        boolean[] flags = new boolean[nums.length];
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            index = Math.abs(nums[i]) -1;
+            if (nums[index] > 0) {
+                nums[index] = -nums[index];
+            }
+        }
+        for (int i = 0; i<nums.length;i++) {
+            if (nums[i] > 0) {
+                res.add(i+1);
+            }
+        }
+        return res;
+        // too slow
+//        for (int i = 0; i< nums.length; i++) {
+//            if (i+1 == nums[i]) {
+//                continue;
+//            }
+//            boolean has = false;
+//            int j = 0;
+//            for (; j < nums.length; j++) {
+//                if (i+1 == nums[j]) {
+//                    has = true;
+//                    break;
+//                }
+//            }
+//            if (!has) {
+//                res.add(i+1);
+//            }
+//        }
+//        return res;
     }
 }
