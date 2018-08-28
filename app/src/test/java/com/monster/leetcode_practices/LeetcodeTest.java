@@ -1267,4 +1267,18 @@ public class LeetcodeTest {
 //        }
 //        return res;
     }
+
+    //24.03%
+    public int minMoves(int[] nums) {
+        Arrays.sort(nums);
+        if (nums == null || nums.length < 2) {
+            return 0;
+        } else {
+            int sum = 0;
+            for (int i = 1 ; i < nums.length; i++) {
+                sum += nums[i] - nums[0];
+            }
+            return sum;
+        }
+    }
 }
