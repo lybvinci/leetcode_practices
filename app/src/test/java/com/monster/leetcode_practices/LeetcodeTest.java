@@ -59,7 +59,8 @@ public class LeetcodeTest {
 //        compress(new char[]{'a','a','a','b','b','a','a'});
 //        arrangeCoins(1804289383);
 //        findAnagrams("cbaebabacd", "abc");
-        findDisappearedNumbers(new int[]{4,3,2,7,8,2,3,1});
+//        findDisappearedNumbers(new int[]{4,3,2,7,8,2,3,1});
+        repeatedSubstringPattern("abab");
     }
 
     public int trailingZeroes(int n) {
@@ -1304,5 +1305,24 @@ public class LeetcodeTest {
     public int poorPigs(int buckets, int minutesToDie, int minutesToTest) {
         return (int) Math.ceil(Math.log(buckets) / Math.log(minutesToTest / minutesToDie + 1));
 
+    }
+
+    // 48.95%
+    public boolean repeatedSubstringPattern(String s) {
+        int n = s.length();
+        for(int i = 1; i <= n / 2; i++){
+            if(n % i != 0) continue;
+            String refer = s.substring(0, i);
+            int a = 1;
+            for(int j = i; j < n; j = j + i){
+                String tmp = s.substring(j, j+i);
+                if(!refer.equals(tmp)){
+                    a = 0;
+                    break;
+                }
+            }
+            if(a == 1) return true;
+        }
+        return false;
     }
 }
