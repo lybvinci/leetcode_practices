@@ -1325,4 +1325,15 @@ public class LeetcodeTest {
         }
         return false;
     }
+
+    //19.24%
+    public int hammingDistance(int x, int y) {
+        int sum = 0;
+        int temp = x ^ y;
+        while(temp > 0) {
+            sum += temp & 0x1;
+            temp = temp >> 1;
+        }
+        return sum;
+    }
 }
