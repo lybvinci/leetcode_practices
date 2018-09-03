@@ -1336,4 +1336,22 @@ public class LeetcodeTest {
         }
         return sum;
     }
+
+    // 95.69%
+    public int findMaxConsecutiveOnes(int[] nums) {
+        int result = 0;
+        int tmp = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                if (tmp > 0) {
+                    result = Math.max(tmp, result);
+                }
+                tmp = 0;
+            } else {
+                tmp++;
+            }
+        }
+        result = Math.max(tmp, result);
+        return result;
+    }
 }
