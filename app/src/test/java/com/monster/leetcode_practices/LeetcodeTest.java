@@ -60,7 +60,8 @@ public class LeetcodeTest {
 //        arrangeCoins(1804289383);
 //        findAnagrams("cbaebabacd", "abc");
 //        findDisappearedNumbers(new int[]{4,3,2,7,8,2,3,1});
-        repeatedSubstringPattern("abab");
+//        repeatedSubstringPattern("abab");
+        findComplement(5);
     }
 
     public int trailingZeroes(int n) {
@@ -1353,5 +1354,16 @@ public class LeetcodeTest {
         }
         result = Math.max(tmp, result);
         return result;
+    }
+
+    // 16.44%
+    public int findComplement(int num) {
+        int mask = 1;
+        int temp = num;
+        while (temp > 0) {
+            mask <<= 1;
+            temp >>= 1;
+        }
+        return num ^ (mask -1);
     }
 }
