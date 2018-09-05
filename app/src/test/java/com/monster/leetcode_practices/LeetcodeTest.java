@@ -61,7 +61,8 @@ public class LeetcodeTest {
 //        findAnagrams("cbaebabacd", "abc");
 //        findDisappearedNumbers(new int[]{4,3,2,7,8,2,3,1});
 //        repeatedSubstringPattern("abab");
-        findComplement(5);
+//        findComplement(5);
+        licenseKeyFormatting("5F3Z-2e-9-w", 4);
     }
 
     public int trailingZeroes(int n) {
@@ -1365,5 +1366,32 @@ public class LeetcodeTest {
             temp >>= 1;
         }
         return num ^ (mask -1);
+    }
+
+    // 34.78%
+    public String licenseKeyFormatting(String S, int K) {
+        String no_S = S.replaceAll("-", "");
+        int segNum = (no_S.length() -1)/K;
+        int left = (no_S.length() - 1) % K;
+        int firstLength = 1 + left;
+//        too slow
+//        String res = no_S.substring(0, firstLength) + "-";
+//        for (int i = 0; i < segNum; i++) {
+//            res += no_S.substring(firstLength + i*K, firstLength + (i+1) * K) + "-";
+//        }
+//        return res.substring(0, res.length()-1).toUpperCase();
+        StringBuilder sb = new StringBuilder(no_S.length());
+        char[] no_SChars = no_S.toCharArray();
+        sb.append(no_S.substring(0, firstLength)).append("-");
+        int temp = 1;
+        for (int i = firstLength; i < no_SChars.length; i++) {
+            sb.append(no_SChars[i]);
+            if (++temp == K) {
+                sb.append("-");
+                temp = 1;
+            }
+        }
+        return sb.deleteCharAt(sb.length() - 1).toString().toUpperCase();
+
     }
 }
