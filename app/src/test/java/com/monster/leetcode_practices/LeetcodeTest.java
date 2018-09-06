@@ -1394,4 +1394,17 @@ public class LeetcodeTest {
         return sb.deleteCharAt(sb.length() - 1).toString().toUpperCase();
 
     }
+
+    //35.61%
+    public int[] constructRectangle(int area) {
+        int sqrt = (int) Math.floor( Math.sqrt(area));
+        for (int i = sqrt; i <= area ; i++) {
+            if (area % i == 0) {
+                int left = area / i;
+                return left > i ? new int[]{left, i} : new int[]{i, left};
+            }
+        }
+        return null;
+
+    }
 }
