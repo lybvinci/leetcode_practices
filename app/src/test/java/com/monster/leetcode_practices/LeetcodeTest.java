@@ -1407,4 +1407,21 @@ public class LeetcodeTest {
         return null;
 
     }
+
+    // 46.55%
+    public String convertToBase7(int num) {
+        String res = "";
+        boolean flag = num >= 0 ;
+        long temp = num;
+        temp = Math.abs(temp);
+        while ( temp >= 7) {
+            res = temp % 7 + res;
+            temp /= 7;
+        }
+        res = temp + res;
+        if (!flag) {
+            res = "-" + res;
+        }
+        return res;
+    }
 }
