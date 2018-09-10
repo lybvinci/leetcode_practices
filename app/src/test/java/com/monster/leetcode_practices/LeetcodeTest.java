@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -1424,4 +1425,34 @@ public class LeetcodeTest {
         }
         return res;
     }
+
+    // 24.19%
+    public String[] findRelativeRanks(int[] nums) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            list.add(nums[i]);
+        }
+        list.sort(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer integer, Integer t1) {
+                return t1 - integer;
+            }
+        });
+        String[] result = new String[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            int level = list.indexOf(nums[i]);
+            if (level == 0) {
+                result[i] = "Gold Medal";
+            } else if (level == 1) {
+                result[i] = "Silver Medal";
+            } else if (level == 2) {
+                result[i] = "Bronze Medal";
+            } else {
+                result[i] = level + 1 + "";
+            }
+        }
+        return result;
+    }
+
+
 }
