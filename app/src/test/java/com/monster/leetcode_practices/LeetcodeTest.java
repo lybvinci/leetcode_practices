@@ -1454,5 +1454,54 @@ public class LeetcodeTest {
         return result;
     }
 
+    // 27.33%
+    Set<Character> first = new HashSet<Character>() {
+        {
+            add('q');add('w');add('e');add('r');add('t');add('y');add('u');add('i');add('o');add('p');
+        }
+    };
+    Set<Character> second = new HashSet<Character>() {
+        {
+            add('a');add('s');add('d');add('f');add('g');add('h');add('j');add('k');add('l');
+        }
+    };
+    Set<Character> third = new HashSet<Character>() {
+        {
+            add('z');add('x');add('c');add('v');add('b');add('n');add('m');
+        }
+    };
+    public String[] findWords(String[] words) {
+        List<String> result = new ArrayList<>();
+        for (int i = 0 ; i < words.length ; i++) {
+            if (words[i].length() <= 0) {
+                continue;
+            }
+            char[] chars = words[i].toLowerCase().toCharArray();
+            Set<Character> temp = null;
+            if (first.contains(chars[0])) {
+                temp = first;
+            } else if (second.contains(chars[0])) {
+                temp = second;
+            } else if (third.contains(chars[0])) {
+                temp = third;
+            }
+            boolean is = true;
+
+            for (int j = 1; j < chars.length ; j++) {
+                if (!temp.contains(chars[j])) {
+                    is = false;
+                    break;
+                }
+            }
+            if (is) {
+                result.add(words[i]);
+            }
+        }
+        String[] res = new String[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            res[i] = result.get(i);
+        }
+        return res;
+    }
 
 }
