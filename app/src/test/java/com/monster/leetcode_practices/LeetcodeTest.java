@@ -1504,4 +1504,30 @@ public class LeetcodeTest {
         return res;
     }
 
+    //1.75%
+    public int[] findMode(TreeNode root) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        helperFindMode(root, map);
+        Set<Integer> keys  = new HashSet<>();
+        int max = 0;
+        for (Integer key : map.keySet()) {
+            if (map.get(key) > max) {
+                max = map.get(key);
+                keys.clear();
+                keys.add(key);
+            } else if (map.get(key) == max) {
+                keys.add(key);
+            }
+        }
+        return keys.stream().mapToInt(Number::intValue).toArray();
+    }
+    private void helperFindMode(TreeNode root, Map<Integer, Integer> map) {
+        if (root == null) {
+            return;
+        }
+        map.put(root.val, map.getOrDefault(root.val, 0)+1);
+        helperFindMode(root.left, map);
+        helperFindMode(root.right, map);
+    }
+
 }
