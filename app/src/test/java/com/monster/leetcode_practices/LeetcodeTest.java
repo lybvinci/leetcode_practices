@@ -1555,4 +1555,40 @@ public class LeetcodeTest {
         return result;
     }
 
+    // 45.67%
+    public boolean detectCapitalUse(String word) {
+        if (word.length() < 2) {
+            return true;
+        }
+        char[] chars = word.toCharArray();
+        boolean firstIsUpper = false;
+        boolean secondIsUpper = false;
+        if (chars[0] < 'a') {
+            firstIsUpper = true;
+            if (chars[1] < 'a') {
+                secondIsUpper = true;
+            }
+        }
+        int i = 1;
+        if (firstIsUpper) {
+            i = 2;
+        }
+        for (; i < chars.length; i++) {
+            if (firstIsUpper && secondIsUpper) {
+                if (chars[i] >= 'a') {
+                    return false;
+                }
+            } else if (firstIsUpper && !secondIsUpper){
+                if (chars[i] < 'a') {
+                    return false;
+                }
+            } else {
+                if (chars[i] < 'a') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }
