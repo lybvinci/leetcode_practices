@@ -1591,4 +1591,24 @@ public class LeetcodeTest {
         return true;
     }
 
+    //98.62%
+    public int findBottomLeftValue(TreeNode root) {
+        return helperFindBottomLeftValue(root,0)[0];
+    }
+    private int[] helperFindBottomLeftValue(TreeNode root,int level) {
+        int[] res;
+        if (root.left == null && root.right == null) {
+            return new int[]{root.val, level};
+        } else if (root.left == null) {
+            res = helperFindBottomLeftValue(root.right, level+1);
+        } else if (root.right == null) {
+            res = helperFindBottomLeftValue(root.left, level+1);
+        } else {
+            int[] t1 = helperFindBottomLeftValue(root.left, level+1);
+            int[] t2 = helperFindBottomLeftValue(root.right, level+1);
+            res = t1[1] >= t2[1] ? t1:t2;
+        }
+        return res;
+    }
+
 }
