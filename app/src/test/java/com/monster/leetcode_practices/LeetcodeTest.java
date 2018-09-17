@@ -63,7 +63,8 @@ public class LeetcodeTest {
 //        findDisappearedNumbers(new int[]{4,3,2,7,8,2,3,1});
 //        repeatedSubstringPattern("abab");
 //        findComplement(5);
-        licenseKeyFormatting("5F3Z-2e-9-w", 4);
+//        licenseKeyFormatting("5F3Z-2e-9-w", 4);
+        findLUSlength("aba", "bacdef");
     }
 
     public int trailingZeroes(int n) {
@@ -1609,6 +1610,21 @@ public class LeetcodeTest {
             res = t1[1] >= t2[1] ? t1:t2;
         }
         return res;
+    }
+
+    //84.91%
+    public int findLUSlength(String a, String b) {
+        if(a.length() == 0 && b.length() == 0) {
+            return -1;
+        } else if (a.length() != b.length()){
+            return Math.max(a.length(), b.length());
+        } else {
+            if (!a.equals(b)) {
+                return a.length();
+            } else {
+                return -1;
+            }
+        }
     }
 
 }
