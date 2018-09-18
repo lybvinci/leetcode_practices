@@ -1627,4 +1627,24 @@ public class LeetcodeTest {
         }
     }
 
+    //10.32%
+    public int getMinimumDifference(TreeNode root) {
+        LinkedList<Integer> list = new LinkedList<>();
+        helperGetMinimumDifference(root, list);
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < list.size() - 1; i++) {
+            min = Math.min(min, Math.abs(list.get(i) - list.get(i+1)));
+        }
+        return min;
+    }
+    //中序遍历拿到有序数组，求相邻元素的差的最小值.
+    private void helperGetMinimumDifference(TreeNode root, LinkedList<Integer> list) {
+        if (root == null) {
+            return;
+        }
+        helperGetMinimumDifference(root.left, list);
+        list.add(root.val);
+        helperGetMinimumDifference(root.right, list);
+    }
+
 }
