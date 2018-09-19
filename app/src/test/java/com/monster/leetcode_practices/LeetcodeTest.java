@@ -64,7 +64,8 @@ public class LeetcodeTest {
 //        repeatedSubstringPattern("abab");
 //        findComplement(5);
 //        licenseKeyFormatting("5F3Z-2e-9-w", 4);
-        findLUSlength("aba", "bacdef");
+//        findLUSlength("aba", "bacdef");
+        reverseStr("abcdefg", 2);
     }
 
     public int trailingZeroes(int n) {
@@ -1645,6 +1646,47 @@ public class LeetcodeTest {
         helperGetMinimumDifference(root.left, list);
         list.add(root.val);
         helperGetMinimumDifference(root.right, list);
+    }
+
+    //4.36%
+    public String reverseStr(String s, int k) {
+        char[] chars = s.toCharArray();
+        Stack<Character> front = new Stack<>();
+        Queue<Character> after = new LinkedList<>();
+        int group = chars.length / (2*k);
+        int left = chars.length % (2*k);
+        StringBuilder sb = new StringBuilder(s.length());
+        for (int i = 0; i < group; i++) {
+            for (int j = i*2*k; j < (i+1)*2*k; j++) {
+                if (j % (2*k) < k) {
+                    front.push(chars[j]);
+                } else {
+                    after.add(chars[j]);
+                }
+            }
+            while(!front.isEmpty()) {
+                sb.append(front.pop());
+            }
+            while (!after.isEmpty()) {
+                sb.append(after.poll());
+            }
+        }
+        if (left > 0) {
+            for (int i = 0; i < left; i++) {
+                if (i < k) {
+                    front.push(chars[2*k*group + i]);
+                } else {
+                    after.add(chars[2*k*group + i]);
+                }
+            }
+            while(!front.isEmpty()) {
+                sb.append(front.pop());
+            }
+            while (!after.isEmpty()) {
+                sb.append(after.poll());
+            }
+        }
+        return sb.toString();
     }
 
 }
