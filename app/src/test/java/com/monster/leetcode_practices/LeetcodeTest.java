@@ -1689,4 +1689,21 @@ public class LeetcodeTest {
         return sb.toString();
     }
 
+    // 60.95%
+    public int maxDepth(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        return helperMaxDepth(root, 0);
+    }
+    private int helperMaxDepth(Node root, int curDep) {
+        if (root == null || root.children == null || root.children.size() == 0) {
+            return curDep;
+        }
+        for (Node node : root.children) {
+            curDep = Math.max(curDep+1, helperMaxDepth(node, curDep+1));
+        }
+        return curDep;
+    }
+
 }
