@@ -1711,10 +1711,18 @@ public class LeetcodeTest {
     public int arrayPairSum(int[] nums) {
         Arrays.sort(nums);
         int res = 0;
+//        for (int i = 0; i < nums.length; i++) {
+//            if (i % 2 == 0) {
+//                res += nums[i];
+//            }
+//        }
+        // 82.73%
+        boolean odd = true;
         for (int i = 0; i < nums.length; i++) {
-            if (i % 2 == 0) {
+            if (odd) {
                 res += nums[i];
             }
+            odd = !odd;
         }
         return res;
     }
