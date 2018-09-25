@@ -1792,4 +1792,37 @@ public class LeetcodeTest {
         resultOfFindFrequentTreeSum.put(sum, resultOfFindFrequentTreeSum.getOrDefault(sum, 0) + 1);
         return sum;
     }
+
+
+    // 20.87%
+    public List<Integer> largestValues(TreeNode root) {
+        List<Integer> largestValuesList = new ArrayList<>();
+        if (root == null) {
+            return null;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            int i = 0;
+            int max = Integer.MIN_VALUE;
+            while (i++ < size) {
+                TreeNode poll = queue.poll();
+                if (poll.val > max) {
+                    max = poll.val;
+                }
+                if (poll.left != null) {
+                    queue.add(poll.left);
+                }
+                if (poll.right != null) {
+                    queue.add(poll.right);
+                }
+            }
+            largestValuesList.add(max);
+        }
+
+        return  largestValuesList;
+
+    }
+
 }
