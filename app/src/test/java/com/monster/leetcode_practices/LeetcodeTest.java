@@ -65,7 +65,14 @@ public class LeetcodeTest {
 //        findComplement(5);
 //        licenseKeyFormatting("5F3Z-2e-9-w", 4);
 //        findLUSlength("aba", "bacdef");
-        reverseStr("abcdefg", 2);
+//        reverseStr("abcdefg", 2);
+        TreeNode root = new TreeNode(5);
+        TreeNode left = new TreeNode(2);
+        TreeNode right = new TreeNode(-3);
+
+        root.left = left;
+        root.right = right;
+        findFrequentTreeSum(root);
     }
 
     public int trailingZeroes(int n) {
@@ -1750,5 +1757,39 @@ public class LeetcodeTest {
         dep += 1;
         int temp = Math.max(diameterOfBinaryTreeHelper(root.left, dep), diameterOfBinaryTreeHelper(root.right, dep));
         return Math.max(dep, temp);
+    }
+
+    // 10.61%
+    private HashMap<Integer, Integer> resultOfFindFrequentTreeSum = new HashMap<>();
+    public int[] findFrequentTreeSum(TreeNode root) {
+        helperFindFrequentTreeSum(root);
+        Set<Integer> integers = resultOfFindFrequentTreeSum.keySet();
+        int max = 0;
+        List<Integer> res = new ArrayList<>();
+        for (int t : integers) {
+            Integer value = resultOfFindFrequentTreeSum.get(t);
+            if (value > max) {
+                res.clear();
+                res.add(t);
+                max = value;
+            } else if (value == max) {
+                res.add(t);
+            }
+        }
+        return res.stream().mapToInt(i -> i).toArray();
+    }
+    private int helperFindFrequentTreeSum(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int sum = root.val;
+        if (root.left != null) {
+            sum += helperFindFrequentTreeSum(root.left);
+        }
+        if (root.right != null) {
+            sum += helperFindFrequentTreeSum(root.right);
+        }
+        resultOfFindFrequentTreeSum.put(sum, resultOfFindFrequentTreeSum.getOrDefault(sum, 0) + 1);
+        return sum;
     }
 }
