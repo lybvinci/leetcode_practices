@@ -1726,4 +1726,29 @@ public class LeetcodeTest {
         }
         return res;
     }
+
+    //39.55%
+    public int diameterOfBinaryTree(TreeNode root) {
+        return diameterOfBinaryTreeHelper2(root, 0);
+    }
+
+    private int diameterOfBinaryTreeHelper2(TreeNode root, int dep) {
+        if (root == null) {
+            return dep;
+        }
+        int left = diameterOfBinaryTreeHelper(root.left, 0);
+        int right = diameterOfBinaryTreeHelper(root.right, 0);
+        dep = Math.max(dep, left + right);
+        int temp = Math.max(diameterOfBinaryTreeHelper2(root.left, dep),diameterOfBinaryTreeHelper2(root.right, dep));
+        return Math.max(dep, temp);
+    }
+
+    private int diameterOfBinaryTreeHelper(TreeNode root, int dep) {
+        if (root == null) {
+            return dep;
+        }
+        dep += 1;
+        int temp = Math.max(diameterOfBinaryTreeHelper(root.left, dep), diameterOfBinaryTreeHelper(root.right, dep));
+        return Math.max(dep, temp);
+    }
 }
