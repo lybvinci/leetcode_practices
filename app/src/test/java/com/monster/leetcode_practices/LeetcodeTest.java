@@ -66,13 +66,14 @@ public class LeetcodeTest {
 //        licenseKeyFormatting("5F3Z-2e-9-w", 4);
 //        findLUSlength("aba", "bacdef");
 //        reverseStr("abcdefg", 2);
-        TreeNode root = new TreeNode(5);
-        TreeNode left = new TreeNode(2);
-        TreeNode right = new TreeNode(-3);
-
-        root.left = left;
-        root.right = right;
-        findFrequentTreeSum(root);
+//        TreeNode root = new TreeNode(5);
+//        TreeNode left = new TreeNode(2);
+//        TreeNode right = new TreeNode(-3);
+//
+//        root.left = left;
+//        root.right = right;
+//        findFrequentTreeSum(root);
+        checkRecord("PPALLL");
     }
 
     public int trailingZeroes(int n) {
@@ -1823,6 +1824,30 @@ public class LeetcodeTest {
 
         return  largestValuesList;
 
+    }
+
+    // 98.77%
+    public boolean checkRecord(String s) {
+        char[] arr = s.toCharArray();
+        int aTime = 0;
+        int hasLateOne = 0;
+        for (char c : arr) {
+            if (c == 'A') {
+                aTime++;
+                if (aTime > 1) {
+                    return false;
+                }
+                hasLateOne = 0;
+            } else if(c == 'L') {
+                hasLateOne++;
+                if(hasLateOne > 2) {
+                    return false;
+                }
+            } else {
+                hasLateOne = 0;
+            }
+        }
+        return true;
     }
 
 }
