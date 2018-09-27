@@ -1850,4 +1850,26 @@ public class LeetcodeTest {
         return true;
     }
 
+    // 99.70%
+    public int[][] matrixReshape(int[][] nums, int r, int c) {
+        int r1 = nums[0].length * nums.length;
+        int r2 = r * c;
+        if (r1 != r2) {
+            return nums;
+        }
+        int[][] res = new int[r][c];
+        int a1 = 0;
+        int a2 = 0;
+        for (int i = 0; i < nums.length;i++) {
+            for (int j = 0; j < nums[0].length; j++) {
+                if (a2 >= c) {
+                    a2 = 0;
+                    a1++;
+                }
+                res[a1][a2++] = nums[i][j];
+            }
+        }
+        return res;
+    }
+
 }
