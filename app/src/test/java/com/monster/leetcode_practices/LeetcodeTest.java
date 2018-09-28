@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,8 +16,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.SortedMap;
 import java.util.Stack;
+import java.util.TreeMap;
 import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -73,7 +78,8 @@ public class LeetcodeTest {
 //        root.left = left;
 //        root.right = right;
 //        findFrequentTreeSum(root);
-        checkRecord("PPALLL");
+//        checkRecord("PPALLL");
+        distributeCandies(new int[]{1,1,2,3});
     }
 
     public int trailingZeroes(int n) {
@@ -1870,6 +1876,35 @@ public class LeetcodeTest {
             }
         }
         return res;
+    }
+
+    //2.90%
+    public int distributeCandies(int[] candies) {
+        Map<Integer, Integer> container = new HashMap<>();
+        for (int i = 0; i < candies.length; i++) {
+            container.put(candies[i], container.getOrDefault(candies[i], 0) + 1);
+        }
+        ArrayList<Integer> list = new ArrayList<>(container.values());
+        list.sort((s1, s2) -> s2 - s1);
+        int nums = candies.length / 2;
+        int has = 0;
+        int res = container.size();
+        int i = 0;
+        while ( i < container.size() && list.get(i) > 1 ) {
+            has += list.get(i++) - 1;
+        }
+        if (has < nums) {
+            res -= nums - has;
+        }
+        return res;
+
+        // 80%
+//        Set<Integer> set = new HashSet<>();
+//        for (int j : candies) {
+//            set.add(j);
+//        }
+//        return Math.min(set.size(), candies.length /2 );
+
     }
 
 }
