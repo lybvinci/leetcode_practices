@@ -79,7 +79,8 @@ public class LeetcodeTest {
 //        root.right = right;
 //        findFrequentTreeSum(root);
 //        checkRecord("PPALLL");
-        distributeCandies(new int[]{1,1,2,3});
+//        distributeCandies(new int[]{1,1,2,3});
+        findUnsortedSubarray(new int[]{3, 2, 3, 24});
     }
 
     public int trailingZeroes(int n) {
@@ -409,7 +410,7 @@ public class LeetcodeTest {
         if (n == 0) {
             return false;
         }
-        while (n%2 == 0) {
+        while (n % 2 == 0) {
             n /= 2;
         }
         return n == 1;
@@ -421,19 +422,23 @@ public class LeetcodeTest {
         private Stack<Integer> mStack1;
         private Stack<Integer> mStack2;
 
-        /** Initialize your data structure here. */
+        /**
+         * Initialize your data structure here.
+         */
         public MyQueue() {
             mStack1 = new Stack<>();
             mStack2 = new Stack<>();
         }
 
-        /** Push element x to the back of queue. */
+        /**
+         * Push element x to the back of queue.
+         */
         public void push(int x) {
             if (mStack1.isEmpty() && mStack2.isEmpty()) {
                 mStack1.push(x);
             } else if (mStack1.isEmpty()) {
                 int size = mStack2.size();
-                for (int i = 0; i< size ;i++) {
+                for (int i = 0; i < size; i++) {
                     mStack1.push(mStack2.pop());
                 }
                 mStack1.push(x);
@@ -442,22 +447,26 @@ public class LeetcodeTest {
             }
         }
 
-        /** Removes the element from in front of queue and returns that element. */
+        /**
+         * Removes the element from in front of queue and returns that element.
+         */
         public int pop() {
             if (mStack1.isEmpty() && mStack2.isEmpty()) {
                 return 0;
             } else if (mStack1.isEmpty()) {
                 return mStack2.pop();
             } else {
-                int size = mStack1.size() -1;
-                for (int i = 0; i< size;i++) {
+                int size = mStack1.size() - 1;
+                for (int i = 0; i < size; i++) {
                     mStack2.push(mStack1.pop());
                 }
                 return mStack1.pop();
             }
         }
 
-        /** Get the front element. */
+        /**
+         * Get the front element.
+         */
         public int peek() {
             if (mStack1.isEmpty() && mStack2.isEmpty()) {
                 return 0;
@@ -465,14 +474,16 @@ public class LeetcodeTest {
                 return mStack2.peek();
             } else {
                 int size = mStack1.size();
-                for (int i = 0; i< size;i++) {
+                for (int i = 0; i < size; i++) {
                     mStack2.push(mStack1.pop());
                 }
                 return mStack2.peek();
             }
         }
 
-        /** Returns whether the queue is empty. */
+        /**
+         * Returns whether the queue is empty.
+         */
         public boolean empty() {
             return mStack1.isEmpty() && mStack2.isEmpty();
         }
@@ -486,7 +497,7 @@ public class LeetcodeTest {
 
         public NumArray(int[] nums) {
             this.nums = nums;
-            if (nums == null || nums.length == 0 ) {
+            if (nums == null || nums.length == 0) {
                 return;
             }
 
@@ -496,15 +507,15 @@ public class LeetcodeTest {
             if (sums == null) {
                 this.sums = new int[nums.length];
                 this.sums[0] = nums[0];
-                for (int k = 1; k< nums.length;k++) {
-                    sums[k] = sums[k-1] + nums[k];
+                for (int k = 1; k < nums.length; k++) {
+                    sums[k] = sums[k - 1] + nums[k];
                 }
             }
 
-            if ( i <= 0) {
+            if (i <= 0) {
                 return sums[j];
             } else {
-                return nums[i] + (sums[j] - sums[i] );
+                return nums[i] + (sums[j] - sums[i]);
             }
         }
 
@@ -525,7 +536,7 @@ public class LeetcodeTest {
                 return false;
             }
             Map<Character, String> m = new HashMap<>();
-            for (int i = 0; i< parLength; i++) {
+            for (int i = 0; i < parLength; i++) {
                 if (m.containsKey(pattern.charAt(i))) {
                     String t = m.get(pattern.charAt(i));
                     if (!t.equals(splits[i])) {
@@ -574,7 +585,7 @@ public class LeetcodeTest {
             }
         }
         while (index < nums.length) {
-            nums[index++] =  0;
+            nums[index++] = 0;
         }
     }
 
@@ -582,11 +593,11 @@ public class LeetcodeTest {
     public boolean isPalindrome(ListNode head) {
         List<Integer> list = new ArrayList<>();
         ListNode pos = head;
-        while(pos != null) {
+        while (pos != null) {
             list.add(pos.val);
             pos = pos.next;
         }
-        for (int i = list.size()-1; i>=0;i--) {
+        for (int i = list.size() - 1; i >= 0; i--) {
             if (head.val != list.get(i)) {
                 return false;
             }
@@ -601,10 +612,10 @@ public class LeetcodeTest {
             return root;
         }
         if ((root.val > p.val && root.val < q.val) ||
-                (root.val <p.val && root.val > q.val)) {
+                (root.val < p.val && root.val > q.val)) {
             return root;
         }
-        if (root.val > p.val && root.val > q.val ) {
+        if (root.val > p.val && root.val > q.val) {
             return lowestCommonAncestor(root.left, p, q);
         } else {
             return lowestCommonAncestor(root.right, p, q);
@@ -621,17 +632,17 @@ public class LeetcodeTest {
 
     // 99.83%
     public boolean isAnagram(String s, String t) {
-        if(t.length() != s.length()) {
+        if (t.length() != s.length()) {
             return false;
         }
         int[] times = new int[26];
         char[] sc = s.toCharArray();
         char[] tc = t.toCharArray();
-        for (int i = 0; i<sc.length;i++) {
+        for (int i = 0; i < sc.length; i++) {
             times[sc[i] - 'a']++;
             times[tc[i] - 'a']--;
         }
-        for (int i = 0; i<times.length;i++) {
+        for (int i = 0; i < times.length; i++) {
             if (times[i] != 0) {
                 return false;
             }
@@ -640,6 +651,7 @@ public class LeetcodeTest {
     }
 
     private List<String> binaryTreePathsRes;
+
     public List<String> binaryTreePaths(TreeNode root) {
         binaryTreePathsRes = new ArrayList<>();
         if (root == null) {
@@ -678,10 +690,10 @@ public class LeetcodeTest {
 
     //79.12%
     public int addDigits(int num) {
-        while(num > 9) {
+        while (num > 9) {
             int sum = 0;
-            while(num != 0) {
-                sum += num % 10 ;
+            while (num != 0) {
+                sum += num % 10;
                 num /= 10;
             }
             num = sum;
@@ -697,7 +709,7 @@ public class LeetcodeTest {
             return false;
         }
         int i = 2;
-        if ( n >= 0) {
+        if (n >= 0) {
             while (i <= n) {
                 if (n % 5 == 0) {
                     n /= 5;
@@ -729,11 +741,11 @@ public class LeetcodeTest {
 
     // 95.74%
     public int missingNumber(int[] nums) {
-        boolean[] b = new boolean[nums.length+1];
-        for (int i = 0; i < nums.length;i++) {
+        boolean[] b = new boolean[nums.length + 1];
+        for (int i = 0; i < nums.length; i++) {
             b[nums[i]] = true;
         }
-        for (int i = 0; i < b.length;i++) {
+        for (int i = 0; i < b.length; i++) {
             if (b[i] == false) {
                 return i;
             }
@@ -746,25 +758,26 @@ public class LeetcodeTest {
         int start = 1;
         int end = n;
         while (start < end) {
-            int mid = start + (end - start)/2;
+            int mid = start + (end - start) / 2;
             if (isBadVersion(mid)) {
                 end = mid;
             } else {
-                start = mid+1;
+                start = mid + 1;
             }
         }
         return start;
     }
+
     // for test
     private boolean isBadVersion(int n) {
-        return n==4;
+        return n == 4;
     }
 
     public boolean isPowerOfThree(int n) {
         if (n < 1) {
             return false;
         }
-        if ( n == 1) {
+        if (n == 1) {
             return true;
         }
         int left = n % 10;
@@ -774,7 +787,7 @@ public class LeetcodeTest {
         int sum = 0;
         int tmp = n;
         while (tmp != 0) {
-            sum += tmp %10;
+            sum += tmp % 10;
             tmp /= 10;
         }
         if (sum % 3 != 0) {
@@ -784,7 +797,7 @@ public class LeetcodeTest {
             if (n % 3 != 0) {
                 return false;
             }
-            n/=3;
+            n /= 3;
         }
         return true;
 
@@ -795,7 +808,7 @@ public class LeetcodeTest {
         if (num < 1) {
             return false;
         }
-        if ( num == 1) {
+        if (num == 1) {
             return true;
         }
         int left = num % 10;
@@ -807,7 +820,7 @@ public class LeetcodeTest {
             if (num % 4 != 0) {
                 return false;
             }
-            num/=4;
+            num /= 4;
         }
         return true;
     }
@@ -820,15 +833,15 @@ public class LeetcodeTest {
 
     // 33.64%
     public int[] intersection(int[] nums1, int[] nums2) {
-        if (nums1.length ==0 || nums2.length == 0) {
+        if (nums1.length == 0 || nums2.length == 0) {
             return new int[0];
         }
         Set<Integer> result = new HashSet<>();
         List<Integer> nums2L = new ArrayList<>();
-        for (int i = 0; i<nums2.length;i++) {
+        for (int i = 0; i < nums2.length; i++) {
             nums2L.add(nums2[i]);
         }
-        for (int i = 0; i< nums1.length;i++) {
+        for (int i = 0; i < nums1.length; i++) {
             if (nums2L.contains(nums1[i])) {
                 result.add(nums1[i]);
                 int index = nums2L.indexOf(nums1[i]);
@@ -841,15 +854,15 @@ public class LeetcodeTest {
 
     // 18.67%
     public int[] intersect(int[] nums1, int[] nums2) {
-        if (nums1.length ==0 || nums2.length == 0) {
+        if (nums1.length == 0 || nums2.length == 0) {
             return new int[0];
         }
         List<Integer> result = new ArrayList<>();
         List<Integer> nums2L = new ArrayList<>();
-        for (int i = 0; i<nums2.length;i++) {
+        for (int i = 0; i < nums2.length; i++) {
             nums2L.add(nums2[i]);
         }
-        for (int i = 0; i< nums1.length;i++) {
+        for (int i = 0; i < nums1.length; i++) {
             if (nums2L.contains(nums1[i])) {
                 result.add(nums1[i]);
                 int index = nums2L.indexOf(nums1[i]);
@@ -868,7 +881,7 @@ public class LeetcodeTest {
         int start = 0;
         int temp = 0;
         while (temp < num) {
-            temp = start*start;
+            temp = start * start;
             start++;
         }
         return temp == num;
@@ -894,7 +907,8 @@ public class LeetcodeTest {
         }
         return left;
     }
-    private int guess(int n ){
+
+    private int guess(int n) {
         if (n == 6) {
             return 0;
         } else if (n > 6) {
@@ -908,9 +922,9 @@ public class LeetcodeTest {
     public boolean canConstruct(String ransomNote, String magazine) {
         char[] mC = magazine.toCharArray();
         char[] rC = ransomNote.toCharArray();
-        for (int i = 0; i< rC.length;i++) {
+        for (int i = 0; i < rC.length; i++) {
             int j = 0;
-            for (; j< mC.length;j++) {
+            for (; j < mC.length; j++) {
                 if (rC[i] == mC[j]) {
                     mC[j] = '\n';
                     break;
@@ -926,8 +940,8 @@ public class LeetcodeTest {
     //82.96%
     public int firstUniqChar(String s) {
         char[] chars = s.toCharArray();
-        for (int i =0;i<chars.length;i++) {
-            int index = s.indexOf(chars[i], i+1);
+        for (int i = 0; i < chars.length; i++) {
+            int index = s.indexOf(chars[i], i + 1);
             if (index != -1) {
                 continue;
             } else {
@@ -943,14 +957,14 @@ public class LeetcodeTest {
     // 56%
     public char findTheDifference(String s, String t) {
         int[] res = new int[26];
-        for (int i = 0; i < s.length();i++) {
+        for (int i = 0; i < s.length(); i++) {
             res[s.charAt(i) - 'a']++;
             res[t.charAt(i) - 'a']--;
         }
-        res[t.charAt(t.length()-1) - 'a']--;
-        for (int i = 0; i<res.length;i++) {
+        res[t.charAt(t.length() - 1) - 'a']--;
+        for (int i = 0; i < res.length; i++) {
             if (res[i] == -1) {
-                return (char)('a'+i);
+                return (char) ('a' + i);
             }
         }
         return ' ';
@@ -969,7 +983,7 @@ public class LeetcodeTest {
             if (j >= 0) {
                 carry += num2.charAt(j) - '0';
             }
-            builder.append((char)(carry % 10 + '0'));
+            builder.append((char) (carry % 10 + '0'));
             carry /= 10;
             i--;
             j--;
@@ -1018,10 +1032,10 @@ public class LeetcodeTest {
     // 52.53%
     public int compress(char[] chars) {
         int index = 0;
-        for (int i = 0; i<chars.length;i++) {
+        for (int i = 0; i < chars.length; i++) {
             int num = 1;
-            int j = i+1;
-            for (;j<chars.length;j++) {
+            int j = i + 1;
+            for (; j < chars.length; j++) {
                 if (chars[i] == chars[j]) {
                     num++;
                 } else {
@@ -1032,14 +1046,14 @@ public class LeetcodeTest {
             index++;
             if (num > 1) {
                 Stack<Integer> stack = new Stack<>();
-                while (num >0) {
-                    stack.push(num%10);
+                while (num > 0) {
+                    stack.push(num % 10);
                     num /= 10;
                 }
                 while (!stack.isEmpty()) {
-                    chars[index++] = (char)(stack.pop() + '0');
+                    chars[index++] = (char) (stack.pop() + '0');
                 }
-                i = j-1;
+                i = j - 1;
             }
         }
         return index;
@@ -1047,8 +1061,8 @@ public class LeetcodeTest {
 
     //74.37%
     public int arrangeCoins(int n) {
-        long t = (long)n;
-        return (int)(Math.sqrt(1+ 8*t) - 1)/2;
+        long t = (long) n;
+        return (int) (Math.sqrt(1 + 8 * t) - 1) / 2;
     }
 
     //6%
@@ -1087,8 +1101,8 @@ public class LeetcodeTest {
         for (int i = 0; i <= m - n; i++) {
             int[] t = new int[26];
             for (int j = 0; j < n; j++) {
-                t[s.charAt(i + j)-'a']++;
-                t[p.charAt(j)-'a']--;
+                t[s.charAt(i + j) - 'a']++;
+                t[p.charAt(j) - 'a']--;
             }
             boolean flag = true;
             for (int j = 0; j < t.length; j++) {
@@ -1108,10 +1122,10 @@ public class LeetcodeTest {
         List<String> result = new ArrayList<>();
         int d3 = 0;
         int d5 = 0;
-        for (int i = 1; i <= n;i++) {
+        for (int i = 1; i <= n; i++) {
             d3 = i % 3;
             d5 = i % 5;
-            if (d3 ==0 && d5 ==0) {
+            if (d3 == 0 && d5 == 0) {
                 result.add("FizzBuzz");
             } else if (d3 == 0) {
                 result.add("Fizz");
@@ -1128,13 +1142,16 @@ public class LeetcodeTest {
         public int val;
         public List<Node> children;
 
-        public Node() {}
+        public Node() {
+        }
 
-        public Node(int _val,List<Node> _children) {
+        public Node(int _val, List<Node> _children) {
             val = _val;
             children = _children;
         }
-    };
+    }
+
+    ;
 
     // 12.50%
     public List<List<Integer>> levelOrder(Node root) {
@@ -1149,10 +1166,10 @@ public class LeetcodeTest {
         if (root.children != null) {
             temp.add(root.children);
         }
-        while(!temp.isEmpty()) {
+        while (!temp.isEmpty()) {
             int size = temp.size();
             ArrayList<Integer> childList = new ArrayList<>();
-            for (int i = 0; i <size ; i++) {
+            for (int i = 0; i < size; i++) {
                 List<Node> poll = temp.poll();
                 if (poll != null && poll.size() != 0) {
                     for (Node n : poll) {
@@ -1179,7 +1196,7 @@ public class LeetcodeTest {
         long first = Long.MIN_VALUE;
         long second = Long.MIN_VALUE;
         long third = Long.MIN_VALUE;
-        for (int i = 0; i<nums.length; i ++)   {
+        for (int i = 0; i < nums.length; i++) {
             if (nums[i] > first) {
                 third = second;
                 second = first;
@@ -1191,7 +1208,7 @@ public class LeetcodeTest {
                 third = nums[i];
             }
         }
-        return third == Long.MIN_VALUE ? (int)first : (int)third;
+        return third == Long.MIN_VALUE ? (int) first : (int) third;
     }
 
     //84.91%
@@ -1218,7 +1235,7 @@ public class LeetcodeTest {
     public int longestPalindrome(String s) {
         Map<Character, Integer> container = new HashMap<>();
         char[] chars = s.toCharArray();
-        for (int i = 0; i<chars.length; i++) {
+        for (int i = 0; i < chars.length; i++) {
             if (container.containsKey(chars[i])) {
                 container.put(chars[i], container.get(chars[i]) + 1);
             } else {
@@ -1229,7 +1246,7 @@ public class LeetcodeTest {
         for (Character key : container.keySet()) {
             result += container.get(key) / 2;
         }
-        return result * 2 < s.length() ? result*2 + 1 : result * 2;
+        return result * 2 < s.length() ? result * 2 + 1 : result * 2;
     }
 
     // 40.12%
@@ -1237,17 +1254,17 @@ public class LeetcodeTest {
         int digitType = 1;
         long digitNum = 9;
         //定位到是几位数
-        while(n > digitNum*digitType){
-            n -= (int) digitNum*digitType ;
+        while (n > digitNum * digitType) {
+            n -= (int) digitNum * digitType;
             digitType++;
-            digitNum*=10;
+            digitNum *= 10;
         }
         //定位到是这些几位数里面的第几个的第几位
-        int indexInSubRange = (n -1) / digitType;
-        int indexInNum = (n -1) % digitType;
+        int indexInSubRange = (n - 1) / digitType;
+        int indexInNum = (n - 1) % digitType;
         //还原数字
-        int num = (int)Math.pow(10,digitType - 1) + indexInSubRange ;
-        int result = Integer.parseInt((""+num).charAt(indexInNum)+"");
+        int num = (int) Math.pow(10, digitType - 1) + indexInSubRange;
+        int result = Integer.parseInt(("" + num).charAt(indexInNum) + "");
         return result;
     }
 
@@ -1257,14 +1274,14 @@ public class LeetcodeTest {
         boolean[] flags = new boolean[nums.length];
         int index = 0;
         for (int i = 0; i < nums.length; i++) {
-            index = Math.abs(nums[i]) -1;
+            index = Math.abs(nums[i]) - 1;
             if (nums[index] > 0) {
                 nums[index] = -nums[index];
             }
         }
-        for (int i = 0; i<nums.length;i++) {
+        for (int i = 0; i < nums.length; i++) {
             if (nums[i] > 0) {
-                res.add(i+1);
+                res.add(i + 1);
             }
         }
         return res;
@@ -1295,7 +1312,7 @@ public class LeetcodeTest {
             return 0;
         } else {
             int sum = 0;
-            for (int i = 1 ; i < nums.length; i++) {
+            for (int i = 1; i < nums.length; i++) {
                 sum += nums[i] - nums[0];
             }
             return sum;
@@ -1307,7 +1324,7 @@ public class LeetcodeTest {
         Arrays.sort(g);
         Arrays.sort(s);
         int result = 0;
-        for (int i = 0 ,j = 0; i < g.length && j <s.length ;) {
+        for (int i = 0, j = 0; i < g.length && j < s.length; ) {
             if (s[j] >= g[i]) {
                 result++;
                 i++;
@@ -1329,18 +1346,18 @@ public class LeetcodeTest {
     // 48.95%
     public boolean repeatedSubstringPattern(String s) {
         int n = s.length();
-        for(int i = 1; i <= n / 2; i++){
-            if(n % i != 0) continue;
+        for (int i = 1; i <= n / 2; i++) {
+            if (n % i != 0) continue;
             String refer = s.substring(0, i);
             int a = 1;
-            for(int j = i; j < n; j = j + i){
-                String tmp = s.substring(j, j+i);
-                if(!refer.equals(tmp)){
+            for (int j = i; j < n; j = j + i) {
+                String tmp = s.substring(j, j + i);
+                if (!refer.equals(tmp)) {
                     a = 0;
                     break;
                 }
             }
-            if(a == 1) return true;
+            if (a == 1) return true;
         }
         return false;
     }
@@ -1349,7 +1366,7 @@ public class LeetcodeTest {
     public int hammingDistance(int x, int y) {
         int sum = 0;
         int temp = x ^ y;
-        while(temp > 0) {
+        while (temp > 0) {
             sum += temp & 0x1;
             temp = temp >> 1;
         }
@@ -1382,13 +1399,13 @@ public class LeetcodeTest {
             mask <<= 1;
             temp >>= 1;
         }
-        return num ^ (mask -1);
+        return num ^ (mask - 1);
     }
 
     // 34.78%
     public String licenseKeyFormatting(String S, int K) {
         String no_S = S.replaceAll("-", "");
-        int segNum = (no_S.length() -1)/K;
+        int segNum = (no_S.length() - 1) / K;
         int left = (no_S.length() - 1) % K;
         int firstLength = 1 + left;
 //        too slow
@@ -1414,8 +1431,8 @@ public class LeetcodeTest {
 
     //35.61%
     public int[] constructRectangle(int area) {
-        int sqrt = (int) Math.floor( Math.sqrt(area));
-        for (int i = sqrt; i <= area ; i++) {
+        int sqrt = (int) Math.floor(Math.sqrt(area));
+        for (int i = sqrt; i <= area; i++) {
             if (area % i == 0) {
                 int left = area / i;
                 return left > i ? new int[]{left, i} : new int[]{i, left};
@@ -1428,10 +1445,10 @@ public class LeetcodeTest {
     // 46.55%
     public String convertToBase7(int num) {
         String res = "";
-        boolean flag = num >= 0 ;
+        boolean flag = num >= 0;
         long temp = num;
         temp = Math.abs(temp);
-        while ( temp >= 7) {
+        while (temp >= 7) {
             res = temp % 7 + res;
             temp /= 7;
         }
@@ -1473,22 +1490,46 @@ public class LeetcodeTest {
     // 27.33%
     Set<Character> first = new HashSet<Character>() {
         {
-            add('q');add('w');add('e');add('r');add('t');add('y');add('u');add('i');add('o');add('p');
+            add('q');
+            add('w');
+            add('e');
+            add('r');
+            add('t');
+            add('y');
+            add('u');
+            add('i');
+            add('o');
+            add('p');
         }
     };
     Set<Character> second = new HashSet<Character>() {
         {
-            add('a');add('s');add('d');add('f');add('g');add('h');add('j');add('k');add('l');
+            add('a');
+            add('s');
+            add('d');
+            add('f');
+            add('g');
+            add('h');
+            add('j');
+            add('k');
+            add('l');
         }
     };
     Set<Character> third = new HashSet<Character>() {
         {
-            add('z');add('x');add('c');add('v');add('b');add('n');add('m');
+            add('z');
+            add('x');
+            add('c');
+            add('v');
+            add('b');
+            add('n');
+            add('m');
         }
     };
+
     public String[] findWords(String[] words) {
         List<String> result = new ArrayList<>();
-        for (int i = 0 ; i < words.length ; i++) {
+        for (int i = 0; i < words.length; i++) {
             if (words[i].length() <= 0) {
                 continue;
             }
@@ -1503,7 +1544,7 @@ public class LeetcodeTest {
             }
             boolean is = true;
 
-            for (int j = 1; j < chars.length ; j++) {
+            for (int j = 1; j < chars.length; j++) {
                 if (!temp.contains(chars[j])) {
                     is = false;
                     break;
@@ -1522,9 +1563,9 @@ public class LeetcodeTest {
 
     //1.75%
     public int[] findMode(TreeNode root) {
-        HashMap<Integer,Integer> map = new HashMap<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
         helperFindMode(root, map);
-        Set<Integer> keys  = new HashSet<>();
+        Set<Integer> keys = new HashSet<>();
         int max = 0;
         for (Integer key : map.keySet()) {
             if (map.get(key) > max) {
@@ -1537,11 +1578,12 @@ public class LeetcodeTest {
         }
         return keys.stream().mapToInt(Number::intValue).toArray();
     }
+
     private void helperFindMode(TreeNode root, Map<Integer, Integer> map) {
         if (root == null) {
             return;
         }
-        map.put(root.val, map.getOrDefault(root.val, 0)+1);
+        map.put(root.val, map.getOrDefault(root.val, 0) + 1);
         helperFindMode(root.left, map);
         helperFindMode(root.right, map);
     }
@@ -1594,7 +1636,7 @@ public class LeetcodeTest {
                 if (chars[i] >= 'a') {
                     return false;
                 }
-            } else if (firstIsUpper && !secondIsUpper){
+            } else if (firstIsUpper && !secondIsUpper) {
                 if (chars[i] < 'a') {
                     return false;
                 }
@@ -1609,29 +1651,30 @@ public class LeetcodeTest {
 
     //98.62%
     public int findBottomLeftValue(TreeNode root) {
-        return helperFindBottomLeftValue(root,0)[0];
+        return helperFindBottomLeftValue(root, 0)[0];
     }
-    private int[] helperFindBottomLeftValue(TreeNode root,int level) {
+
+    private int[] helperFindBottomLeftValue(TreeNode root, int level) {
         int[] res;
         if (root.left == null && root.right == null) {
             return new int[]{root.val, level};
         } else if (root.left == null) {
-            res = helperFindBottomLeftValue(root.right, level+1);
+            res = helperFindBottomLeftValue(root.right, level + 1);
         } else if (root.right == null) {
-            res = helperFindBottomLeftValue(root.left, level+1);
+            res = helperFindBottomLeftValue(root.left, level + 1);
         } else {
-            int[] t1 = helperFindBottomLeftValue(root.left, level+1);
-            int[] t2 = helperFindBottomLeftValue(root.right, level+1);
-            res = t1[1] >= t2[1] ? t1:t2;
+            int[] t1 = helperFindBottomLeftValue(root.left, level + 1);
+            int[] t2 = helperFindBottomLeftValue(root.right, level + 1);
+            res = t1[1] >= t2[1] ? t1 : t2;
         }
         return res;
     }
 
     //84.91%
     public int findLUSlength(String a, String b) {
-        if(a.length() == 0 && b.length() == 0) {
+        if (a.length() == 0 && b.length() == 0) {
             return -1;
-        } else if (a.length() != b.length()){
+        } else if (a.length() != b.length()) {
             return Math.max(a.length(), b.length());
         } else {
             if (!a.equals(b)) {
@@ -1648,10 +1691,11 @@ public class LeetcodeTest {
         helperGetMinimumDifference(root, list);
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < list.size() - 1; i++) {
-            min = Math.min(min, Math.abs(list.get(i) - list.get(i+1)));
+            min = Math.min(min, Math.abs(list.get(i) - list.get(i + 1)));
         }
         return min;
     }
+
     //中序遍历拿到有序数组，求相邻元素的差的最小值.
     private void helperGetMinimumDifference(TreeNode root, LinkedList<Integer> list) {
         if (root == null) {
@@ -1667,18 +1711,18 @@ public class LeetcodeTest {
         char[] chars = s.toCharArray();
         Stack<Character> front = new Stack<>();
         Queue<Character> after = new LinkedList<>();
-        int group = chars.length / (2*k);
-        int left = chars.length % (2*k);
+        int group = chars.length / (2 * k);
+        int left = chars.length % (2 * k);
         StringBuilder sb = new StringBuilder(s.length());
         for (int i = 0; i < group; i++) {
-            for (int j = i*2*k; j < (i+1)*2*k; j++) {
-                if (j % (2*k) < k) {
+            for (int j = i * 2 * k; j < (i + 1) * 2 * k; j++) {
+                if (j % (2 * k) < k) {
                     front.push(chars[j]);
                 } else {
                     after.add(chars[j]);
                 }
             }
-            while(!front.isEmpty()) {
+            while (!front.isEmpty()) {
                 sb.append(front.pop());
             }
             while (!after.isEmpty()) {
@@ -1688,12 +1732,12 @@ public class LeetcodeTest {
         if (left > 0) {
             for (int i = 0; i < left; i++) {
                 if (i < k) {
-                    front.push(chars[2*k*group + i]);
+                    front.push(chars[2 * k * group + i]);
                 } else {
-                    after.add(chars[2*k*group + i]);
+                    after.add(chars[2 * k * group + i]);
                 }
             }
-            while(!front.isEmpty()) {
+            while (!front.isEmpty()) {
                 sb.append(front.pop());
             }
             while (!after.isEmpty()) {
@@ -1710,12 +1754,13 @@ public class LeetcodeTest {
         }
         return helperMaxDepth(root, 0);
     }
+
     private int helperMaxDepth(Node root, int curDep) {
         if (root == null || root.children == null || root.children.size() == 0) {
             return curDep;
         }
         for (Node node : root.children) {
-            curDep = Math.max(curDep+1, helperMaxDepth(node, curDep+1));
+            curDep = Math.max(curDep + 1, helperMaxDepth(node, curDep + 1));
         }
         return curDep;
     }
@@ -1753,7 +1798,7 @@ public class LeetcodeTest {
         int left = diameterOfBinaryTreeHelper(root.left, 0);
         int right = diameterOfBinaryTreeHelper(root.right, 0);
         dep = Math.max(dep, left + right);
-        int temp = Math.max(diameterOfBinaryTreeHelper2(root.left, dep),diameterOfBinaryTreeHelper2(root.right, dep));
+        int temp = Math.max(diameterOfBinaryTreeHelper2(root.left, dep), diameterOfBinaryTreeHelper2(root.right, dep));
         return Math.max(dep, temp);
     }
 
@@ -1768,6 +1813,7 @@ public class LeetcodeTest {
 
     // 10.61%
     private HashMap<Integer, Integer> resultOfFindFrequentTreeSum = new HashMap<>();
+
     public int[] findFrequentTreeSum(TreeNode root) {
         helperFindFrequentTreeSum(root);
         Set<Integer> integers = resultOfFindFrequentTreeSum.keySet();
@@ -1785,6 +1831,7 @@ public class LeetcodeTest {
         }
         return res.stream().mapToInt(i -> i).toArray();
     }
+
     private int helperFindFrequentTreeSum(TreeNode root) {
         if (root == null) {
             return 0;
@@ -1828,7 +1875,7 @@ public class LeetcodeTest {
             largestValuesList.add(max);
         }
 
-        return  largestValuesList;
+        return largestValuesList;
 
     }
 
@@ -1844,9 +1891,9 @@ public class LeetcodeTest {
                     return false;
                 }
                 hasLateOne = 0;
-            } else if(c == 'L') {
+            } else if (c == 'L') {
                 hasLateOne++;
-                if(hasLateOne > 2) {
+                if (hasLateOne > 2) {
                     return false;
                 }
             } else {
@@ -1866,7 +1913,7 @@ public class LeetcodeTest {
         int[][] res = new int[r][c];
         int a1 = 0;
         int a2 = 0;
-        for (int i = 0; i < nums.length;i++) {
+        for (int i = 0; i < nums.length; i++) {
             for (int j = 0; j < nums[0].length; j++) {
                 if (a2 >= c) {
                     a2 = 0;
@@ -1890,7 +1937,7 @@ public class LeetcodeTest {
         int has = 0;
         int res = container.size();
         int i = 0;
-        while ( i < container.size() && list.get(i) > 1 ) {
+        while (i < container.size() && list.get(i) > 1) {
             has += list.get(i++) - 1;
         }
         if (has < nums) {
@@ -1905,6 +1952,18 @@ public class LeetcodeTest {
 //        }
 //        return Math.min(set.size(), candies.length /2 );
 
+    }
+
+
+    //39.42%
+    public int findUnsortedSubarray(int[] nums) {
+        int[] sortedArr = Arrays.copyOf(nums, nums.length);
+        Arrays.sort(sortedArr);
+        int i = 0, j = nums.length - 1;
+        while (nums[i] == sortedArr[i] && i < j) i++;
+        while (nums[j] == sortedArr[j] && i < j) j--;
+        if (i == j) return 0;
+        else return j - i + 1;
     }
 
 }
