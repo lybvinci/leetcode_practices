@@ -80,7 +80,8 @@ public class LeetcodeTest {
 //        findFrequentTreeSum(root);
 //        checkRecord("PPALLL");
 //        distributeCandies(new int[]{1,1,2,3});
-        findUnsortedSubarray(new int[]{3, 2, 3, 24});
+//        findUnsortedSubarray(new int[]{3, 2, 3, 24});
+        reverseWords("s    s");
     }
 
     public int trailingZeroes(int n) {
@@ -1964,6 +1965,27 @@ public class LeetcodeTest {
         while (nums[j] == sortedArr[j] && i < j) j--;
         if (i == j) return 0;
         else return j - i + 1;
+    }
+
+    //23.02%
+    public String reverseWords(String s) {
+        Stack<Character> stack = new Stack<>();
+        char[] chars = s.toCharArray();
+        StringBuilder res = new StringBuilder(s.length());
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == ' ') {
+                while (!stack.isEmpty()) {
+                    res.append(stack.pop());
+                }
+                res.append(chars[i]);
+            } else {
+                stack.push(chars[i]);
+            }
+        }
+        while (!stack.isEmpty()) {
+            res.append(stack.pop());
+        }
+        return res.toString();
     }
 
 }
