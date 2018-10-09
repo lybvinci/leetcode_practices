@@ -1988,4 +1988,21 @@ public class LeetcodeTest {
         return res.toString();
     }
 
+    // 87.26%
+    int findTiltRes = 0;
+    public int findTilt(TreeNode root) {
+        findTiltHelper(root);
+        return findTiltRes;
+    }
+
+    private int findTiltHelper(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int left = findTiltHelper(root.left);
+        int right = findTiltHelper(root.right);
+        findTiltRes += Math.abs(left - right);
+        return left + right + root.val;
+    }
+
 }
