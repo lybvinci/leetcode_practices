@@ -2005,4 +2005,24 @@ public class LeetcodeTest {
         return left + right + root.val;
     }
 
+    //72.48%
+    private List<Integer> preorderList = new ArrayList<>();
+    public List<Integer> preorder(Node root) {
+        preorderHelper(root);
+        return preorderList;
+    }
+
+    private void preorderHelper(Node root) {
+        if (root == null) {
+            return;
+        }
+        preorderList.add(root.val);
+        if (root.children == null) {
+            return;
+        }
+        for (Node node : root.children) {
+            preorderHelper(node);
+        }
+    }
+
 }
