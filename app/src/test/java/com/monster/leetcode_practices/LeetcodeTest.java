@@ -2011,7 +2011,6 @@ public class LeetcodeTest {
         preorderHelper(root);
         return preorderList;
     }
-
     private void preorderHelper(Node root) {
         if (root == null) {
             return;
@@ -2023,6 +2022,26 @@ public class LeetcodeTest {
         for (Node node : root.children) {
             preorderHelper(node);
         }
+    }
+
+    //99.13%
+    private List<Integer> postorderList = new ArrayList<>();
+    public List<Integer> postorder(Node root) {
+        postorderHelper(root);
+        return postorderList;
+    }
+    private void postorderHelper(Node root) {
+        if (root == null) {
+            return;
+        }
+        if (root.children == null) {
+            postorderList.add(root.val);
+            return;
+        }
+        for (Node node : root.children) {
+            postorderHelper(node);
+        }
+        postorderList.add(root.val);
     }
 
 }
