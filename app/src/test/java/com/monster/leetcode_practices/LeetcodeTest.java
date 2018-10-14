@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -81,7 +82,9 @@ public class LeetcodeTest {
 //        checkRecord("PPALLL");
 //        distributeCandies(new int[]{1,1,2,3});
 //        findUnsortedSubarray(new int[]{3, 2, 3, 24});
-        reverseWords("s    s");
+//        reverseWords("s    s");
+        findRestaurant(new String[]{"Shogun","Tapioca Express","Burger King","KFC"},
+                new String[]{"KFC","Burger King","Tapioca Express","Shogun"});
     }
 
     public int trailingZeroes(int n) {
@@ -2056,6 +2059,29 @@ public class LeetcodeTest {
             b = Math.min(b, ops[i][1]);
         }
         return a*b;
+    }
+
+    //30.42%
+    public String[] findRestaurant(String[] list1, String[] list2) {
+        HashMap<String,Integer> map = new HashMap<>();
+        for (int i = 0 ; i < list1.length ;i++) {
+            map.put(list1[i], i);
+        }
+        Set<String> res = new HashSet<>();
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < list2.length;i++) {
+            if (map.containsKey(list2[i])) {
+                int value = map.get(list2[i]) + i;
+                if (value < min) {
+                    min = value;
+                    res.clear();
+                    res.add(list2[i]);
+                } else if (value == min) {
+                    res.add(list2[i]);
+                }
+            }
+        }
+        return res.toArray(new String[res.size()]);
     }
 
 }
