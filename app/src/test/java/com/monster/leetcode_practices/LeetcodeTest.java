@@ -2084,4 +2084,29 @@ public class LeetcodeTest {
         return res.toArray(new String[res.size()]);
     }
 
+    //97.47%
+    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        if (flowerbed.length == 1)
+            return flowerbed[0] == 0 || n == 0;
+        if (flowerbed.length == 2)
+            return n == 0 || (flowerbed[0] == 0 && flowerbed[1] == 0 && n == 1);
+        int len = flowerbed.length;
+        if (flowerbed[0] == 0 && flowerbed[1] == 0) {
+            flowerbed[0] = 1;
+            n--;
+        }
+        if (flowerbed[len - 1] == 0 && flowerbed[len - 2] == 0) {
+            flowerbed[len - 1] = 1;
+            n--;
+        }
+
+        for (int i = 1; i < len - 1; ++i)
+            if (flowerbed[i] == 0 && flowerbed[i - 1] == 0 && flowerbed[i + 1] == 0) {
+                flowerbed[i] = 1;
+                n--;
+            }
+        return n <= 0;
+
+    }
+
 }
