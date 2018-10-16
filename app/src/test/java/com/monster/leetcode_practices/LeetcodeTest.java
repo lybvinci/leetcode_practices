@@ -2109,4 +2109,32 @@ public class LeetcodeTest {
 
     }
 
+    // 94.43%
+    public String tree2str(TreeNode t) {
+        if (t == null) {
+            return "";
+        }
+        tree2strHelper(t);
+        tree2strSb.deleteCharAt(0);
+        tree2strSb.deleteCharAt(tree2strSb.length() - 1);
+        return tree2strSb.toString();
+    }
+    private StringBuilder tree2strSb = new StringBuilder();
+
+    private void tree2strHelper(TreeNode t) {
+        if (t == null) {
+            return;
+        }
+        tree2strSb.append("(" + t.val);
+        if (t.left != null) {
+            tree2strHelper(t.left);
+        } else if (t.left == null && t.right != null){
+            tree2strSb.append("()");
+        }
+        if (t.right != null) {
+            tree2strHelper(t.right);
+        }
+        tree2strSb.append(")");
+    }
+
 }
