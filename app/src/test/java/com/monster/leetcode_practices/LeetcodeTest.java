@@ -2157,4 +2157,24 @@ public class LeetcodeTest {
         }
     }
 
+    //19.84%
+    public int maximumProduct(int[] nums) {
+        if (nums.length <= 0) {
+            return 0;
+        } else if (nums.length <= 3) {
+            int res = nums[0];
+            for (int i = 1; i < nums.length;i++) {
+                res *= nums[i];
+            }
+            return res;
+        } else {
+            Arrays.sort(nums);
+            int res = nums[nums.length-1];
+            int pre = nums[0] * nums[1];
+            int last = nums[nums.length - 2] * nums[nums.length - 3];
+            res *= pre > last ? pre : last;
+            return res;
+        }
+    }
+
 }
