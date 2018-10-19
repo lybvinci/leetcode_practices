@@ -2177,4 +2177,24 @@ public class LeetcodeTest {
         }
     }
 
+    //32.06%
+    public boolean judgeSquareSum(int c) {
+        int max = (int) Math.sqrt(c) + 1;
+        int a = 0;
+        int b = 0;
+        for (int i = 0; i <= max; i++) {
+            a = i * i;
+            if (a > c) {
+                return false;
+            } else if (a == c) {
+                return true;
+            } else {
+                if (Math.sqrt(c-a) % 1.0 == 0){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }
