@@ -2197,4 +2197,30 @@ public class LeetcodeTest {
         return false;
     }
 
+    //69.27%
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            long sum = 0;
+            for (int i = 0; i < size; i++) {
+                TreeNode poll = queue.poll();
+                sum += poll.val;
+                if (poll.left != null) {
+                    queue.add(poll.left);
+                }
+                if (poll.right != null) {
+                    queue.add(poll.right);
+                }
+            }
+            res.add(sum/(double)size);
+        }
+        return res;
+    }
+
 }
