@@ -2223,4 +2223,20 @@ public class LeetcodeTest {
         return res;
     }
 
+    //61.49%
+    public double findMaxAverage(int[] nums, int k) {
+        long sum = 0;
+        for (int i = 0; i < k && i < nums.length; i++) {
+            sum += nums[i];
+        }
+        long sumBak = sum;
+        if (nums.length > k) {
+            for (int j = k; j < nums.length; j++) {
+                sumBak = sumBak - nums[j - k] + nums[j];
+                sum = Math.max(sum, sumBak);
+            }
+        }
+        return sum / (double)k;
+    }
+
 }
