@@ -2239,4 +2239,30 @@ public class LeetcodeTest {
         return sum / (double)k;
     }
 
+    // 77.71%
+    public int[] findErrorNums(int[] nums) {
+        int[] ns = new int[nums.length+1];
+        int[] res = new int[2];
+        for (int i = 0 ; i < nums.length; i++) {
+            ns[nums[i]]++;
+        }
+        boolean hasSet = false;
+        boolean hasSet2 = false;
+        for (int i = 1; i < ns.length;i++) {
+            if (ns[i] > 1) {
+                res[0] = i;
+                hasSet = true;
+            }
+            if (ns[i] == 0) {
+                res[1] = i;
+                hasSet2 = true;
+            }
+            if (hasSet && hasSet2) {
+                break;
+            }
+        }
+        return res;
+
+    }
+
 }
