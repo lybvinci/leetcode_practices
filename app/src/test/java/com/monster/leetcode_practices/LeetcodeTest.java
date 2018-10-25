@@ -2265,4 +2265,27 @@ public class LeetcodeTest {
 
     }
 
+    //97.25%
+    public boolean judgeCircle(String moves) {
+        char[] chars = moves.toCharArray();
+        int[] container = new int[]{0,0}; // LR UD
+        for (int i = 0; i < chars.length; i++) {
+            switch (chars[i]) {
+                case 'L':
+                    container[0]++;
+                    break;
+                case 'R':
+                    container[0]--;
+                    break;
+                case 'U':
+                    container[1]++;
+                    break;
+                case 'D':
+                    container[1]--;
+                    break;
+            }
+        }
+        return container[0] == 0 && container[1] == 0;
+    }
+
 }
