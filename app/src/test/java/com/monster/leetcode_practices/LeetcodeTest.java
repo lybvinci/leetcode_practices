@@ -72,9 +72,9 @@ public class LeetcodeTest {
 //        licenseKeyFormatting("5F3Z-2e-9-w", 4);
 //        findLUSlength("aba", "bacdef");
 //        reverseStr("abcdefg", 2);
-//        TreeNode root = new TreeNode(5);
-//        TreeNode left = new TreeNode(2);
-//        TreeNode right = new TreeNode(-3);
+        TreeNode root = new TreeNode(1);
+        TreeNode left = new TreeNode(0);
+        TreeNode right = new TreeNode(2);
 //
 //        root.left = left;
 //        root.right = right;
@@ -85,7 +85,8 @@ public class LeetcodeTest {
 //        reverseWords("s    s");
 //        findRestaurant(new String[]{"Shogun","Tapioca Express","Burger King","KFC"},
 //                new String[]{"KFC","Burger King","Tapioca Express","Shogun"});
-        checkPossibility(new int[]{2,3,3,2,4});
+//        checkPossibility(new int[]{2,3,3,2,4});
+        trimBST(root, 1,2);
     }
 
     public int trailingZeroes(int n) {
@@ -2353,6 +2354,23 @@ public class LeetcodeTest {
             return true;
         else
             return false;
+    }
+
+    //66.39%
+    public TreeNode trimBST(TreeNode root, int L, int R) {
+        if (null == root) {
+            return null;
+        }
+        if (root.val < L) {
+            return trimBST(root.right, L, R);
+        } else if (root.val > R) {
+            return trimBST(root.left, L, R);
+        } else {
+            root.left = trimBST(root.left, L, R);
+            root.right = trimBST(root.right, L, R);
+        }
+        return root;
+
     }
 
 }
