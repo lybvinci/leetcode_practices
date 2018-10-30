@@ -2373,4 +2373,29 @@ public class LeetcodeTest {
 
     }
 
+    // 100%
+    public int findSecondMinimumValue(TreeNode root) {
+        if(root == null)
+            return -1;
+        if(root.left == null && root.right == null)
+            return -1;
+        int leftV = root.left.val;//
+        int rightV = root.right.val;//
+        if((root.val == root.left.val))
+            leftV =  findSecondMinimumValue(root.left);
+        else
+            leftV = root.left.val;
+
+        if(root.val == root.right.val)
+            rightV = findSecondMinimumValue(root.right);
+        else
+            rightV = root.right.val;
+        if(leftV != -1 && rightV != -1)
+            return Math.min(leftV,rightV);
+        if(leftV == -1)
+            return rightV;
+        if(rightV == -1)
+            return leftV;
+        return -1;
+    }
 }
