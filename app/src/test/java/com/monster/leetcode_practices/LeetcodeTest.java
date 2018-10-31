@@ -2398,4 +2398,30 @@ public class LeetcodeTest {
             return leftV;
         return -1;
     }
+
+    //81.26%
+    public int findLengthOfLCIS(int[] nums) {
+        if (nums.length < 2) {
+            return nums.length;
+        }
+        int max = 0;
+        boolean is = true;
+        int temp = 1;
+        for (int i = 1; i < nums.length;i++) {
+            if (nums[i] > nums[i-1]) {
+                if (is) {
+                    temp++;
+                } else {
+                    temp = 2;
+                    is = true;
+                }
+            } else {
+                is = false;
+                max = Math.max(max, temp);
+                temp = 0;
+            }
+        }
+        max = Math.max(max, temp);
+        return max;
+    }
 }
