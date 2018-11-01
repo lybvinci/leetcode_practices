@@ -86,7 +86,8 @@ public class LeetcodeTest {
 //        findRestaurant(new String[]{"Shogun","Tapioca Express","Burger King","KFC"},
 //                new String[]{"KFC","Burger King","Tapioca Express","Shogun"});
 //        checkPossibility(new int[]{2,3,3,2,4});
-        trimBST(root, 1,2);
+//        trimBST(root, 1,2);
+        calPoints(new String[]{"5","2","C","D","+"});
     }
 
     public int trailingZeroes(int n) {
@@ -2423,5 +2424,27 @@ public class LeetcodeTest {
         }
         max = Math.max(max, temp);
         return max;
+    }
+
+    // 91.80%
+    public int calPoints(String[] ops) {
+        int res = 0;
+        LinkedList<Integer> list = new LinkedList<>();
+
+        for (int i = 0 ; i < ops.length ;i++) {
+            if ("C".equals(ops[i])) {
+                list.pollLast();
+            } else if ("+".equals(ops[i])) {
+                list.addLast(list.get(list.size() - 2) + list.getLast());
+            } else if ("D".equals(ops[i])) {
+                list.addLast(list.getLast() * 2);
+            } else {
+                list.addLast(Integer.parseInt(ops[i]));
+            }
+        }
+        for (Integer i : list) {
+            res += i;
+        }
+        return res;
     }
 }
