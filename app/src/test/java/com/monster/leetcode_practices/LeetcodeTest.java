@@ -87,7 +87,8 @@ public class LeetcodeTest {
 //                new String[]{"KFC","Burger King","Tapioca Express","Shogun"});
 //        checkPossibility(new int[]{2,3,3,2,4});
 //        trimBST(root, 1,2);
-        calPoints(new String[]{"5","2","C","D","+"});
+//        calPoints(new String[]{"5","2","C","D","+"});
+        repeatedStringMatch("abc", "cabcabca");
     }
 
     public int trailingZeroes(int n) {
@@ -2446,5 +2447,20 @@ public class LeetcodeTest {
             res += i;
         }
         return res;
+    }
+
+    //9.30%
+    public int repeatedStringMatch(String A, String B) {
+        if (A.contains(B)) {
+            return 1;
+        }
+        StringBuilder sb = new StringBuilder(A);
+        for (int i = 0; i < B.length() / A.length() + 2;i++) {
+            sb.append(A);
+            if (sb.indexOf(B) != -1) {
+                return i+2;
+            }
+        }
+        return -1;
     }
 }
