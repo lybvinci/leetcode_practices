@@ -88,7 +88,7 @@ public class LeetcodeTest {
 //        checkPossibility(new int[]{2,3,3,2,4});
 //        trimBST(root, 1,2);
 //        calPoints(new String[]{"5","2","C","D","+"});
-        repeatedStringMatch("abc", "cabcabca");
+//        repeatedStringMatch("abc", "cabcabca");
     }
 
     public int trailingZeroes(int n) {
@@ -2462,5 +2462,39 @@ public class LeetcodeTest {
             }
         }
         return -1;
+    }
+
+    class Employee {
+        // It's the unique id of each node;
+        // unique id of this employee
+        public int id;
+        // the importance value of this employee
+        public int importance;
+        // the id of direct subordinates
+        public List<Integer> subordinates;
+    };
+    //73.89%
+    public int getImportance(List<Employee> employees, int id) {
+        Map<Integer, Employee> mp = new HashMap<>();
+        for (int i = 0; i < employees.size();i++) {
+            mp.put(employees.get(i).id, employees.get(i));
+        }
+        List<Integer> sub = null;
+        int res = 0;
+        Employee employee = mp.get(id);
+        res += employee.importance;
+        sub = employee.subordinates;
+        while (sub != null && sub.size() > 0) {
+            List<Integer> list = new ArrayList<>();
+            for (int i : sub) {
+                employee = mp.get(i);
+                res += employee.importance;
+                if (employee.subordinates != null && employee.subordinates.size() > 0) {
+                    list.addAll(employee.subordinates);
+                }
+            }
+            sub = list;
+        }
+        return res;
     }
 }
