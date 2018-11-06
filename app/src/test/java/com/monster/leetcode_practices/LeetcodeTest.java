@@ -89,6 +89,7 @@ public class LeetcodeTest {
 //        trimBST(root, 1,2);
 //        calPoints(new String[]{"5","2","C","D","+"});
 //        repeatedStringMatch("abc", "cabcabca");
+        hasAlternatingBits(5);
     }
 
     public int trailingZeroes(int n) {
@@ -2496,5 +2497,18 @@ public class LeetcodeTest {
             sub = list;
         }
         return res;
+    }
+
+    //67.73%
+    public boolean hasAlternatingBits(int n) {
+        int start = n & 0x01;
+        while (n > 0) {
+            n >>= 1;
+            if (start == (n & 0x01)) {
+                return false;
+            }
+            start = n & 0x01;
+        }
+        return true;
     }
 }
