@@ -1,6 +1,7 @@
 package com.monster.leetcode_practices;
 
 import android.util.ArraySet;
+import android.util.SparseArray;
 
 import org.junit.Test;
 
@@ -2533,5 +2534,45 @@ public class LeetcodeTest {
         } else {
             return 0;
         }
+    }
+
+
+    //53.72%
+    public int findShortestSubArray(int[] nums) {
+        Set<Integer> des = new HashSet<>();
+        int time = 0;
+        Map<Integer,Integer> res = new HashMap<>();
+        for (int i = 0; i < nums.length;i++) {
+            res.put(nums[i],res.getOrDefault(nums[i], 0) + 1);
+        }
+        for (int key : res.keySet()) {
+            Integer value = res.get(key);
+            if (value > time) {
+                des.clear();
+                des.add(key);
+                time = value;
+            } else if (value == time) {
+                des.add(key);
+            }
+        }
+        int result = nums.length;
+        for (Integer i : des) {
+            int start = 0;
+            int end = nums.length;
+            for (int j = 0; j < nums.length;j++) {
+                if (nums[j] == i) {
+                    start = j;
+                    break;
+                }
+            }
+            for (int j = nums.length - 1; j >=start;j--) {
+                if (nums[j] == i) {
+                    end = j;
+                    break;
+                }
+            }
+            result = Math.min(result, end - start + 1);
+        }
+        return result;
     }
 }
