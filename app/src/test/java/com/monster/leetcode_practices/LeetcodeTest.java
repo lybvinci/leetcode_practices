@@ -90,8 +90,10 @@ public class LeetcodeTest {
 //        trimBST(root, 1,2);
 //        calPoints(new String[]{"5","2","C","D","+"});
 //        repeatedStringMatch("abc", "cabcabca");
-        hasAlternatingBits(5);
+//        hasAlternatingBits(5);
+        search(new int[]{5}, 5);
     }
+
 
     public int trailingZeroes(int n) {
         String res = "" + helper(n);
@@ -2589,5 +2591,20 @@ public class LeetcodeTest {
         } else {
             return searchBST(root.right, val);
         }
+    }
+
+    //19.13%
+    public int search(int[] nums, int target) {
+        if (nums[nums.length-1] < target) {
+            return -1;
+        }
+        for (int i = 0; i < nums.length;i++) {
+            if (target < nums[i]) {
+                return -1;
+            } else if (target == nums[i]) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
