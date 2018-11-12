@@ -91,7 +91,8 @@ public class LeetcodeTest {
 //        calPoints(new String[]{"5","2","C","D","+"});
 //        repeatedStringMatch("abc", "cabcabca");
 //        hasAlternatingBits(5);
-        search(new int[]{5}, 5);
+//        search(new int[]{5}, 5);
+        rotatedDigits(11);
     }
 
 
@@ -2606,5 +2607,41 @@ public class LeetcodeTest {
             }
         }
         return -1;
+    }
+
+    //58.31%
+    public int rotatedDigits(int N) {
+        int res = 0;
+        for (int i = 1; i <= N; i++ ) {
+            int temp = i;
+            int t2 = 0;
+            int j = 0;
+            while (temp != 0) {
+                int k = temp % 10;
+                int rk = -1;
+                switch (k){
+                    case 1:rk = 1;break;
+                    case 2:rk = 5;break;
+                    case 5:rk = 2;break;
+                    case 6:rk = 9;break;
+                    case 8:rk = 8;break;
+                    case 9:rk = 6;break;
+                    default:rk = -1;
+                }
+                if (rk == -1) {
+                    t2 = -1;
+                    break;
+                }
+                t2 += rk * Math.pow(10,j);
+                temp /= 10;
+                j++;
+            }
+            if (t2 == -1 || t2 == i) {
+                continue;
+            }
+            res++;
+
+        }
+        return res;
     }
 }
