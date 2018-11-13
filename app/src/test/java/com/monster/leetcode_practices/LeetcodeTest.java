@@ -24,6 +24,8 @@ import java.util.TreeMap;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
+import javax.print.DocFlavor;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -2643,5 +2645,28 @@ public class LeetcodeTest {
 
         }
         return res;
+    }
+
+    //50.11%
+    public List<String> letterCasePermutation(String S) {
+        List<String> res = new ArrayList<>();
+        letterCasePermutationHelper("", S, res, 0);
+        return res;
+    }
+
+    public void letterCasePermutationHelper(String pre, String S, List<String> res, int index) {
+        if (pre.length() == S.length()) {
+            res.add(pre);
+            return;
+        }
+        char ch = S.charAt(index);
+        if (!Character.isLetter(ch)) {
+            letterCasePermutationHelper(pre + ch, S, res, index+1);
+        } else {
+            ch = Character.toLowerCase(ch);
+            letterCasePermutationHelper(pre + ch, S, res, index + 1);
+            ch = Character.toUpperCase(ch);
+            letterCasePermutationHelper(pre + ch, S, res, index+1);
+        }
     }
 }
