@@ -2669,4 +2669,20 @@ public class LeetcodeTest {
             letterCasePermutationHelper(pre + ch, S, res, index+1);
         }
     }
+
+    //50.92%
+    public int numJewelsInStones(String J, String S) {
+        int[] res = new int[58];
+        char[] chars = S.toCharArray();
+        for (int i = 0; i < chars.length ; i++) {
+            if (J.contains(chars[i] + "")) {
+                res[chars[i] - 'a']++;
+            }
+        }
+        int result = 0;
+        for (int i = 0; i < res.length;i++) {
+            result += res[i];
+        }
+        return result;
+    }
 }
