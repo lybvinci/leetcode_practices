@@ -2685,4 +2685,25 @@ public class LeetcodeTest {
         }
         return result;
     }
+
+    //38.57%
+    public int minDiffInBST(TreeNode root) {
+        List<Integer> res = new LinkedList<>();
+        minDiffInBSTHelper(root, res);
+        int[] result = new int[res.size() - 1];
+        for (int i = 0; i < res.size() - 1;i++) {
+            result[i] = res.get(i+1) - res.get(i);
+        }
+        Arrays.sort(result);
+        return result[0];
+    }
+
+    public void minDiffInBSTHelper(TreeNode root, List<Integer> res) {
+        if (root == null) {
+            return;
+        }
+        minDiffInBSTHelper(root.left, res);
+        res.add(root.val);
+        minDiffInBSTHelper(root.right, res);
+    }
 }
