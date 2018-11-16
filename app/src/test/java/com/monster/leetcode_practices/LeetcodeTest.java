@@ -24,7 +24,6 @@ import java.util.TreeMap;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
-import javax.print.DocFlavor;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -94,7 +93,8 @@ public class LeetcodeTest {
 //        repeatedStringMatch("abc", "cabcabca");
 //        hasAlternatingBits(5);
 //        search(new int[]{5}, 5);
-        rotatedDigits(11);
+//        rotatedDigits(11);
+        isToeplitzMatrix(new int[][]{{1,2,3,4},{5,1,2,3},{9,5,1,2}});
     }
 
 
@@ -2705,5 +2705,17 @@ public class LeetcodeTest {
         minDiffInBSTHelper(root.left, res);
         res.add(root.val);
         minDiffInBSTHelper(root.right, res);
+    }
+
+    //39%
+    public boolean isToeplitzMatrix(int[][] matrix) {
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){        //遍历方阵
+                if(i+1<matrix.length&&j+1<matrix[0].length&&matrix[i][j]!=matrix[i+1][j+1]){
+                    return false;                       //只要某一个元素和对角线上的下一个元素不一致，那么返回false
+                }
+            }
+        }
+        return true;
     }
 }
