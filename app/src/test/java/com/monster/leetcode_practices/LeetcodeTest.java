@@ -2718,4 +2718,22 @@ public class LeetcodeTest {
         }
         return true;
     }
+
+    //52.60%
+    private static List<Integer> countPrimeSetBitsList = Arrays.asList(2,3,5,7,11,13,17,19,23,29,31,37);
+    public int countPrimeSetBits(int L, int R) {
+        int res = 0;
+        for (int i = L; i <= R; i++) {
+            int t = i;
+            int num = 0;
+            while (t > 0) {
+                num += t & 0x01;
+                t >>= 1;
+            }
+            if (countPrimeSetBitsList.contains(num)) {
+                res++;
+            }
+        }
+        return res;
+    }
 }
