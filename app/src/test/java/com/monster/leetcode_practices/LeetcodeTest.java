@@ -2736,4 +2736,38 @@ public class LeetcodeTest {
         }
         return res;
     }
+
+    //56.10%
+    public String shortestCompletingWord(String licensePlate, String[] words) {
+        char[] chars = licensePlate.toLowerCase().toCharArray();
+        int[] charsInts = new int[26];
+        for (char s : chars) {
+            if (Character.isLetter(s)) {
+                charsInts[s - 'a']++;
+            }
+        }
+        String res = "";
+        int minLength = Integer.MAX_VALUE;
+        for (int i = 0; i < words.length;i++) {
+            char[] charsWord = words[i].toLowerCase().toCharArray();
+            int[] charsCopy = Arrays.copyOf(charsInts, charsInts.length);
+            for (char s : charsWord) {
+                charsCopy[s-'a']--;
+            }
+            boolean is = true;
+            for (int j : charsCopy) {
+                if (j > 0) {
+                    is = false;
+                    break;
+                }
+            }
+            if (is) {
+                if (words[i].length() < minLength) {
+                    res = words[i];
+                    minLength = words[i].length();
+                }
+            }
+        }
+        return res;
+    }
 }
