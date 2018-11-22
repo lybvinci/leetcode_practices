@@ -2782,4 +2782,19 @@ public class LeetcodeTest {
         }
         return false;
     }
+
+    //96.58%
+    String[] uniqueMorseRepresentationsPassword = new String[]{".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+    public int uniqueMorseRepresentations(String[] words) {
+        HashSet<String> res = new HashSet<>();
+        for (int i = 0; i < words.length;i++) {
+            char[] chars = words[i].toCharArray();
+            String psd = "";
+            for (char s : chars) {
+                psd += uniqueMorseRepresentationsPassword[s - 'a'];
+            }
+            res.add(psd);
+        }
+        return res.size();
+    }
 }
