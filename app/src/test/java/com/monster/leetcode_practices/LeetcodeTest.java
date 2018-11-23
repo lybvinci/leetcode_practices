@@ -2797,4 +2797,22 @@ public class LeetcodeTest {
         }
         return res.size();
     }
+
+    //66.50%
+    public int[] numberOfLines(int[] widths, String S) {
+        char[] chars = S.toCharArray();
+        int sum = 0;
+        int[] res = new int[]{1,0};
+        for (int i = 0; i < S.length(); i++) {
+            int length = widths[chars[i] - 'a'];
+            if (sum + length > 100) {
+                res[0]++;
+                sum = length;
+            } else {
+                sum += length;
+            }
+        }
+        res[1] = sum;
+        return res;
+    }
 }
