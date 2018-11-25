@@ -24,6 +24,8 @@ import java.util.TreeMap;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
+import javax.swing.plaf.TextUI;
+
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -2813,6 +2815,29 @@ public class LeetcodeTest {
             }
         }
         res[1] = sum;
+        return res;
+    }
+
+    //90.89%
+    public List<String> subdomainVisits(String[] cpdomains) {
+        HashMap<String,Long> result = new HashMap<>();
+        for (String s : cpdomains) {
+            String[] split = s.split(" ");
+            String[] net = split[1].split("\\.");
+            String domain = "";
+            for (int i = net.length - 1; i >=0 ; i--) {
+                if (domain.length() == 0) {
+                    domain = net[i];
+                }else {
+                    domain = net[i] + "." + domain;
+                }
+                result.put(domain, result.getOrDefault(domain,0L) + Long.parseLong(split[0]));
+            }
+        }
+        List<String> res = new ArrayList<>();
+        for (String key : result.keySet()) {
+            res.add(result.get(key) + " " + key);
+        }
         return res;
     }
 }
