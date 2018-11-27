@@ -16,6 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
 import java.util.SortedMap;
@@ -23,8 +24,6 @@ import java.util.Stack;
 import java.util.TreeMap;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
-
-import javax.swing.plaf.TextUI;
 
 
 /**
@@ -96,7 +95,8 @@ public class LeetcodeTest {
 //        hasAlternatingBits(5);
 //        search(new int[]{5}, 5);
 //        rotatedDigits(11);
-        isToeplitzMatrix(new int[][]{{1,2,3,4},{5,1,2,3},{9,5,1,2}});
+//        isToeplitzMatrix(new int[][]{{1,2,3,4},{5,1,2,3},{9,5,1,2}});
+        mostCommonWord("Bob hit a ball, the hit BALL flew far after it was hit.", new String[]{"hit"});
     }
 
 
@@ -2852,5 +2852,21 @@ public class LeetcodeTest {
             }
         }
         return area;
+    }
+
+    //3.30%
+    public String mostCommonWord(String paragraph, String[] banned) {
+        String[] words = paragraph.toLowerCase().split("[^a-zA-Z]+");
+        List<String> bannedList = Arrays.asList(banned);
+        HashMap<String,Integer> result = new HashMap<>();
+        for (String s : words) {
+            if (bannedList.contains(s)) {
+                continue;
+            }
+            result.put(s, result.getOrDefault(s, 0)+1);
+        }
+        Optional<String> max = result.keySet().stream().max((key1, key2) -> result.get(key1) - result.get(key2));
+        return max.get();
+
     }
 }
