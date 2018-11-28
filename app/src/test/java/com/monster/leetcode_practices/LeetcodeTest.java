@@ -2869,4 +2869,38 @@ public class LeetcodeTest {
         return max.get();
 
     }
+
+    //91.63%
+    public int[] shortestToChar(String S, char C) {
+        char[] chars = S.toCharArray();
+        int[] index = new int[S.length()];
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == C) {
+                index[i] = 0;
+                continue;
+            }
+            int r1 = Integer.MAX_VALUE;
+            int index1 = 1;
+            for (int j = i-1;j>=0;j--) {
+                if (chars[j] == C) {
+                    r1 = index1;
+                    break;
+                }
+                index1++;
+            }
+
+            int r2 = Integer.MAX_VALUE;
+            int index2 = 1;
+            for (int j = i+1;j<chars.length;j++) {
+                if (chars[j] == C) {
+                    r2 = index2;
+                    break;
+                }
+                index2++;
+            }
+            index[i] = Math.min(r1,r2);
+
+        }
+        return index;
+    }
 }
