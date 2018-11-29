@@ -3,6 +3,7 @@ package com.monster.leetcode_practices;
 import android.util.ArraySet;
 import android.util.SparseArray;
 
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -2902,5 +2903,26 @@ public class LeetcodeTest {
 
         }
         return index;
+    }
+
+    //7.59%
+    public String toGoatLatin(String S) {
+        String[] split = S.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0 ;i <split.length; i++) {
+            char startC = split[i].charAt(0);
+            char c = Character.toLowerCase(startC);
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+                sb.append(split[i]);
+            } else if (split[i].length() < 1){
+                sb.append(split[i]);
+            } else {
+                String t = split[i].substring(1, split[i].length()) + split[i].charAt(0);
+                sb.append(t);
+            }
+            sb.append("ma").append(new String(new char[i+1]).replace("\0", "a")).append(" ");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
     }
 }
