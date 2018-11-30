@@ -2925,4 +2925,36 @@ public class LeetcodeTest {
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
+
+    //95.77%
+    public List<List<Integer>> largeGroupPositions(String S) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (S.length() < 3) {
+            return result;
+        }
+        char[] chars = S.toCharArray();
+        char a = chars[0];
+        int num = 1;
+        for (int i = 1; i < chars.length;i++) {
+            if (chars[i] == a) {
+                num++;
+            } else {
+                if (num >= 3) {
+                    List<Integer> cell = new ArrayList<>();
+                    cell.add(i - num);
+                    cell.add(i - 1);
+                    result.add(cell);
+                }
+                a = chars[i];
+                num = 1;
+            }
+        }
+        if (num >= 3) {
+            List<Integer> cell = new ArrayList<>();
+            cell.add(chars.length - num);
+            cell.add(chars.length  - 1);
+            result.add(cell);
+        }
+        return result;
+    }
 }
