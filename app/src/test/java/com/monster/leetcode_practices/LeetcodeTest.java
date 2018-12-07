@@ -97,7 +97,8 @@ public class LeetcodeTest {
 //        search(new int[]{5}, 5);
 //        rotatedDigits(11);
 //        isToeplitzMatrix(new int[][]{{1,2,3,4},{5,1,2,3},{9,5,1,2}});
-        mostCommonWord("Bob hit a ball, the hit BALL flew far after it was hit.", new String[]{"hit"});
+//        mostCommonWord("Bob hit a ball, the hit BALL flew far after it was hit.", new String[]{"hit"});
+        numMagicSquaresInside(new int[][]{{3,10,2,3,4},{4,5,6,8,1},{8,8,1,6,8},{1,3,5,7,1},{9,4,9,2,9}});
     }
 
 
@@ -2972,5 +2973,54 @@ public class LeetcodeTest {
     //88.46%
     public boolean isRectangleOverlap(int[] rec1, int[] rec2) {
         return rec2[2] > rec1[0] && rec2[0] < rec1[2] && rec2[3] > rec1[1] && rec2[1] < rec1[3];
+    }
+
+    //52.24%
+    public int numMagicSquaresInside(int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int res=0;
+        for(int i=0;i+2<n;i++) {
+            for(int j=0;j+2<m;j++){
+                res+=numMagicSquaresInsideJudge(i,j,grid);
+            }
+        }
+        return res;
+    }
+    private int numMagicSquaresInsideJudge(int x,int y,int [][] g) {
+        int[] a = new int[10];
+        //判断是否是1-9的数据，是否唯一
+        for (int i = x; i < x + 3; i++) {
+            for (int j = y; j < y + 3; j++) {
+                if (g[i][j] >= 10 || g[i][j] <= 0) return 0;
+                a[g[i][j]]++;
+                if (a[g[i][j]] > 1) return 0;
+            }
+        }
+        //每一行
+        int sum = -1, tmp = 0;
+        for (int i = x; i < x + 3; i++) {
+            tmp = 0;
+            for (int j = y; j < y + 3; j++) {
+                tmp += g[i][j];
+            }
+            if (sum == -1) sum = tmp;
+            else if (sum != tmp) return 0;
+        }
+        //每一列
+        for (int j = y; j < y + 3; j++) {
+            tmp = 0;
+            for (int i = x; i < x + 3; i++) {
+                tmp += g[i][j];
+            }
+            if (sum != tmp) return 0;
+        }
+        //主对角线
+        tmp = g[x][y] + g[x + 1][y + 1] + g[x + 2][y + 2];
+        if (sum != tmp) return 0;
+        //副对角线
+        tmp = g[x][y + 2] + g[x + 1][y + 1] + g[x + 2][y];
+        if (sum != tmp) return 0;
+        return 1;
     }
 }
