@@ -3023,4 +3023,36 @@ public class LeetcodeTest {
         if (sum != tmp) return 0;
         return 1;
     }
+
+    //0.87%
+    public boolean backspaceCompare(String S, String T) {
+        char[] sChar = S.toCharArray();
+        char[] tChar = T.toCharArray();
+        LinkedList<Character> l = new LinkedList<>();
+        for (char s : sChar) {
+            if (s == '#') {
+                if (l.size() > 0) {
+                    l.pop();
+                }
+            } else {
+                l.push(s);
+            }
+        }
+        String s1 = l.stream().map(c -> c.toString()).reduce("", (c1, c2) -> c1 + c2);
+        l.clear();
+        for (char s : tChar) {
+            if (s == '#') {
+                if (l.size() > 0) {
+                    l.pop();
+                }
+            } else {
+                l.push(s);
+            }
+        }
+        String s2 = l.stream().map(c -> c.toString()).reduce("", (c1, c2) -> c1 + c2);
+        if (s1.equals(s2)) {
+            return true;
+        }
+        return false;
+    }
 }
