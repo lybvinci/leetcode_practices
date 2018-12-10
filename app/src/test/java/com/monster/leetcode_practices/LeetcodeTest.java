@@ -3055,4 +3055,21 @@ public class LeetcodeTest {
         }
         return false;
     }
+
+
+    //4.26%
+    public int maxDistToClosest(int[] seats) {
+        LinkedList<Integer> has = new LinkedList<>();
+        for (int i = 0; i < seats.length;i++) {
+            if (seats[i] == 1) {
+                has.add(i);
+            }
+        }
+        int result = has.get(0);
+        for (int i = 1; i < has.size();i++) {
+            result = Math.max(result, (has.get(i) - has.get(i-1))/2);
+        }
+        result = Math.max(result, seats.length - 1 - has.getLast());
+        return result;
+    }
 }
