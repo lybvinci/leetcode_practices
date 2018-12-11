@@ -3072,4 +3072,17 @@ public class LeetcodeTest {
         result = Math.max(result, seats.length - 1 - has.getLast());
         return result;
     }
+
+    //59.48%
+    public int peakIndexInMountainArray(int[] A) {
+       int index = 0;
+       int max = Integer.MIN_VALUE;
+       for (int i = 0; i < A.length ; i ++) {
+           if (A[i] > max) {
+               max = A[i];
+               index = i;
+           }
+       }
+       return index;
+    }
 }
