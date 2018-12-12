@@ -3085,4 +3085,35 @@ public class LeetcodeTest {
        }
        return index;
     }
+
+    //62.22%
+    public boolean buddyStrings(String A, String B) {
+        StringBuilder a=new StringBuilder();
+        StringBuilder b=new StringBuilder();
+        Set<Character> set=new HashSet<>();
+        if(A.length()!=B.length()||A.length()<2||B.length()<2)
+            return false;
+        if(A.equals(B)){//若A与B相等且字符串内部有重复的字母，则返回true.
+            for(int i=0;i<A.length();i++){
+                if(set.contains(A.charAt(i)))
+                    return true;
+                else
+                    set.add(A.charAt(i));
+            }
+            return false;
+        }else{//A与B不相等，只能有两个字符不相等，用a,b String类保存两个不相等的字符
+            for(int i=0;i<A.length();i++){
+                if(A.charAt(i)!=B.charAt(i)){
+                    a.append(A.charAt(i));
+                    b.append(B.charAt(i));
+                }
+                if(a.length()>2)//不相等的字符超过两个
+                    return false;
+            }
+            if(a.length()==2&&a.charAt(0)==b.charAt(1)&&a.charAt(1)==b.charAt(0))
+                return true;
+            else
+                return false;
+        }
+    }
 }
