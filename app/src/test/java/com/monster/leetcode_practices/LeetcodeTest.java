@@ -3145,4 +3145,16 @@ public class LeetcodeTest {
         }
         return true;
     }
+
+    //51.99%
+    public int binaryGap(int N) {
+        int res;
+        List<Integer> a = new LinkedList<>();
+        for (int i = 0; i <= 30; i++)
+            if (((1 << i)&N) != 0) a.add(i);
+        res = 0;
+        for (int i = 0; i + 1<a.size(); i++)
+            if (a.get(i+1) - a.get(i)>res) res = a.get(i + 1) - a.get(i);
+        return res;
+    }
 }
