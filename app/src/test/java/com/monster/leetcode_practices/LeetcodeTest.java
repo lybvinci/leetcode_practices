@@ -3157,4 +3157,35 @@ public class LeetcodeTest {
             if (a.get(i+1) - a.get(i)>res) res = a.get(i + 1) - a.get(i);
         return res;
     }
+
+    //35.96%
+    public boolean leafSimilar(TreeNode root1, TreeNode root2) {
+        List<Integer> res1 = new LinkedList<>();
+        List<Integer> res2 = new LinkedList<>();
+        leafSimilarHelper(root1, res1);
+        leafSimilarHelper(root2, res2);
+        if (res1.size() != res2.size()) {
+            return false;
+        } else {
+            for (int i = 0; i < res1.size() ;i++) {
+                if (res1.get(i) != res2.get(i)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+    }
+
+    private void leafSimilarHelper(TreeNode root, List<Integer> res) {
+        if (root == null) {
+            return;
+        }
+        if (root.left != null || root.right != null) {
+            leafSimilarHelper(root.left, res);
+            leafSimilarHelper(root.right, res);
+        } else {
+            res.add(root.val);
+        }
+    }
 }
