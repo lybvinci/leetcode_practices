@@ -3188,4 +3188,22 @@ public class LeetcodeTest {
             res.add(root.val);
         }
     }
+
+    //100.00%
+    public ListNode middleNode(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null) {
+            slow = slow.next;
+            if (fast.next != null) {
+                fast = fast.next.next;
+            } else {
+                fast = null;
+            }
+        }
+        return slow;
+    }
 }
