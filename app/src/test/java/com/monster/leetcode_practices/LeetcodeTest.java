@@ -3206,4 +3206,26 @@ public class LeetcodeTest {
         }
         return slow;
     }
+
+    //57.58%
+    public int projectionArea(int[][] grid) {
+        int row=grid.length;
+        int result=0;
+        for(int i=0;i<row;i++){
+            int maxa=grid[i][0];
+            int maxb=grid[0][i];
+            for(int j=0;j<row;j++){
+                //俯视面积
+                if(grid[i][j]!=0)
+                    result++;
+                //正侧两面
+                maxa=Math.max(grid[i][j],maxa);
+                maxb=Math.max(maxb,grid[j][i]);
+            }
+            result+=maxa+maxb;
+        }
+        return result;
+
+    }
+
 }
