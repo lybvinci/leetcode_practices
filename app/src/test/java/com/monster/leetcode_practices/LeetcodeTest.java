@@ -3228,4 +3228,19 @@ public class LeetcodeTest {
 
     }
 
+    //2.67%
+    public String[] uncommonFromSentences(String A, String B) {
+        String[] a = A.split(" ");
+        String[] b = B.split(" ");
+        Map<String, Integer> times = new HashMap<>();
+        for (String s : a) {
+            times.put(s, times.getOrDefault(s,0)+1);
+        }
+        for (String s : b) {
+            times.put(s, times.getOrDefault(s,0)+1);
+        }
+        List<String> res = new ArrayList<>();
+        return times.keySet().stream().filter(s -> times.get(s) == 1).toArray(String[]::new);
+    }
+
 }
