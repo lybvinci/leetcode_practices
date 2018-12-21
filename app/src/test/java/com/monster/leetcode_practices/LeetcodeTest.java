@@ -3243,4 +3243,28 @@ public class LeetcodeTest {
         return times.keySet().stream().filter(s -> times.get(s) == 1).toArray(String[]::new);
     }
 
+    //2.66%
+    public int[] fairCandySwap(int[] A, int[] B) {
+        int[] result = new int[2];
+        //获取双方糖果的总大小
+        int sumA = Arrays.stream(A).sum();
+        int sumB = Arrays.stream(B).sum();
+        for (int i = 0; i < A.length; i++) {
+            int a = A[i];
+            for (int j = 0; j < B.length; j++) {
+                int b = B[j];
+                //计算交换糖果后糖果的总大小
+                int tmpA = sumA - a + b;
+                int tmpB = sumB - b + a;
+                if (tmpA == tmpB) {//判断交换后是否一致
+                    result[0] = a;
+                    result[1] = b;
+                    break;
+                }
+            }
+
+        }
+        return result;
+    }
+
 }
