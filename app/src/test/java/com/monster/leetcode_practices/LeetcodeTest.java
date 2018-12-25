@@ -3267,4 +3267,34 @@ public class LeetcodeTest {
         return result;
     }
 
+    //72.77%
+    public boolean isMonotonic(int[] A) {
+        if (A.length < 2) {
+            return true;
+        }
+        boolean isUp = true;
+        int i = 1;
+        while (i < A.length && A[0] == A[i]) {
+            i++;
+        }
+        if (i == A.length) {
+            return true;
+        }
+        if (A[i] < A[0]) {
+            isUp = false;
+        }
+        for (int j = i+1; j < A.length ; j++) {
+            if (A[j] == A[j-1]) {
+                continue;
+            }
+            if (A[j] > A[j-1] && !isUp) {
+                return false;
+            }
+            if (A[j] < A[j-1] && isUp) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
