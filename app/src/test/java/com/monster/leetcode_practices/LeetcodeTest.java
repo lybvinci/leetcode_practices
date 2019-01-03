@@ -3297,4 +3297,30 @@ public class LeetcodeTest {
         return true;
     }
 
+    //52.21%
+    public TreeNode increasingBST(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        increasingBSTHelper(root, res);
+        TreeNode result = new TreeNode(res.get(0));
+        TreeNode currentNode = result;
+        for (int i = 1; i < res.size(); i++) {
+            currentNode.right = new TreeNode(res.get(i));
+            currentNode = currentNode.right;
+        }
+        return result;
+    }
+
+    private void increasingBSTHelper(TreeNode root, List<Integer> list) {
+        if (null == root) {
+            return;
+        }
+        if (root.left != null) {
+            increasingBSTHelper(root.left, list);
+        }
+        list.add(root.val);
+        if (root.right != null) {
+            increasingBSTHelper(root.right, list);
+        }
+    }
+
 }
