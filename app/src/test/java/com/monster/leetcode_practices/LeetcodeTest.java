@@ -3338,4 +3338,16 @@ public class LeetcodeTest {
         return res;
     }
 
+    //40.33%
+    public int smallestRangeI(int[] A, int K) {
+        Arrays.sort(A);
+        int small = A[0] + Math.abs(K);
+        int big = A[A.length - 1] - Math.abs(K);
+        if (big > small) {
+            return big - small;
+        } else {
+            return 0;
+        }
+    }
+
 }
