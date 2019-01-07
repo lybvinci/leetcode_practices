@@ -98,7 +98,8 @@ public class LeetcodeTest {
 //        rotatedDigits(11);
 //        isToeplitzMatrix(new int[][]{{1,2,3,4},{5,1,2,3},{9,5,1,2}});
 //        mostCommonWord("Bob hit a ball, the hit BALL flew far after it was hit.", new String[]{"hit"});
-        numMagicSquaresInside(new int[][]{{3,10,2,3,4},{4,5,6,8,1},{8,8,1,6,8},{1,3,5,7,1},{9,4,9,2,9}});
+//        numMagicSquaresInside(new int[][]{{3,10,2,3,4},{4,5,6,8,1},{8,8,1,6,8},{1,3,5,7,1},{9,4,9,2,9}});
+        reverseOnlyLetters("ab-dc");
     }
 
 
@@ -3348,6 +3349,28 @@ public class LeetcodeTest {
         } else {
             return 0;
         }
+    }
+
+    //42.32%
+    public String reverseOnlyLetters(String S) {
+        char[] chars = S.toCharArray();
+        char[] res = new char[chars.length];
+        for (int i = 0; i < chars.length;i++) {
+            if (!Character.isLetter(chars[i])) {
+                res[i] = chars[i];
+            }
+        }
+        int j = 0;
+        for (int i = chars.length-1 ; i >=0 ; i--) {
+            if (Character.isLetter(chars[i])) {
+                while (res[j] != 0) {
+                    j++;
+                }
+                res[j] = chars[i];
+            }
+        }
+        return new String(res);
+
     }
 
 }
