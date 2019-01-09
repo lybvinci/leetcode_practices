@@ -3387,4 +3387,27 @@ public class LeetcodeTest {
         return b > 0 ? hasGroupsSizeXHelper(b, a % b) : a;
     }
 
+
+    //14.34%
+    public int[] sortArrayByParityII(int[] A) {
+        Stack<Integer> one = new Stack<>();
+        Stack<Integer> two = new Stack<>();
+        for (int i = 0; i < A.length ;i ++) {
+            if (A[i] % 2 == 0) {
+                two.push(A[i]);
+            } else {
+                one.push(A[i]);
+            }
+        }
+        for (int i = 0; i < A.length;i++) {
+            if (i % 2 == 0) {
+                A[i] = two.pop();
+            } else {
+                A[i] = one.pop();
+            }
+        }
+        return A;
+
+    }
+
 }
