@@ -3410,4 +3410,37 @@ public class LeetcodeTest {
 
     }
 
+    //71.00%
+    public boolean isLongPressedName(String name, String typed) {
+        if (typed.length() < name.length()) {
+            return false;
+        }
+        char[] names = name.toCharArray();
+        char[] typeds = typed.toCharArray();
+        int j = 0;
+        for (int i = 0; i < names.length ; i++) {
+            if (j >= typeds.length) {
+                return false;
+            }
+            if (names[i] == typeds[j]) {
+                j++;
+                continue;
+            } else if (j-1 >=0 && typeds[j] == typeds[j-1]) {
+                j++;
+                i--;
+            } else {
+                return false;
+            }
+        }
+        if (j == typeds.length) {
+            return true;
+        }
+        for (int i = j; i < typeds.length;i++) {
+            if (typeds[j-1] != typeds[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
