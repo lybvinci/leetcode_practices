@@ -3443,4 +3443,19 @@ public class LeetcodeTest {
         return true;
     }
 
+    //20.99%
+    public int numUniqueEmails(String[] emails) {
+        Set<String> set = new HashSet<>();
+        for (int i = 0; i < emails.length;i++) {
+            String[] split = emails[i].split("@");
+            int i1 = split[0].indexOf("+");
+            if (i1 != -1) {
+                split[0] = split[0].substring(0, i1);
+            }
+            split[0] = split[0].replaceAll(".","");
+            set.add(split[0]+"@"+split[1]);
+        }
+        return set.size();
+    }
+
 }
