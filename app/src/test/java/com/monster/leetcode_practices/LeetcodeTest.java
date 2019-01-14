@@ -6,6 +6,7 @@ import android.util.SparseArray;
 
 import org.junit.Test;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -3456,6 +3457,23 @@ public class LeetcodeTest {
             set.add(split[0]+"@"+split[1]);
         }
         return set.size();
+    }
+
+    //50.93%
+    class RecentCounter {
+        private Queue<Integer> mQueue;
+
+        public RecentCounter() {
+            mQueue = new ArrayDeque<>();
+        }
+
+        public int ping(int t) {
+            mQueue.add(t);
+            while (t - mQueue.peek() > 3000) {
+                mQueue.poll();
+            }
+            return mQueue.size();
+        }
     }
 
 }
