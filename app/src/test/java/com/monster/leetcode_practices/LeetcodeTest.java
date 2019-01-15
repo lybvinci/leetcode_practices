@@ -3476,4 +3476,32 @@ public class LeetcodeTest {
         }
     }
 
+    // 71.29%
+    public String[] reorderLogFiles(String[] logs) {
+        List<String> letterLogs=new LinkedList<>();
+        List<String> digitLogs=new LinkedList<>();
+        //日志分组
+        for(String log:logs){
+            char c=log.charAt(log.indexOf(" ")+1);
+            if(c>=48 && c<=57){//是否包含数字
+                digitLogs.add(log);
+            }else{
+                letterLogs.add(log);
+            }
+        }
+        //字母日志排序
+        letterLogs.sort(new Comparator<String>() {
+
+            @Override
+            public int compare(String o1, String o2) {//只比较日志内容
+                String log1=o1.substring(o1.indexOf(" "));
+                String log2=o2.substring(o2.indexOf(" "));
+                return log1.compareTo(log2);
+            }
+        });
+        //聚合日志
+        letterLogs.addAll(digitLogs);
+        return letterLogs.toArray(logs);
+    }
+
 }
