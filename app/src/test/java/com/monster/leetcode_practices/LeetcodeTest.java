@@ -3504,4 +3504,31 @@ public class LeetcodeTest {
         return letterLogs.toArray(logs);
     }
 
+    //46.72%
+    public boolean validMountainArray(int[] A) {
+        if (A.length < 3) {
+            return false;
+        }
+        boolean shouldBigger = false;
+        boolean shouldSmaller = false;
+        for (int i = 1; i < A.length ;i++) {
+            if (shouldSmaller) {
+                if (A[i] >= A[i-1]) {
+                    return false;
+                }
+            } else if (A[i] < A[i-1]) {
+                if (!shouldBigger) {
+                    return false;
+                }
+                shouldSmaller = true;
+            } else if (A[i] == A[i-1]){
+                return false;
+            } else {
+                shouldBigger = true;
+            }
+        }
+        return shouldSmaller;
+    }
+
+
 }
