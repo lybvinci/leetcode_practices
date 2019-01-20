@@ -3530,5 +3530,22 @@ public class LeetcodeTest {
         return shouldSmaller;
     }
 
+    //72.06%
+    public int[] diStringMatch(String S) {
+        int min = 0;
+        int max = S.length();
+        int[] res = new int[S.length() + 1];
+        char[] chars = S.toCharArray();
+        for (int i = 0 ;i < chars.length; i++) {
+            if (chars[i] == 'I') {
+                res[i] = min++;
+            } else {
+                res[i] = max--;
+            }
+        }
+        res[S.length()] = max;
+        return res;
+    }
+
 
 }
