@@ -3547,5 +3547,30 @@ public class LeetcodeTest {
         return res;
     }
 
+    //89.26%
+    public int minDeletionSize(String[] A) {
+        int len = A[0].length();
+        if(len < 2) return 0;
+
+        int res = 0;
+        int k = A.length;
+        char[][] ch = new char[k][len];
+        for(int i = 0; i < k; i++){
+            ch[i] = A[i].toCharArray();
+        }
+
+        for(int i = 0; i < len; i++){
+            for(int j = 0; j < k - 1; j++){
+                if(ch[j][i] > ch[j+1][i]){
+                    res++;
+                    break;
+                }
+            }
+        }
+
+
+        return res;
+    }
+
 
 }
