@@ -3572,5 +3572,40 @@ public class LeetcodeTest {
         return res;
     }
 
+    //71.25%
+    public boolean isAlienSorted(String[] words, String order) {
+        //构建新的字典序
+        char[] dictionary=order.toCharArray();
+        Map<Character,Integer> dictionaryOrder=new HashMap<>();
+        for(int i=0;i<dictionary.length;i++){
+            dictionaryOrder.put(dictionary[i],i);
+        }
+        //是否有序
+        boolean isOrder=true;
+        for(int j=0;j<words.length-1;j++){
+            char[] word1=words[j].toCharArray();
+            char[] word2=words[j+1].toCharArray();
+            //遍历字符数组的次数
+            int times=word1.length>word2.length?word1.length:word2.length;
+            for(int k=0;k<times;k++){
+                //获取需要比较的字符的字典序
+                int c1=k<word1.length?dictionaryOrder.get(word1[k]):-1;
+                int c2=k<word2.length?dictionaryOrder.get(word2[k]):-1;
+                if(c1==c2){//字典序一致则比较下一个字符
+                    continue;
+                }else if(c1<c2){//前一个单词的字符字典序小于后一个单词的字符，则意味着满足字典序
+                    break;
+                }else{//前一个单词的字符字典序大于后一个单词的字符，则意味着不满足字典序，中断循环
+                    isOrder=false;
+                    break;
+                }
+            }
+            if(!isOrder){//已确定不满足新字典序，中断循环
+                break;
+            }
+        }
+        return isOrder;
+    }
+
 
 }
