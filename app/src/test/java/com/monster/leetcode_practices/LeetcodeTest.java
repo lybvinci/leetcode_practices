@@ -100,7 +100,8 @@ public class LeetcodeTest {
 //        isToeplitzMatrix(new int[][]{{1,2,3,4},{5,1,2,3},{9,5,1,2}});
 //        mostCommonWord("Bob hit a ball, the hit BALL flew far after it was hit.", new String[]{"hit"});
 //        numMagicSquaresInside(new int[][]{{3,10,2,3,4},{4,5,6,8,1},{8,8,1,6,8},{1,3,5,7,1},{9,4,9,2,9}});
-        reverseOnlyLetters("ab-dc");
+//        reverseOnlyLetters("ab-dc");
+        largestTimeFromDigits(new int[]{0,0,0,0});
     }
 
 
@@ -3605,6 +3606,35 @@ public class LeetcodeTest {
             }
         }
         return isOrder;
+    }
+
+    //
+    String largestTimeFromDigitsAns;
+    public String largestTimeFromDigits(int[] A) {
+        largestTimeFromDigitsAns = "";
+        largestTimeFromDigitsCheck(A[0], A[1], A[2], A[3]);
+        largestTimeFromDigitsCheck(A[0], A[2], A[1], A[3]);
+        largestTimeFromDigitsCheck(A[0], A[3], A[1], A[2]);
+        largestTimeFromDigitsCheck(A[1], A[2], A[0], A[3]);
+        largestTimeFromDigitsCheck(A[1], A[3], A[0], A[2]);
+        largestTimeFromDigitsCheck(A[2], A[3], A[0], A[1]);
+
+        return largestTimeFromDigitsAns;
+    }
+
+    private void largestTimeFromDigitsCheck(int h1, int h2, int m1, int m2) {
+        String hour = largestTimeFromDigitsBest(h1, h2, 24);
+        String minute = largestTimeFromDigitsBest(m1, m2, 60);
+        if (hour.isEmpty() || minute.isEmpty()) return;
+
+        String cand = hour + ":" + minute;
+        if (cand.compareTo(ans) > 0) ans = cand;
+    }
+
+    private String largestTimeFromDigitsBest(int d1, int d2, int limit) {
+        int ans = Math.max(10*d1 + d2 < limit ? 10*d1 + d2 : -1,
+                10*d2 + d1 < limit ? 10*d2 + d1 : -1);
+        return ans >= 0 ? String.format("%02d", ans) : "";
     }
 
 
