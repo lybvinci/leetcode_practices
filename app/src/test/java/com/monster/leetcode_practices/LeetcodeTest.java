@@ -3637,5 +3637,24 @@ public class LeetcodeTest {
         return ans >= 0 ? String.format("%02d", ans) : "";
     }
 
+    //15.39%
+    public int repeatedNTimes(int[] A) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < A.length;i++) {
+            int time = map.getOrDefault(A[i], 0);
+            if (++time >= A.length/2) {
+                return A[i];
+            }
+            map.put(A[i], time);
+        }
+        Set<Integer> integers = map.keySet();
+        for (Integer key : integers) {
+            if (map.get(key) >= A.length/2) {
+                return key;
+            }
+        }
+        return 0;
+    }
+
 
 }
