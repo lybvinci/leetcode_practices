@@ -3656,5 +3656,27 @@ public class LeetcodeTest {
         return 0;
     }
 
+    //73.48%
+    public boolean isUnivalTree(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        return isUnivalTreeHelper(root, root.val);
+    }
+
+    public boolean isUnivalTreeHelper(TreeNode root, int value) {
+        if (root == null) {
+            return true;
+        }
+        if (root.val == value) {
+            return isUnivalTreeHelper(root.left, value) && isUnivalTreeHelper(root.right, value);
+        } else {
+            return false;
+        }
+    }
+
+
+
+
 
 }
