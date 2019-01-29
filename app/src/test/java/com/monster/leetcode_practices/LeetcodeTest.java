@@ -101,7 +101,8 @@ public class LeetcodeTest {
 //        mostCommonWord("Bob hit a ball, the hit BALL flew far after it was hit.", new String[]{"hit"});
 //        numMagicSquaresInside(new int[][]{{3,10,2,3,4},{4,5,6,8,1},{8,8,1,6,8},{1,3,5,7,1},{9,4,9,2,9}});
 //        reverseOnlyLetters("ab-dc");
-        largestTimeFromDigits(new int[]{0,0,0,0});
+//        largestTimeFromDigits(new int[]{0,0,0,0});
+        powerfulIntegers(2,3,10);
     }
 
 
@@ -3628,7 +3629,7 @@ public class LeetcodeTest {
         if (hour.isEmpty() || minute.isEmpty()) return;
 
         String cand = hour + ":" + minute;
-        if (cand.compareTo(ans) > 0) ans = cand;
+        if (cand.compareTo(largestTimeFromDigitsAns) > 0) largestTimeFromDigitsAns = cand;
     }
 
     private String largestTimeFromDigitsBest(int d1, int d2, int limit) {
@@ -3674,6 +3675,33 @@ public class LeetcodeTest {
             return false;
         }
     }
+
+    //42.99%
+    public List<Integer> powerfulIntegers(int x, int y, int bound) {
+        //选择使用Set是因为结果中会出现重复值
+        Set<Integer> set = new HashSet<>();
+        //循环次数为bound，而不是Integer.MAX_VALUE，防止执行超时
+        for (int i = 0; i < bound; i++) {
+            int tmp1 = (int) Math.pow(x, i);
+            //如果第一个数就大于bound，直接中断循环，防止执行超时
+            if (tmp1 > bound) {
+                break;
+            }
+            //循环次数为bound，而不是Integer.MAX_VALUE，防止执行超时
+            for (int j = 0; j < bound; j++) {
+                int tmp2 = (int) (Math.pow(y, j));
+                int tmp = tmp1 + tmp2;
+                //判断是否超出bound
+                if (tmp <= bound) {
+                    set.add(tmp);
+                } else {//超出bound直接中断循环，因为后续的数字都会超出bound
+                    break;
+                }
+            }
+        }
+        return new ArrayList<>(set);
+    }
+
 
 
 
