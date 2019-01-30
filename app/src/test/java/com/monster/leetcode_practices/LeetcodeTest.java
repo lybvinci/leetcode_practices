@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -102,7 +103,8 @@ public class LeetcodeTest {
 //        numMagicSquaresInside(new int[][]{{3,10,2,3,4},{4,5,6,8,1},{8,8,1,6,8},{1,3,5,7,1},{9,4,9,2,9}});
 //        reverseOnlyLetters("ab-dc");
 //        largestTimeFromDigits(new int[]{0,0,0,0});
-        powerfulIntegers(2,3,10);
+//        powerfulIntegers(2,3,10);
+        kClosest(new int[][]{{1,3},{-2,2}}, 1);
     }
 
 
@@ -3700,6 +3702,33 @@ public class LeetcodeTest {
             }
         }
         return new ArrayList<>(set);
+    }
+
+
+    //29.72%
+    public int[][] kClosest(int[][] points, int K) {
+        TreeMap<Double, List<int[]>> map = new TreeMap<>();
+        for (int i = 0; i < points.length;i++) {
+            Double length = Math.pow(points[i][0],2) + Math.pow(points[i][1], 2);
+            List<int[]> list = map.getOrDefault(length, new ArrayList<>());
+            list.add(points[i]);
+            map.put(length, list);
+        }
+        Iterator<Double> iterator = map.keySet().iterator();
+        int i = 0;
+        int[][] result = new int[K][2];
+        while (i< K && iterator.hasNext()) {
+            List<int[]> ints = map.get(iterator.next());
+            for (int[] ii : ints) {
+                if (i < K) {
+                    result[i++] = ii;
+                } else {
+                    break;
+                }
+            }
+        }
+        return result;
+
     }
 
 
