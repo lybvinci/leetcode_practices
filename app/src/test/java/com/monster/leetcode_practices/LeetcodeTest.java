@@ -104,7 +104,8 @@ public class LeetcodeTest {
 //        reverseOnlyLetters("ab-dc");
 //        largestTimeFromDigits(new int[]{0,0,0,0});
 //        powerfulIntegers(2,3,10);
-        kClosest(new int[][]{{1,3},{-2,2}}, 1);
+//        kClosest(new int[][]{{1,3},{-2,2}}, 1);
+        largestPerimeter(new int[]{3,6,2,3});
     }
 
 
@@ -3729,6 +3730,19 @@ public class LeetcodeTest {
         }
         return result;
 
+    }
+
+    //79.18%
+    public int largestPerimeter(int[] A) {
+        Arrays.sort(A);
+        for (int j = A.length - 1; j >=0; j--) {
+            if (j - 2 >= 0) {
+                if (A[j-1] + A[j-2] > A[j]) {
+                    return A[j] + A[j-1] + A[j-2];
+                }
+            }
+        }
+        return 0;
     }
 
 
