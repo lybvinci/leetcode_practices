@@ -105,7 +105,8 @@ public class LeetcodeTest {
 //        largestTimeFromDigits(new int[]{0,0,0,0});
 //        powerfulIntegers(2,3,10);
 //        kClosest(new int[][]{{1,3},{-2,2}}, 1);
-        largestPerimeter(new int[]{3,6,2,3});
+//        largestPerimeter(new int[]{3,6,2,3});
+        convert("LEETCODEISHIRING", 3);
     }
 
 
@@ -3743,6 +3744,44 @@ public class LeetcodeTest {
             }
         }
         return 0;
+    }
+
+    //70.85%
+    public String convert(String s, int numRows) {
+        if (numRows <= 1) {
+            return s;
+        }
+        int seg = numRows + numRows - 2;
+        int segLength = numRows - 1;
+        char[][] res = new char[numRows][s.length()];
+        for (int i = 0; i < s.length();) {
+            int j = 0;
+            for(; j < numRows;j++) {
+                if (i >= s.length()) {
+                    break;
+                }
+                res[j][i / seg * segLength] = s.charAt(i);
+                i++;
+            }
+            j--;
+            for (int k = 1; j > 1;j--) {
+                if (i >= s.length()) {
+                    break;
+                }
+                res[j-1][i / seg * segLength+k] = s.charAt(i);
+                i++;
+                k++;
+            }
+        }
+        String sb = "";
+        for (char[] cs : res) {
+            for (char c : cs) {
+                if (c != '\u0000') {
+                    sb += c;
+                }
+            }
+        }
+        return sb;
     }
 
 
