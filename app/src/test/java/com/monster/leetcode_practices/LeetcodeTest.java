@@ -106,7 +106,8 @@ public class LeetcodeTest {
 //        powerfulIntegers(2,3,10);
 //        kClosest(new int[][]{{1,3},{-2,2}}, 1);
 //        largestPerimeter(new int[]{3,6,2,3});
-        convert("LEETCODEISHIRING", 3);
+//        convert("LEETCODEISHIRING", 3);
+        threeSum(new int[]{-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6});
     }
 
 
@@ -3794,6 +3795,45 @@ public class LeetcodeTest {
             }
         }
         return s;
+    }
+
+
+    //42.09%
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> result=new ArrayList<List<Integer>>();
+        int i,j,k,reserve;
+        for(i=0;i<nums.length-2;i++){
+            reserve=-nums[i];
+            j=i+1;
+            k=nums.length-1;
+            while(j<k){
+                if(nums[j]+nums[k]==reserve){
+                    List<Integer> tmp=new ArrayList<Integer>();
+                    tmp.add(nums[i]);
+                    tmp.add(nums[j]);
+                    tmp.add(nums[k]);
+                    result.add(tmp);
+                    j++;
+                    while(j<k && nums[j-1]==nums[j]){
+                        j++;
+                    }
+                    k--;
+                }
+                else if(nums[j]+nums[k]<reserve){
+                    j++;
+                    while(j<k && nums[j-1]==nums[j]){
+                        j++;
+                    }
+                } else{
+                    k--;
+                }
+            }
+            while(i+1<nums.length-2 && nums[i]==nums[i+1]){
+                i++;
+            }
+        }
+        return result;
     }
 
 
