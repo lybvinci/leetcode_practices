@@ -107,7 +107,8 @@ public class LeetcodeTest {
 //        kClosest(new int[][]{{1,3},{-2,2}}, 1);
 //        largestPerimeter(new int[]{3,6,2,3});
 //        convert("LEETCODEISHIRING", 3);
-        threeSum(new int[]{-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6});
+//        threeSum(new int[]{-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6});
+        fourSum(new int[]{1, 0, -1, 0, -2, 2}, 0);
     }
 
 
@@ -3831,6 +3832,35 @@ public class LeetcodeTest {
             }
             while(i+1<nums.length-2 && nums[i]==nums[i+1]){
                 i++;
+            }
+        }
+        return result;
+    }
+
+    //2.17%
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        Arrays.sort(nums);
+        String resStr = "";
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i+1;j<nums.length;j++) {
+                for (int k = j+1; k < nums.length;k++) {
+                    for (int l = k+1; l < nums.length ; l++) {
+                        int sum = nums[i] + nums[j] + nums[k] + nums[l];
+                        if (target == sum) {
+                            String tmp = "[" + nums[i] + "," + nums[j] + "," + nums[k] + "," + nums[l] + "]";
+                            if (!resStr.contains(tmp)) {
+                                resStr += tmp + ",";
+                                List<Integer> list = new ArrayList<>();
+                                list.add(nums[i]);
+                                list.add(nums[j]);
+                                list.add(nums[k]);
+                                list.add(nums[l]);
+                                result.add(list);
+                            }
+                        }
+                    }
+                }
             }
         }
         return result;
