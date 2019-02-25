@@ -3866,9 +3866,24 @@ public class LeetcodeTest {
         return result;
     }
 
+    //66.07%
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<>();
+        helperGenerateParenthesis("", result,n,0,0);
+        return result;
+    }
 
-
-
+    private void helperGenerateParenthesis(String s, List<String> result, int n, int left, int right) {
+        if (right == n) {
+            result.add(s);
+        }
+        if (left < n) {
+            helperGenerateParenthesis(s+"(", result, n, left+1, right);
+        }
+        if (right < left) {
+            helperGenerateParenthesis(s+")", result, n, left, right + 1);
+        }
+    }
 
 
 }
