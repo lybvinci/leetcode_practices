@@ -3907,5 +3907,32 @@ public class LeetcodeTest {
         return minValue;
     }
 
+    //71.00%
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode node = head;
+        Stack<ListNode> stack = new Stack<>();
+        while (node != null) {
+            ListNode tmp = node;
+            stack.push(tmp);
+            node = node.next;
+        }
+        int i = 0;
+        while (i < n) {
+            ListNode pop = stack.pop();
+            if(i == n -1) {
+                if (stack.empty()) {
+                    ListNode result = pop.next;
+                    pop.next = null;
+                    return result;
+                } else {
+                    ListNode pop1 = stack.pop();
+                    pop1.next = pop.next;
+                    return head;
+                }
+            }
+        }
+        return head;
+    }
+
 
 }
