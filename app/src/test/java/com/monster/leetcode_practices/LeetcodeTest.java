@@ -3934,5 +3934,29 @@ public class LeetcodeTest {
         return head;
     }
 
+    //69.89%
+    public ListNode swapPairs(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode res = head.next;
+        ListNode pre = null;
+        while (head != null) {
+            if (head.next != null) {
+                ListNode next = head.next;
+                head.next = next.next;
+                next.next = head;
+                if (pre != null) {
+                    pre.next = next;
+                }
+                pre = head;
+                head = head.next;
+            } else {
+                head = head.next;
+            }
+        }
+        return res;
+    }
+
 
 }
