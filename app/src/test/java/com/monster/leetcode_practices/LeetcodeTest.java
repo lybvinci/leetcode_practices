@@ -108,7 +108,8 @@ public class LeetcodeTest {
 //        largestPerimeter(new int[]{3,6,2,3});
 //        convert("LEETCODEISHIRING", 3);
 //        threeSum(new int[]{-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6});
-        fourSum(new int[]{1, 0, -1, 0, -2, 2}, 0);
+//        fourSum(new int[]{1, 0, -1, 0, -2, 2}, 0);
+        divide(-2147483648 ,1);
     }
 
 
@@ -3956,6 +3957,58 @@ public class LeetcodeTest {
             }
         }
         return res;
+    }
+
+    //3.37%
+    public int divide(int dividend, int divisor) {
+        boolean positive = true;
+        if ((dividend >= 0 && divisor > 0) || (dividend < 0 && divisor < 0)) {
+            positive = true;
+        } else {
+            positive = false;
+        }
+        if (dividend == Integer.MIN_VALUE && divisor == Integer.MIN_VALUE) {
+            return 1;
+        }
+        if (divisor == 1 || divisor == -1) {
+            if (positive) {
+                if (dividend == Integer.MIN_VALUE) {
+                    return Integer.MAX_VALUE;
+                } else {
+                    return Math.abs(dividend);
+                }
+            } else {
+                if (dividend == Integer.MIN_VALUE) {
+                    return Integer.MIN_VALUE;
+                } else {
+                    return -Math.abs(dividend);
+                }
+            }
+        }
+        long d1 = Math.abs((long) dividend);
+        long d2 = Math.abs((long) divisor);
+        long result = 0;
+        long i = 0;
+        while (result <= d1) {
+            result += d2;
+            if (result > d1) {
+                break;
+            }
+            i++;
+        }
+        if (positive) {
+            if (i > Integer.MAX_VALUE) {
+                return Integer.MAX_VALUE;
+            } else {
+                return (int) i;
+            }
+        } else {
+            if (i > -(long)Integer.MIN_VALUE) {
+                return Integer.MAX_VALUE;
+            } else {
+                return -(int)i;
+            }
+        }
     }
 
 
