@@ -109,7 +109,8 @@ public class LeetcodeTest {
 //        convert("LEETCODEISHIRING", 3);
 //        threeSum(new int[]{-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6});
 //        fourSum(new int[]{1, 0, -1, 0, -2, 2}, 0);
-        divide(-2147483648 ,1);
+//        divide(-2147483648 ,1);
+        nextPermutation(new int[]{1,2,3});
     }
 
 
@@ -4009,6 +4010,29 @@ public class LeetcodeTest {
                 return -(int)i;
             }
         }
+    }
+
+    //69.80%
+    public void nextPermutation(int[] nums) {
+        int index = nums.length - 1;
+        while (index > 0 && nums[index] <= nums[index - 1]) {
+            --index;
+        }
+        if (index == 0) {
+            Arrays.sort(nums);
+            return;
+        }
+        int second = Integer.MAX_VALUE, secondIndex = Integer.MAX_VALUE;
+        for (int i = nums.length - 1; i >= index - 1; --i) {
+            if (nums[i] > nums[index - 1] && nums[i] < second) {
+                second = nums[i];
+                secondIndex = i;
+            }
+        }
+        int tmp = nums[index - 1];
+        nums[index - 1] = nums[secondIndex];
+        nums[secondIndex] = tmp;
+        Arrays.sort(nums, index, nums.length);
     }
 
 
