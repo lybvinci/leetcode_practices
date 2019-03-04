@@ -4035,5 +4035,15 @@ public class LeetcodeTest {
         Arrays.sort(nums, index, nums.length);
     }
 
+    //55.59%
+    public int search33(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 
 }
