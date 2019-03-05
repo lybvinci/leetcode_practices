@@ -4045,5 +4045,24 @@ public class LeetcodeTest {
         return -1;
     }
 
+    //15.56%
+    public int[] searchRange(int[] nums, int target) {
+        int start = -1;
+        int end = -1;
+        for (int i = 0; i < nums.length; i++) {
+            if (target < nums[i]) {
+                break;
+            } else if (target == nums[i]) {
+                if (end == -1) {
+                    start = i;
+                    end = i;
+                } else {
+                    end = i;
+                }
+            }
+        }
+        return new int[]{start, end};
+    }
+
 
 }
