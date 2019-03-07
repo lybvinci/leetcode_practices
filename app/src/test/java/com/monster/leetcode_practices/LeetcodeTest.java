@@ -110,7 +110,8 @@ public class LeetcodeTest {
 //        threeSum(new int[]{-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6});
 //        fourSum(new int[]{1, 0, -1, 0, -2, 2}, 0);
 //        divide(-2147483648 ,1);
-        nextPermutation(new int[]{1,2,3});
+//        nextPermutation(new int[]{1,2,3});
+        combinationSum(new int[]{2,3,6,7}, 7);
     }
 
 
@@ -4118,6 +4119,31 @@ public class LeetcodeTest {
         }
 
         return true;
+    }
+
+    //64.40%
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> tmp = new ArrayList<>();
+        combinationSumHelper(candidates, 0, target, result, tmp);
+        return result;
+    }
+
+    private void combinationSumHelper(int[] candidates, int start, int target, List<List<Integer>> res, List<Integer> tmp) {
+        if (target < 0) {
+            return;
+        }
+        if (target == 0) {
+            res.add(new ArrayList<>(tmp));
+            return;
+        }
+        for (int i = start; i < candidates.length ; i++) {
+            tmp.add(candidates[i]);
+            combinationSumHelper(candidates, i, target - candidates[i], res, tmp);
+            tmp.remove(tmp.size() - 1);
+        }
+
+
     }
 
 
