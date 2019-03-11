@@ -112,7 +112,8 @@ public class LeetcodeTest {
 //        divide(-2147483648 ,1);
 //        nextPermutation(new int[]{1,2,3});
 //        combinationSum(new int[]{2,3,6,7}, 7);
-        multiply("123", "456");
+//        multiply("123", "456");
+        combinationSum2(new int[]{10,1,2,7,6,1,5}, 8);
     }
 
 
@@ -4169,6 +4170,31 @@ public class LeetcodeTest {
         result = (0 == A[len1+len2-1] ? "" : (char)(A[len1+len2-1]+'0')) + result;
 
         return result;
+    }
+
+    //87.05%
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(candidates);
+        combinationSum2Helper(result, candidates, target, -1, new ArrayList<>(), 0);
+        return result;
+    }
+
+    private void combinationSum2Helper(List<List<Integer>> result, int[] candidates, int target, int index, List<Integer> tmp, int sum) {
+        if (sum > target) {
+            return;
+        } else if (sum == target) {
+            result.add(new ArrayList<>(tmp));
+        } else {
+            for (int i = index+1; i < candidates.length ;i++) {
+                if (i != index + 1 && candidates[i] == candidates[i-1]) {
+                    continue;
+                }
+                tmp.add(candidates[i]);
+                combinationSum2Helper(result, candidates, target, i, tmp, sum+candidates[i]);
+                tmp.remove(tmp.size() - 1);
+            }
+        }
     }
 
 
