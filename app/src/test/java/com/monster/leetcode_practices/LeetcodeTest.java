@@ -4197,5 +4197,37 @@ public class LeetcodeTest {
         }
     }
 
+    //51.80%
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        permuteUniqueHelper(nums, result, 0);
+        return result;
+    }
+
+    private void permuteUniqueHelper(int[] nums, List<List<Integer>> result, int index) {
+        if (index == nums.length) {
+            List<Integer> list = new LinkedList<>();
+            for (int i = 0 ; i < nums.length ; i++) {
+                list.add(nums[i]);
+            }
+            result.add(list);
+            return;
+        }
+        Set<Integer> set = new HashSet<Integer>();
+        for (int i = index; i < nums.length; i++) {
+            if(set.contains(nums[i])) {
+                continue;
+            }
+
+            set.add(nums[i]);
+            int tmp = nums[index];
+            nums[index] = nums[i];
+            nums[i] = tmp;
+            permuteUniqueHelper(nums, result, index+1);
+            nums[i] = nums[index];
+            nums[index] = tmp;
+        }
+    }
+
 
 }
