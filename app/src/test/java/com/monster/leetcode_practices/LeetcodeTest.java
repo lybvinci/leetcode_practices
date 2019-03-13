@@ -113,7 +113,8 @@ public class LeetcodeTest {
 //        nextPermutation(new int[]{1,2,3});
 //        combinationSum(new int[]{2,3,6,7}, 7);
 //        multiply("123", "456");
-        combinationSum2(new int[]{10,1,2,7,6,1,5}, 8);
+//        combinationSum2(new int[]{10,1,2,7,6,1,5}, 8);
+        rotate(new int[][]{{1,2,3},{4,5,6},{7,8,9}});
     }
 
 
@@ -4229,5 +4230,20 @@ public class LeetcodeTest {
         }
     }
 
+    //81.85%
+    public void rotate(int[][] matrix) {
+        int length = matrix.length;
+        //i代表正方形的起始位置，i=0即（0，0），i=1即（1，1）
+        for(int i = 0 ; i < length/2 ; i++){
+            //j代表当前正方形上的一条边上的一个点。
+            for(int j = i ; j<length-i-1 ; j++){
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[length-j-1][i];
+                matrix[length-j-1][i] = matrix[length-i-1][length-j-1];
+                matrix[length-i-1][length-j-1] = matrix[j][length-i-1];
+                matrix[j][length-i-1] = temp;
+            }
+        }
 
+    }
 }
