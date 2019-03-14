@@ -114,7 +114,8 @@ public class LeetcodeTest {
 //        combinationSum(new int[]{2,3,6,7}, 7);
 //        multiply("123", "456");
 //        combinationSum2(new int[]{10,1,2,7,6,1,5}, 8);
-        rotate(new int[][]{{1,2,3},{4,5,6},{7,8,9}});
+//        rotate(new int[][]{{1,2,3},{4,5,6},{7,8,9}});
+        groupAnagrams(new String[]{"eat","tea","tan","ate","nat","bat"});
     }
 
 
@@ -4244,6 +4245,25 @@ public class LeetcodeTest {
                 matrix[j][length-i-1] = temp;
             }
         }
+    }
 
+    //13.54%
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String, List<String>> map = new HashMap<>();
+        for (int i = 0; i < strs.length; i++) {
+            int[] keys = new int[26];
+            char[] chars = strs[i].toCharArray();
+            for (int j = 0; j < chars.length; j++) {
+                keys[chars[j] - 'a']++;
+            }
+            String key = "";
+            for (int k = 0; k < 26; k++) {
+                key += keys[k];
+            }
+            List<String> list = map.getOrDefault(key, new ArrayList<>());
+            list.add(strs[i]);
+            map.put(key, list);
+        }
+        return new ArrayList<>(map.values());
     }
 }
