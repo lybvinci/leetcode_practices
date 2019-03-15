@@ -4266,4 +4266,15 @@ public class LeetcodeTest {
         }
         return new ArrayList<>(map.values());
     }
+
+    //44.89%
+    public double myPow(double x, int n) {
+        int m = n < 0 ? -n - 1 : n;
+        double p = 1;
+        for(double q = x; m > 0; m /= 2) {
+            if((m & 1) != 0) p *= q;  //一旦该位为1，那么将q乘入p中
+            q *= q;  //m每次除2，q就要变为平方
+        }
+        return n < 0 ? 1 / p / x : p;
+    }
 }
