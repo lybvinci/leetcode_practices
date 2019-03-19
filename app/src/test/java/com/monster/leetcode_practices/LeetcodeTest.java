@@ -4331,4 +4331,17 @@ public class LeetcodeTest {
 
         return result;
     }
+
+    //56.03%
+    public boolean canJump(int[] nums) {
+        int max = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (i > max) {
+                return false;
+            }
+            //贪心求解可以到达的最远步数.
+            max = Math.max(nums[i] + i, max);
+        }
+        return true;
+    }
 }
