@@ -25,9 +25,6 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.Stack;
 import java.util.TreeMap;
-import java.util.function.BiConsumer;
-import java.util.stream.Collectors;
-
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -116,7 +113,16 @@ public class LeetcodeTest {
 //        combinationSum2(new int[]{10,1,2,7,6,1,5}, 8);
 //        rotate(new int[][]{{1,2,3},{4,5,6},{7,8,9}});
 //        groupAnagrams(new String[]{"eat","tea","tan","ate","nat","bat"});
-        spiralOrder(new int[][]{{1,2,3},{4,5,6},{7,8,9}});
+//        spiralOrder(new int[][]{{1,2,3},{4,5,6},{7,8,9}});
+        List<Interval> mergeList = new ArrayList<>();
+        mergeList.add(new Interval(2,3));
+        mergeList.add(new Interval(2,2));
+        mergeList.add(new Interval(3,3));
+        mergeList.add(new Interval(1,3));
+        mergeList.add(new Interval(5,7));
+        mergeList.add(new Interval(2,2));
+        mergeList.add(new Interval(4,6));
+        merge(mergeList);
     }
 
 
@@ -4343,5 +4349,43 @@ public class LeetcodeTest {
             max = Math.max(nums[i] + i, max);
         }
         return true;
+    }
+    public class Interval {
+        int start;
+        int end;
+        Interval() { start = 0; end = 0; }
+        Interval(int s, int e) { start = s; end = e; }
+    }
+
+    //65.87%
+    public List<Interval> merge(List<Interval> intervals) {
+        LinkedList<Interval> result = new LinkedList<>();
+        if (intervals.size() < 1) {
+            return result;
+        } else if (intervals.size() == 1) {
+            result.add(intervals.get(0));
+            return result;
+        }
+        intervals.sort(new Comparator<Interval>() {
+            @Override
+            public int compare(Interval interval, Interval t1) {
+                return interval.start - t1.start;
+            }
+        });
+        Interval it1 = intervals.get(0);
+        result.push(it1);
+        for (int i = 1 ; i < intervals.size(); i++) {
+            Interval interval = intervals.get(i);
+            Interval interval1 = result.removeLast();
+            if (interval1.end < interval.start) {
+                result.offer(interval1);
+                result.offer(interval);
+            } else if (interval1.end >= interval.end) {
+                result.offer(interval1);
+            } else if (interval1.end >= interval.start) {
+                result.offer(new Interval(interval1.start, interval.end));
+            }
+        }
+        return result;
     }
 }
