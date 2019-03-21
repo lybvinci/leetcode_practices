@@ -4388,4 +4388,37 @@ public class LeetcodeTest {
         }
         return result;
     }
+
+    //84.22%
+    public int[][] generateMatrix(int n) {
+        int[][] result = new int[n][n];
+        int top = 0;
+        int left = 0;
+        int right = n - 1;
+        int bottom = right;
+        int value = 1;
+        while (true) {
+            for (int i = left; i <= right; i++) {
+                result[top][i] = value++;
+            }
+            top++;
+            if (left > right || top > bottom) break;
+            for (int i = top; i <= bottom; i++) {
+                result[i][right] = value++;
+            }
+            right--;
+            if (left > right || top > bottom) break;
+            for (int i = right; i >= left; i--) {
+                result[bottom][i] = value++;
+            }
+            bottom--;
+            if (left > right || top > bottom) break;
+            for (int i = bottom; i >= top; i--) {
+                result[i][left] = value++;
+            }
+            left++;
+            if (left > right || top > bottom) break;
+        }
+        return result;
+    }
 }
