@@ -4421,4 +4421,33 @@ public class LeetcodeTest {
         }
         return result;
     }
+
+    //60.getPermutation
+    public String getPermutation(int n, int k) {
+        if (n <= 1) {
+            return "" + n;
+        }
+        ArrayList arrayList = new ArrayList();
+        for (int i = 1; i <= n; i++) {
+            arrayList.add(i);
+        }
+
+        StringBuilder result = new StringBuilder();
+        int leaf = n;
+        k = k - 1;
+        while (leaf > 0) {
+            // 循环求出(n-1)阶乘
+            int val = 1;
+            for (int i = 1; i <= leaf - 1; i++) {
+                val = val * i;
+            }
+            // 求出下标索引index
+            int index = k / val;
+            result.append(arrayList.get(index));
+            arrayList.remove(index);
+            k = k % val;
+            leaf--;
+        }
+        return result.toString();
+    }
 }
