@@ -4450,4 +4450,28 @@ public class LeetcodeTest {
         }
         return result.toString();
     }
+
+    //69.29%
+    public ListNode rotateRight(ListNode head, int k) {
+        if (null == head) {
+            return head;
+        }
+        ListNode pre = head;
+        int length = 1;
+        while (pre.next != null) {
+            length++;
+            pre = pre.next;
+        }
+        pre.next = head;
+        int n = length - k % length;
+        ListNode q = pre;
+        int i = 0;
+        while (i < n) {
+            q = q.next;
+            i++;
+        }
+        ListNode ret = q.next;
+        q.next = null;
+        return ret;
+    }
 }
