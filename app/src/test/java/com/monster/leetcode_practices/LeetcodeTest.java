@@ -4515,4 +4515,28 @@ public class LeetcodeTest {
         return res[m][n];
 
     }
+
+    //38.91%
+    public String simplifyPath(String path) {
+        if (null == path || path.length() == 0) {
+            return "/";
+        }
+        String[] strs = path.split("/");
+        LinkedList<String> list = new LinkedList<>();
+        for (String str : strs) {
+            if (str.length() == 0 || ".".equals(str)) {
+                continue;
+            }
+            if ("..".equals(str)) {
+                list.pollLast();
+                continue;
+            }
+            list.addLast(str);
+        }
+        String result = "";
+        while (list.size() > 0) {
+            result += "/" + list.pollFirst();
+        }
+        return result.length() > 0 ? result : "/";
+    }
 }
