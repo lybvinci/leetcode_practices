@@ -114,15 +114,16 @@ public class LeetcodeTest {
 //        rotate(new int[][]{{1,2,3},{4,5,6},{7,8,9}});
 //        groupAnagrams(new String[]{"eat","tea","tan","ate","nat","bat"});
 //        spiralOrder(new int[][]{{1,2,3},{4,5,6},{7,8,9}});
-        List<Interval> mergeList = new ArrayList<>();
-        mergeList.add(new Interval(2,3));
-        mergeList.add(new Interval(2,2));
-        mergeList.add(new Interval(3,3));
-        mergeList.add(new Interval(1,3));
-        mergeList.add(new Interval(5,7));
-        mergeList.add(new Interval(2,2));
-        mergeList.add(new Interval(4,6));
-        merge(mergeList);
+//        List<Interval> mergeList = new ArrayList<>();
+//        mergeList.add(new Interval(2,3));
+//        mergeList.add(new Interval(2,2));
+//        mergeList.add(new Interval(3,3));
+//        mergeList.add(new Interval(1,3));
+//        mergeList.add(new Interval(5,7));
+//        mergeList.add(new Interval(2,2));
+//        mergeList.add(new Interval(4,6));
+//        merge(mergeList);
+        sortColors(new int[]{2,1,2});
     }
 
 
@@ -4587,5 +4588,19 @@ public class LeetcodeTest {
             }
         }
         return false;
+    }
+
+    //67.59%
+    public void sortColors(int[] nums) {
+        int left = 0,  right = nums.length - 1;
+        for (int i = left; i <= right; i++) {
+            if(nums[i] == 0) swap(nums, left++, i);
+            if(nums[i] == 2) swap(nums, right--, i--);
+        }
+    }
+    public void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }
