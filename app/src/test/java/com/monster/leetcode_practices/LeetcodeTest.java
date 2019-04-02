@@ -4603,4 +4603,23 @@ public class LeetcodeTest {
         nums[i] = nums[j];
         nums[j] = temp;
     }
+
+    //57.83%
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> result = new ArrayList<>();
+        combineHelper(1, n, k, new LinkedList<>(), result);
+        return result;
+    }
+
+    private void combineHelper(int index, int n, int k, LinkedList<Integer> item, List<List<Integer>> result) {
+        if (item.size() == k) {
+            result.add(new ArrayList<>(item));
+            return;
+        }
+        for (int i = index; i <= n; i++) {
+            item.add(i);
+            combineHelper(i+1, n, k, item, result);
+            item.removeLast();
+        }
+    }
 }
