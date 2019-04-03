@@ -123,7 +123,8 @@ public class LeetcodeTest {
 //        mergeList.add(new Interval(2,2));
 //        mergeList.add(new Interval(4,6));
 //        merge(mergeList);
-        sortColors(new int[]{2,1,2});
+//        sortColors(new int[]{2,1,2});
+        subsets(new int[]{1,2,3});
     }
 
 
@@ -4619,6 +4620,31 @@ public class LeetcodeTest {
         for (int i = index; i <= n; i++) {
             item.add(i);
             combineHelper(i+1, n, k, item, result);
+            item.removeLast();
+        }
+    }
+
+    //83.92%
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        result.add(new ArrayList<>());
+        if (nums.length == 0) {
+            return result;
+        }
+        for (int i = 1; i <= nums.length; i++) {
+            subsetsHelper(nums, 0, i, new LinkedList<>(), result);
+        }
+        return result;
+    }
+
+    private void subsetsHelper(int[] nums, int start,int maxLength, LinkedList<Integer> item, List<List<Integer>> result) {
+        if (item.size() == maxLength) {
+            result.add(new ArrayList<>(item));
+            return;
+        }
+        for (int i = start; i < nums.length; i++) {
+            item.add(nums[i]);
+            subsetsHelper(nums, i+1, maxLength, item, result);
             item.removeLast();
         }
     }
