@@ -124,7 +124,8 @@ public class LeetcodeTest {
 //        mergeList.add(new Interval(4,6));
 //        merge(mergeList);
 //        sortColors(new int[]{2,1,2});
-        subsets(new int[]{1,2,3});
+//        subsets(new int[]{1,2,3});
+        removeDuplicates(new int[]{1,1,1,2,2,3});
     }
 
 
@@ -4698,6 +4699,31 @@ public class LeetcodeTest {
         } else {
             return false;
         }
+    }
+
+    //91.59%
+    public int removeDuplicates(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        int index = 0;
+        int times = 0;
+        int pre = nums[0] - 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != pre) {
+                times = 0;
+                pre = nums[i];
+                nums[index++] = nums[i];
+            } else {
+                times++;
+                if (times > 1) {
+                    continue;
+                } else {
+                    nums[index++] = nums[i];
+                }
+            }
+        }
+        return index;
     }
 
 
