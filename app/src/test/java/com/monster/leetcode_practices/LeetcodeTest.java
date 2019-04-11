@@ -4759,6 +4759,24 @@ public class LeetcodeTest {
         return false;
     }
 
+    //76.35%
+    public ListNode deleteDuplicates(ListNode head) {
+        if (null == head || head.next == null) {
+            return head;
+        }
+        ListNode start = new ListNode(-1);
+        start.next = head;
+        ListNode pre = start;
+        while (null != pre.next) {
+           ListNode cur = pre.next;
+            while (null != cur.next && cur.next.val == cur.val) cur = cur.next;
+               if (cur != pre.next) pre.next = cur.next;
+               else pre = pre.next;
+        }
+        return start.next;
+
+    }
+
 
 
 }
