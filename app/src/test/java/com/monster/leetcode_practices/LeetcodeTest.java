@@ -125,7 +125,15 @@ public class LeetcodeTest {
 //        merge(mergeList);
 //        sortColors(new int[]{2,1,2});
 //        subsets(new int[]{1,2,3});
-        removeDuplicates(new int[]{1,1,1,2,2,3});
+//        removeDuplicates(new int[]{1,1,1,2,2,3});
+        ListNode head = new ListNode(1);
+        ListNode node = head;
+        node.next = new ListNode(4);
+        node.next.next = new ListNode(3);
+        node.next.next.next = new ListNode(2);
+        node.next.next.next.next = new ListNode(5);
+        node.next.next.next.next.next = new ListNode(2);
+        partition(head, 3);
     }
 
 
@@ -4775,6 +4783,30 @@ public class LeetcodeTest {
         }
         return start.next;
 
+    }
+
+    //17.65%
+    public ListNode partition(ListNode head, int x) {
+        ListNode left = new ListNode(-1);
+        ListNode right = new ListNode(-1);
+        ListNode headResult = left;
+        ListNode headResult2 = right;
+        while(head != null) {
+            if(head.val < x) {
+                left.next = new ListNode(head.val);
+                left = left.next;
+            } else {
+                right.next = new ListNode(head.val);
+                right = right.next;
+            }
+            head = head.next;
+        }
+        if (headResult.next != null && left != null) {
+            left.next = headResult2.next;
+        } else {
+            headResult = headResult2;
+        }
+        return headResult.next;
     }
 
 
