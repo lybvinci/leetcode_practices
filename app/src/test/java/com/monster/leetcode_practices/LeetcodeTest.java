@@ -4809,6 +4809,17 @@ public class LeetcodeTest {
         return headResult.next;
     }
 
+    //96.25%
+    public List<Integer> grayCode(int n) {
+        List<Integer> result = new ArrayList<>();
+        int size = 1 << n;
+        for (int i = 0; i < size; i++) {
+            int grayCode = i ^ (i >> 1);
+            result.add(grayCode);
+        }
+        return result;
+    }
+
 
 
 }
