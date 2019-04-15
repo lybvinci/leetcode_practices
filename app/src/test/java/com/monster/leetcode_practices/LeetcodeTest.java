@@ -4820,6 +4820,25 @@ public class LeetcodeTest {
         return result;
     }
 
+    //72.35%
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        subsetsWithDupHelper(nums, result, new LinkedList<>(), 0);
+        return result;
+    }
+
+    private void subsetsWithDupHelper(int[] nums, List<List<Integer>> result, LinkedList<Integer> item, int index) {
+        result.add(new LinkedList<>(item));
+        for (int i = index; i < nums.length; i++) {
+            if (i == index || nums[i] != nums[i-1]) {
+                item.add(nums[i]);
+                subsetsWithDupHelper(nums, result, item, i+1);
+                item.removeLast();
+            }
+        }
+    }
+
 
 
 }
