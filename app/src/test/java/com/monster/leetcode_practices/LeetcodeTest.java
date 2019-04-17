@@ -26,6 +26,7 @@ import java.util.SortedMap;
 import java.util.Stack;
 import java.util.TreeMap;
 
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -126,14 +127,15 @@ public class LeetcodeTest {
 //        sortColors(new int[]{2,1,2});
 //        subsets(new int[]{1,2,3});
 //        removeDuplicates(new int[]{1,1,1,2,2,3});
-        ListNode head = new ListNode(1);
+        ListNode head = new ListNode(3);
         ListNode node = head;
-        node.next = new ListNode(4);
-        node.next.next = new ListNode(3);
-        node.next.next.next = new ListNode(2);
-        node.next.next.next.next = new ListNode(5);
-        node.next.next.next.next.next = new ListNode(2);
-        partition(head, 3);
+        node.next = new ListNode(5);
+//        node.next.next = new ListNode(3);
+//        node.next.next.next = new ListNode(4);
+//        node.next.next.next.next = new ListNode(5);
+//        node.next.next.next.next.next = new ListNode(2);
+//        partition(head, 3);
+        reverseBetween(head, 1, 2);
     }
 
 
@@ -4851,6 +4853,27 @@ public class LeetcodeTest {
             }
         }
         return dp[s.length()];
+    }
+
+    //98.59%
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        ListNode newHead = new ListNode(0);
+        newHead.next = head;
+        ListNode c = newHead;
+
+        for (int i = 0; i < m - 1; i++) {
+            c = c.next;
+        }
+
+        ListNode p = c.next;
+        for (int i = 0; i < n - m; i++) {
+            ListNode tmp = p.next;
+            p.next = tmp.next;
+            tmp.next = c.next;
+            c.next = tmp;
+        }
+        return newHead.next;
+
     }
 
 
