@@ -4876,6 +4876,29 @@ public class LeetcodeTest {
 
     }
 
+    //20.60%
+    public List<String> restoreIpAddresses(String s) {
+        List<String> result = new ArrayList<>();
+        restoreIpAddressesHelper(result, s, "", 0, "", 0);
+        return result;
+    }
+
+    private void restoreIpAddressesHelper(List<String> result,String s, String temp, int curIndex, String curNum, int times) {
+        if (times < 4 && times > 0) {
+            temp += curNum + ".";
+            curNum = "";
+        } else if (times == 4 && curIndex == s.length()) {
+            result.add(temp + curNum);
+        }
+        for (int i = curIndex; i < s.length(); i++) {
+            curNum += s.charAt(i);
+            if (curNum.length() > 1 && curNum.startsWith("0") || Integer.parseInt(curNum) > 255) {
+                break;
+            }
+            restoreIpAddressesHelper(result, s, temp, i + 1, curNum, times + 1);
+        }
+    }
+
 
 
 }
