@@ -4900,5 +4900,20 @@ public class LeetcodeTest {
     }
 
 
+    public int numTrees(int n) {
+        int [] res = new int[n+1];
+        res[0] = 1;
+
+        for (int i = 1; i <= n; ++i) {
+            for (int j = i-1; j >= i/2; --j) {
+                if (i%2==1 && j == i/2)
+                    res[i] += res[j] * res[i-j-1];
+                else
+                    res[i] += res[j] * res[i-j-1]*2;
+            }
+        }
+        return res[n];
+    }
+
 
 }
