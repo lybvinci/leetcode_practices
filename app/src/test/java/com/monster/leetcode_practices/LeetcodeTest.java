@@ -4915,5 +4915,31 @@ public class LeetcodeTest {
         return res[n];
     }
 
+    //81.43%
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (null == root) {
+            return result;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> tmp = new ArrayList<>();
+            while (size-- > 0) {
+                TreeNode poll = queue.poll();
+                tmp.add(poll.val);
+                if (poll.left != null) {
+                    queue.add(poll.left);
+                }
+                if (poll.right != null) {
+                    queue.add(poll.right);
+                }
+            }
+            result.add(tmp);
+        }
+        return result;
+    }
+
 
 }
