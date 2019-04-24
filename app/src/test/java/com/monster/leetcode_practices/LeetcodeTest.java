@@ -4941,5 +4941,51 @@ public class LeetcodeTest {
         return result;
     }
 
+    //13.02%
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (null == root) {
+            return result;
+        }
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        boolean isQueue = true;
+        queue.add(root);
+        while (!queue.isEmpty() || !stack.isEmpty()) {
+            int size = 0;
+            List<Integer> tmp = new ArrayList<>();
+            if (isQueue) {
+                size = queue.size();
+                while (size-- > 0) {
+                    TreeNode poll = queue.pollLast();
+                    tmp.add(poll.val);
+                    if (poll.left != null) {
+                        stack.push(poll.left);
+                    }
+                    if (poll.right != null) {
+                        stack.push(poll.right);
+                    }
+                }
+                isQueue = false;
+            } else {
+                size = stack.size();
+                while (size-- > 0) {
+                    TreeNode pop = stack.pop();
+                    tmp.add(pop.val);
+                    if (pop.right != null) {
+                        queue.add(pop.right);
+                    }
+                    if (pop.left != null) {
+                        queue.add(pop.left);
+                    }
+
+                }
+                isQueue = true;
+            }
+            result.add(tmp);
+        }
+        return result;
+    }
+
 
 }
