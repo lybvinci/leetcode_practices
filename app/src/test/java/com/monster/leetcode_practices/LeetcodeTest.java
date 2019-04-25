@@ -4987,5 +4987,37 @@ public class LeetcodeTest {
         return result;
     }
 
+    //11.48%
+    public int evalRPN(String[] tokens) {
+        Stack<String> stack = new Stack<>();
+        for (int i = 0; i < tokens.length; i++) {
+            if (tokens[i].equals("+") || tokens[i].equals("-") || tokens[i].equals("*") || tokens[i].equals("/")) {
+                String pop1 = stack.pop();
+                String pop2 = stack.pop();
+                Long i1 = Long.parseLong(pop1);
+                Long i2 = Long.parseLong(pop2);
+                Long tmp = 0l;
+                switch (tokens[i]) {
+                    case "+":
+                        tmp = i2 + i1;
+                        break;
+                    case "-":
+                        tmp = i2 - i1;
+                        break;
+                    case "*":
+                        tmp = i2 * i1;
+                        break;
+                    case "/":
+                        tmp = i2 / i1;
+                        break;
+                }
+                stack.push(tmp + "");
+            } else {
+                stack.push(tokens[i]);
+            }
+        }
+        return Integer.parseInt(stack.pop());
+    }
+
 
 }
