@@ -5019,5 +5019,30 @@ public class LeetcodeTest {
         return Integer.parseInt(stack.pop());
     }
 
+    //19.85%
+    public ListNode sortList(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode tmp = head;
+        List<Integer> tmpList = new ArrayList<>();
+        while (tmp != null) {
+            tmpList.add(tmp.val);
+            tmp = tmp.next;
+        }
+        tmpList.sort(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer integer, Integer t1) {
+                return integer - t1;
+            }
+        });
+        tmp = head;
+        for (int s : tmpList) {
+            tmp.val = s;
+            tmp = tmp.next;
+        }
+        return head;
+    }
+
 
 }
