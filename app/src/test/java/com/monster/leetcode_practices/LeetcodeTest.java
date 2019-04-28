@@ -5044,5 +5044,25 @@ public class LeetcodeTest {
         return head;
     }
 
+    //94.68%
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new LinkedList<>();
+        preorderTraversalHelper(root, result);
+        return result;
+    }
+
+    private void preorderTraversalHelper(TreeNode root, List<Integer> result) {
+        if (root == null) {
+            return;
+        }
+        result.add(root.val);
+        if (root.left != null) {
+            preorderTraversalHelper(root.left, result);
+        }
+        if (root.right != null) {
+            preorderTraversalHelper(root.right, result);
+        }
+    }
+
 
 }
