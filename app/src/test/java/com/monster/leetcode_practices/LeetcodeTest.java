@@ -5075,5 +5075,42 @@ public class LeetcodeTest {
         return b;
     }
 
+    //61.61%
+    public boolean wordBreak(String s, List<String> wordDict) {
+//        LinkedList<String> words = new LinkedList<>(wordDict);
+//        return wordBreakHelper(s, words, "");
+        boolean[] f = new boolean[s.length() + 1];
+        f[0] = true;
+        for (int i = 1; i < s.length(); i++) {
+            for (int j = 0; j < i; j++) {
+                if (f[j] && wordDict.contains(s.substring(j, i))) {
+                    f[i] = true;
+                    break;
+                }
+            }
+        }
+        return f[s.length()];
+    }
+
+    /* too slow
+    private boolean wordBreakHelper(String s, LinkedList<String> words, String tmp) {
+        if (s.equals(tmp)) {
+            return true;
+        }
+        if (tmp.length() > s.length()) {
+            return false;
+        }
+        int len = tmp.length();
+        if (!s.substring(0, len).equals(tmp)) {
+            return false;
+        }
+        for (int i = 0; i < words.size(); i++) {
+            if (wordBreakHelper(s, words, tmp + words.get(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+    */
 
 }
