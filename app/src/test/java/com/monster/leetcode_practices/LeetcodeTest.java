@@ -127,15 +127,16 @@ public class LeetcodeTest {
 //        sortColors(new int[]{2,1,2});
 //        subsets(new int[]{1,2,3});
 //        removeDuplicates(new int[]{1,1,1,2,2,3});
-        ListNode head = new ListNode(3);
+        ListNode head = new ListNode(1);
         ListNode node = head;
-        node.next = new ListNode(5);
-//        node.next.next = new ListNode(3);
-//        node.next.next.next = new ListNode(4);
+        node.next = new ListNode(2);
+        node.next.next = new ListNode(3);
+        node.next.next.next = new ListNode(4);
 //        node.next.next.next.next = new ListNode(5);
 //        node.next.next.next.next.next = new ListNode(2);
 //        partition(head, 3);
-        reverseBetween(head, 1, 2);
+//        reverseBetween(head, 1, 2);
+        reorderList(head);
     }
 
 
@@ -5112,5 +5113,44 @@ public class LeetcodeTest {
         return false;
     }
     */
+
+    //95.63%
+    public void reorderList(ListNode head) {
+        if (head == null || head.next == null) {
+            return;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        ListNode second = slow.next;
+        slow.next = null;
+        second = reverseListHelper(second);
+
+        ListNode first = head;
+        while (second != null) {
+            ListNode next = first.next;
+            first.next = second;
+            second = second.next;
+            first = first.next;
+            first.next = next;
+            first = first.next;
+        }
+
+    }
+
+    private ListNode reverseListHelper(ListNode head) {
+        ListNode prev = null;
+        ListNode next = null;
+        while (head != null) {
+            next = head.next;
+            head.next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;
+    }
 
 }
