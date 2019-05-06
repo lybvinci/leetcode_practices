@@ -5153,4 +5153,24 @@ public class LeetcodeTest {
         return prev;
     }
 
+    //28.43%
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        return buildTreeHelper(preorder,inorder,0,0,inorder.length-1);
+    }
+
+    private TreeNode buildTreeHelper(int[] preorder, int[] inorder, int preindex, int sInorder , int eInorder) {
+        if (preindex > preorder.length-1 || sInorder > eInorder ) return null;
+
+        TreeNode treeNode = new TreeNode(preorder[preindex]);
+
+        int index = sInorder;
+        for (; index <= eInorder; index++)
+            if (treeNode.val == inorder[index])  break;
+
+        treeNode.left = buildTreeHelper(preorder,inorder,preindex+1,sInorder,index-1);
+        treeNode.right = buildTreeHelper(preorder,inorder,preindex+index-sInorder+1, index+1, eInorder);
+
+        return treeNode;
+    }
+
 }
