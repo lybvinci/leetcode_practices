@@ -5173,4 +5173,42 @@ public class LeetcodeTest {
         return treeNode;
     }
 
+    //85.73%
+    Map<Integer, Integer> buildTree2Map = new HashMap<>();
+    public TreeNode buildTree2(int[] inorder, int[] postorder) {
+        if (inorder == null || inorder.length == 0) { return null; }
+        for (int i = 0; i < inorder.length; i++) {
+            buildTree2Map.put(inorder[i], i);
+        }
+        return buildTree2Helper(inorder, 0, inorder.length - 1, postorder, 0, postorder.length - 1);
+    }
+
+    public TreeNode buildTree2Helper(int[] a, int a1, int a2, int[] b, int b1, int b2) {
+        if (a1 > a2 || b1 > b2) { return null; }
+        int mid = buildTree2Map.get(b[b2]);
+        int count = mid - a1;
+        TreeNode root = new TreeNode(b[b2]);
+        root.left = buildTree2Helper(a, a1, mid - 1, b, b1, b1 + count - 1);
+        root.right = buildTree2Helper(a, mid + 1, a2, b, b1 + count, b2 - 1);
+        return root;
+    }
+
+    //45.59%
+    public TreeNode sortedArrayToBST(int[] nums) {
+        if(nums.length==0)
+            return null;
+        return sortedArrayToBSTHelper(nums,0,nums.length-1);
+    }
+
+    public TreeNode sortedArrayToBSTHelper(int[] nums,int lo,int hi)
+    {
+        if(lo>hi)
+            return null;
+        int mid = (hi-lo)/2+lo;
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left = sortedArrayToBSTHelper(nums,lo,mid-1);
+        node.right = sortedArrayToBSTHelper(nums,mid+1,hi);
+        return node;
+    }
+
 }
