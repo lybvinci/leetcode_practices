@@ -5211,4 +5211,33 @@ public class LeetcodeTest {
         return node;
     }
 
+    // 59.88%
+    public TreeNode sortedListToBST(ListNode head) {
+        if (null == head) {
+            return null;
+        }
+        if (head.next == null) {
+            return new TreeNode(head.val);
+        }
+        return sortedListToBSTHelper(head, null);
+
+    }
+
+    public TreeNode sortedListToBSTHelper(ListNode head, ListNode tail) {
+        if (head == tail) {
+            return null;
+        }
+
+        ListNode slow = head;
+        ListNode fast = head;
+        while (tail != fast && tail != fast.next) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        TreeNode cur = new TreeNode(slow.val);
+        cur.left = sortedListToBSTHelper(head, slow);
+        cur.right = sortedListToBSTHelper(slow.next, tail);
+        return cur;
+    }
+
 }
