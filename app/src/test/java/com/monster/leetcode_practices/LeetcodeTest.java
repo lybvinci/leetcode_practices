@@ -5240,4 +5240,27 @@ public class LeetcodeTest {
         return cur;
     }
 
+    //64.12%
+    public boolean isBalanced(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        int left = isBalancedHelperGetHeight(root.left);
+        int right = isBalancedHelperGetHeight(root.right);
+        int diff = left - right;
+        if (diff > 1 || diff < -1) {
+            return false;
+        } else {
+            return isBalanced(root.left) && isBalanced(root.right);
+        }
+
+    }
+
+    public int isBalancedHelperGetHeight(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return 1+ Math.max(isBalancedHelperGetHeight(root.left), isBalancedHelperGetHeight(root.right));
+    }
+
 }
