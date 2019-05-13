@@ -76,9 +76,20 @@ public class LeetcodeTest {
 //        licenseKeyFormatting("5F3Z-2e-9-w", 4);
 //        findLUSlength("aba", "bacdef");
 //        reverseStr("abcdefg", 2);
-        TreeNode root = new TreeNode(1);
-        TreeNode left = new TreeNode(0);
-        TreeNode right = new TreeNode(2);
+        TreeNode root = new TreeNode(5);
+        TreeNode left = new TreeNode(4);
+        left.left = new TreeNode(11);
+        left.left.left = new TreeNode(7);
+        left.left.right = new TreeNode(2);
+
+        TreeNode right = new TreeNode(8);
+        right.left = new TreeNode(13);
+        right.right = new TreeNode(4);
+        right.right.left = new TreeNode(5);
+        right.right.right = new TreeNode(1);
+
+        root.left = left;
+        root.right = right;
 //
 //        root.left = left;
 //        root.right = right;
@@ -136,7 +147,8 @@ public class LeetcodeTest {
 //        node.next.next.next.next.next = new ListNode(2);
 //        partition(head, 3);
 //        reverseBetween(head, 1, 2);
-        reorderList(head);
+//        reorderList(head);
+        pathSum(root, 22);
     }
 
 
@@ -5261,6 +5273,32 @@ public class LeetcodeTest {
             return 0;
         }
         return 1+ Math.max(isBalancedHelperGetHeight(root.left), isBalancedHelperGetHeight(root.right));
+    }
+
+
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        List<List<Integer>> result = new ArrayList<>();
+        pathSumHelper(root, sum, new LinkedList<>(), result);
+        return result;
+    }
+
+    //37.63%
+    public void pathSumHelper(TreeNode root, int sum, LinkedList<Integer> tmp, List<List<Integer>> result) {
+        if (root == null) {
+            return;
+        }
+        tmp.add(root.val);
+        if (root.left == null && root.right == null && sum - root.val == 0) {
+            result.add(new LinkedList<>(tmp));
+            return;
+        }
+        if (root.left != null) {
+            pathSumHelper(root.left, sum - root.val, tmp, result);
+            tmp.removeLast();
+        }
+        if (root.right != null) {
+            pathSumHelper(root.right, sum - root.val, tmp, result);
+        }
     }
 
 }
