@@ -5328,5 +5328,119 @@ public class LeetcodeTest {
         return triangle.get(0).get(0);
     }
 
+    // timeout
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        HashSet<String> tmp = new HashSet<>();
+        tmp.add(beginWord);
+        int res = ladderLengthHelper(beginWord, endWord, wordList, tmp);
+        if (res == Integer.MAX_VALUE) {
+            return 0;
+        }
+        return res;
+    }
+
+    public int ladderLengthHelper(String beginWord, String endWord, List<String> wordList, HashSet<String> tmp) {
+        if (beginWord.equals(endWord)) {
+            return tmp.size();
+        }
+        int min = Integer.MAX_VALUE;
+        for (String s : wordList) {
+            if (tmp.contains(s)) {
+                continue;
+            }
+            boolean oneIgnore = false;
+            boolean twoIgnore = false;
+            for (int i = 0; i < beginWord.length(); i++) {
+                if (beginWord.charAt(i) != s.charAt(i)) {
+                    if (oneIgnore) {
+                        twoIgnore = true;
+                        break;
+                    } else {
+                        oneIgnore = true;
+                    }
+                }
+            }
+            if (twoIgnore) {
+                continue;
+            }
+            tmp.add(s);
+            min = Math.min(ladderLengthHelper(s, endWord, wordList, tmp), min);
+            tmp.remove(s);
+        }
+        return min;
+
+    }
+
+    //11.13%
+    public int ladderLength2(String beginWord, String endWord, List<String> wordList) {
+        Queue<String> queue=new LinkedList<String>();
+        Set<String> set=new HashSet<String>();
+        queue.offer(beginWord);
+        set.add(beginWord);
+        int res=1;
+        while (!queue.isEmpty()){
+            ++res;
+            int size=queue.size();
+            while (size>0){
+                String cur=queue.poll();
+                --size;
+                for(String wd:wordList){
+                    if (set.contains(wd)) {
+                        continue;
+                    }
+                    boolean oneIgnore = false;
+                    boolean twoIgnore = false;
+                    for (int i = 0; i < wd.length(); i++) {
+                        if (wd.charAt(i) != cur.charAt(i)) {
+                            if (oneIgnore) {
+                                twoIgnore = true;
+                                break;
+                            } else {
+                                oneIgnore = true;
+                            }
+                        }
+                    }
+                    if (twoIgnore) {
+                        continue;
+                    }
+                    if(wd.equals(endWord)){
+                        return res;
+                    }
+                    queue.add(wd);
+                    set.add(wd);
+                }
+            }
+        }
+        return 0;
+    }
+
+    //6.19%
+    public int sumNumbers(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        sumNumbersHelper(0, root, res);
+        return res.parallelStream().mapToInt(t -> t).sum();
+    }
+
+
+    public void sumNumbersHelper(int num, TreeNode root, List<Integer> list) {
+        if (null == root) {
+            list.add(num);
+            return;
+        }
+        num = num * 10 + root.val;
+        if (null == root.left && null == root.right) {
+            list.add(num);
+        } else if (null != root.left && null != root.right) {
+            sumNumbersHelper(num, root.left, list);
+            sumNumbersHelper(num, root.right, list);
+        } else if (null != root.left) {
+            sumNumbersHelper(num, root.left, list);
+        } else {
+            sumNumbersHelper(num, root.right, list);
+        }
+
+
+    }
+
 
 }
