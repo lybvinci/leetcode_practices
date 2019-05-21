@@ -150,7 +150,9 @@ public class LeetcodeTest {
 //        reverseBetween(head, 1, 2);
 //        reorderList(head);
 //        pathSum(root, 22);
-        detectCycle(head);
+//        detectCycle(head);
+//        canCompleteCircuit(new int[]{4,5,2,6,5,3}, new int[]{3,2,7,3,2,9});
+        canCompleteCircuit(new int[]{1,2,3,4,5}, new int[]{3,4,5,1,2});
     }
 
 
@@ -5544,6 +5546,44 @@ public class LeetcodeTest {
             }
         }
         return null;
+    }
+
+    //21.79%
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        for (int i = 0; i < gas.length ; i++) {
+            int result = canCompleteCircuitHelper(gas, cost, i);
+            if (result > 0) {
+                return result;
+            }
+        }
+        return -1;
+    }
+
+    public int canCompleteCircuitHelper(int[] gas, int[] cost, int index) {
+        int hasGas = gas[index];
+        for (int i = index; i < gas.length; i++) {
+            hasGas -= cost[i];
+            if (hasGas < 0) {
+                return -1;
+            }
+            if (i < gas.length - 1) {
+                hasGas += gas[i + 1];
+            }
+        }
+        if (index != 0) {
+            hasGas += gas[0];
+        }
+
+        for (int i = 0; i < index ; i++) {
+            hasGas -= cost[i];
+            if (hasGas < 0) {
+                return -1;
+            }
+            if (i < index - 1) {
+                hasGas += gas[i + 1];
+            }
+        }
+        return hasGas >= 0 ? index : -1;
     }
 
 
