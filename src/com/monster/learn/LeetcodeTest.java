@@ -1,4 +1,4 @@
-package com.monster.leetcode_practices;
+package com.monster.learn;
 
 import android.util.ArraySet;
 import android.util.SparseArray;
@@ -5586,5 +5586,10 @@ public class LeetcodeTest {
         return hasGas >= 0 ? index : -1;
     }
 
+
+    public static void main(String[] args) {
+        System.out.println("text");
+        System.out.println("text2");
+    }
 
 }
