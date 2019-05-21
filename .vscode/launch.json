@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - CopyRandomList",
+            "request": "launch",
+            "mainClass": "com.monster.learn.CopyRandomList"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - LeetcodeTest",
             "request": "launch",
             "mainClass": "com.monster.learn.LeetcodeTest"
