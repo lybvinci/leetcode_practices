@@ -138,17 +138,19 @@ public class LeetcodeTest {
 //        sortColors(new int[]{2,1,2});
 //        subsets(new int[]{1,2,3});
 //        removeDuplicates(new int[]{1,1,1,2,2,3});
-        ListNode head = new ListNode(1);
+        ListNode head = new ListNode(3);
         ListNode node = head;
         node.next = new ListNode(2);
-        node.next.next = new ListNode(3);
-        node.next.next.next = new ListNode(4);
+        node.next.next = new ListNode(0);
+        node.next.next.next = new ListNode(-4);
+        node.next.next.next.next = node.next;
 //        node.next.next.next.next = new ListNode(5);
 //        node.next.next.next.next.next = new ListNode(2);
 //        partition(head, 3);
 //        reverseBetween(head, 1, 2);
 //        reorderList(head);
-        pathSum(root, 22);
+//        pathSum(root, 22);
+        detectCycle(head);
     }
 
 
@@ -5520,6 +5522,28 @@ public class LeetcodeTest {
             end--;
         }
         return true;
+    }
+
+    //98.88%
+    public ListNode detectCycle(ListNode head) {
+        if (head == null || head.next == null) {
+            return null;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                slow = head;
+                while (slow != fast) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                return slow;
+            }
+        }
+        return null;
     }
 
 
