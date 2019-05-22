@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - InsertionSortList",
+            "request": "launch",
+            "mainClass": "com.monster.learn.InsertionSortList"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - CopyRandomList",
             "request": "launch",
             "mainClass": "com.monster.learn.CopyRandomList"
