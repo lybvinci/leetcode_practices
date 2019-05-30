@@ -1,6 +1,7 @@
 package com.monster.learn;
 
 public class MaxProduct {
+    //5.11%
     public int maxProduct(int[] nums) {
         int maxSum = Integer.MIN_VALUE;
         for (int i = 0; i < nums.length; i++) {
