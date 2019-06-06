@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - ConvertToTitle168",
+            "request": "launch",
+            "mainClass": "com.monster.learn.ConvertToTitle168",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - CompareVersion165",
             "request": "launch",
             "mainClass": "com.monster.learn.CompareVersion165",
