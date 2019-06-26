@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MinSubArrayLen",
+            "request": "launch",
+            "mainClass": "com.monster.learn.MinSubArrayLen",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - FindRepeatedDnaSequences",
             "request": "launch",
             "mainClass": "com.monster.learn.FindRepeatedDnaSequences",
