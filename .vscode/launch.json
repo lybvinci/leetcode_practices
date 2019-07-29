@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - NumSquares",
+            "request": "launch",
+            "mainClass": "com.monster.learn.NumSquares",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - LowestCommonAncestor",
             "request": "launch",
             "mainClass": "com.monster.learn.LowestCommonAncestor",
