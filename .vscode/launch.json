@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - LengthOfLIS",
+            "request": "launch",
+            "mainClass": "com.monster.learn.LengthOfLIS",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - LengthOLIS",
+            "request": "launch",
+            "mainClass": "com.monster.learn.LengthOLIS",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - GetHint",
             "request": "launch",
             "mainClass": "com.monster.learn.GetHint",
