@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - WiggleSort",
+            "request": "launch",
+            "mainClass": "com.monster.learn.WiggleSort",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - LengthOfLIS",
             "request": "launch",
             "mainClass": "com.monster.learn.LengthOfLIS",
