@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - NumberOfArithmeticSlices",
+            "request": "launch",
+            "mainClass": "com.monster.learn.NumberOfArithmeticSlices",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - DecodeString",
             "request": "launch",
             "mainClass": "com.monster.learn.DecodeString",
