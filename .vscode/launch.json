@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - RemoveKdigits",
+            "request": "launch",
+            "mainClass": "com.monster.learn.RemoveKdigits",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - CalcEquation",
             "request": "launch",
             "mainClass": "com.monster.learn.CalcEquation",
