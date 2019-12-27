@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - FindTargetSumWays",
+            "request": "launch",
+            "mainClass": "com.monster.learn.FindTargetSumWays",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - FindSubsequences",
             "request": "launch",
             "mainClass": "com.monster.learn.FindSubsequences",
