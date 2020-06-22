@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - DeckRevealedIncreasing",
+            "request": "launch",
+            "mainClass": "com.monster.learn.DeckRevealedIncreasing",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - RLEIterator",
             "request": "launch",
             "mainClass": "com.monster.learn.RLEIterator",
