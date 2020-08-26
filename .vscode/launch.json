@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MaxTurbulenceSize",
+            "request": "launch",
+            "mainClass": "com.monster.learn.MaxTurbulenceSize",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - SumEvenAfterQueries",
             "request": "launch",
             "mainClass": "com.monster.learn.SumEvenAfterQueries",
