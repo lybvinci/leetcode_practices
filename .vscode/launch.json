@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MinDeletionSize",
+            "request": "launch",
+            "mainClass": "com.monster.learn.MinDeletionSize",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - MaxTurbulenceSize",
             "request": "launch",
             "mainClass": "com.monster.learn.MaxTurbulenceSize",
