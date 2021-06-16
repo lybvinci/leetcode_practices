@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch TestInherit",
+            "request": "launch",
+            "mainClass": "com.monster.learn.TestInherit",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - CommonChars",
             "request": "launch",
             "mainClass": "com.monster.learn.CommonChars",
