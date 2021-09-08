@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MaxValue",
+            "request": "launch",
+            "mainClass": "com.monster.learn.MaxValue",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "Launch TestInherit",
             "request": "launch",
             "mainClass": "com.monster.learn.TestInherit",
