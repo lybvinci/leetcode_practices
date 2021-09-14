@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch FindPairs",
+            "request": "launch",
+            "mainClass": "com.monster.learn.FindPairs",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "Launch MaximumRemovals",
             "request": "launch",
             "mainClass": "com.monster.learn.MaximumRemovals",
