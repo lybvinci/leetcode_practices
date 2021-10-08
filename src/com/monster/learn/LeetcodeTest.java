@@ -1,21 +1,18 @@
 package com.monster.learn;
 
-import android.util.ArraySet;
-import android.util.SparseArray;
+// import android.util.ArraySet;
+// import android.util.SparseArray;
 
 
-import org.junit.Test;
+// import org.junit.Test;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +30,7 @@ import java.util.TreeMap;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class LeetcodeTest {
-    @Test
+    // @Test
     public void main() {
 //        int n = 25;
 //        trailingZeroes(25);
@@ -4457,7 +4454,7 @@ public class LeetcodeTest {
         if (n <= 1) {
             return "" + n;
         }
-        ArrayList arrayList = new ArrayList();
+        ArrayList<Integer> arrayList = new ArrayList<>();
         for (int i = 1; i <= n; i++) {
             arrayList.add(i);
         }

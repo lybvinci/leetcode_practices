@@ -8,7 +8,7 @@ public class Node2 {
 
     public Node2() {}
 
-    public Node2(int _val,Node _left,Node _right,Node _next) {
+    public Node2(int _val,Node2 _left,Node2 _right,Node2 _next) {
         val = _val;
         left = _left;
         right = _right;

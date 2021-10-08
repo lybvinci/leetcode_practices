@@ -1,4 +1,4 @@
-package com.com.monster.learn;
+package com.monster.learn;
 
 import java.util.Arrays;
 

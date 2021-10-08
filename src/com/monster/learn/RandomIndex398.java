@@ -1,6 +1,5 @@
 package com.monster.learn;
 
-import java.util.Arrays;
 import java.util.Random;
 
 //84.53%

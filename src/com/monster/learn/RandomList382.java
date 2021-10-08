@@ -1,6 +1,5 @@
 package com.monster.learn;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -9,7 +8,7 @@ public class RandomList382 {
     private LinkedList<Integer> list;
     /** @param head The linked list's head.
     Note that the head is guaranteed to be not null, so it contains at least one node. */
-    public Solution(ListNode head) {
+    public RandomList382(ListNode head) {
         list = new LinkedList<>();
         while(head != null) {
             list.add(head.val);

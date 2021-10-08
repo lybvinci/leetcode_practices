@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Connect116 {
     //54.65% 
-    public Node connect(Node2 root) {
+    public Node2 connect(Node2 root) {
         if (root == null) {
             return root;
         }
