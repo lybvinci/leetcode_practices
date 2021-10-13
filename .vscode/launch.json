@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch HalfQuestions",
+            "request": "launch",
+            "mainClass": "com.monster.learn.HalfQuestions",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "Launch CanArrange",
             "request": "launch",
             "mainClass": "com.monster.learn.CanArrange",
