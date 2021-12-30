@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Check1572",
+            "request": "launch",
+            "mainClass": "com.monster.learn.Check1572",
+            "projectName": "leetcode_practices_bb798d9c"
+        },
+        {
+            "type": "java",
             "name": "Launch HeightChecker",
             "request": "launch",
             "mainClass": "com.monster.learn.HeightChecker",
