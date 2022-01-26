@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch FindCheapestPrice",
+            "request": "launch",
+            "mainClass": "com.monster.learn.FindCheapestPrice",
+            "projectName": "leetcode_practices_bb798d9c"
+        },
+        {
+            "type": "java",
             "name": "Launch TrulyMostPopular",
             "request": "launch",
             "mainClass": "com.monster.learn.TrulyMostPopular",
