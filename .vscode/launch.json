@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch FindLeastNumOfUniqueInts",
+            "request": "launch",
+            "mainClass": "com.monster.learn.FindLeastNumOfUniqueInts",
+            "projectName": "leetcode_practices_bb798d9c"
+        },
+        {
+            "type": "java",
             "name": "Launch GetWinner",
             "request": "launch",
             "mainClass": "com.monster.learn.GetWinner",
