@@ -6,7 +6,6 @@ import java.util.List;
 
 public class StackOfPlates {
     //98.52%
-
     private List<LinkedList<Integer>> mDatas;
     private int mCap;
 
