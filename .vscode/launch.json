@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch SmallestRangeII",
+            "request": "launch",
+            "mainClass": "com.monster.learn.SmallestRangeII",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "Launch FindDiagonalOrder2",
             "request": "launch",
             "mainClass": "com.monster.learn.FindDiagonalOrder2",
