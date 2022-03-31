@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Subsets",
+            "request": "launch",
+            "mainClass": "com.monster.learn.Subsets",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "Launch FindNumberIn2DArray",
             "request": "launch",
             "mainClass": "com.monster.learn.FindNumberIn2DArray",
