@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch FindDifferentBinaryString",
+            "request": "launch",
+            "mainClass": "com.monster.learn.FindDifferentBinaryString",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "Launch IsOneBitCharacter",
             "request": "launch",
             "mainClass": "com.monster.learn.IsOneBitCharacter",
