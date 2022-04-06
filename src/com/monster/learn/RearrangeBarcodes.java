@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 
 public class RearrangeBarcodes {
 
+	//too slow
 	public int[] rearrangeBarcodes(int[] barcodes) {
 		int[] ret = new int[barcodes.length];
 		Map<Integer, Integer> map = new HashMap<>();
