@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch FindEvenNumbers",
+            "request": "launch",
+            "mainClass": "com.monster.learn.FindEvenNumbers",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "Launch Exchange",
             "request": "launch",
             "mainClass": "com.monster.learn.Exchange",
