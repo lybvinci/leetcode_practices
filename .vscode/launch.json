@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Calculate",
+            "request": "launch",
+            "mainClass": "com.monster.learn.Calculate",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "Launch TripleInOne",
             "request": "launch",
             "mainClass": "com.monster.learn.TripleInOne",
