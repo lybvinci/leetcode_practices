@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MinSubarray",
+            "request": "launch",
+            "mainClass": "com.monster.learn.MinSubarray",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "Launch Permutation",
             "request": "launch",
             "mainClass": "com.monster.learn.Permutation",
