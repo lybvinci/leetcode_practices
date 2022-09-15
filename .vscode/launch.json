@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch DistributeCandies",
+            "request": "launch",
+            "mainClass": "com.monster.learn.DistributeCandies",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "Launch MinTimeToVisitAllPoints",
             "request": "launch",
             "mainClass": "com.monster.learn.MinTimeToVisitAllPoints",
