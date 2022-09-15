@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MinTimeToVisitAllPoints",
+            "request": "launch",
+            "mainClass": "com.monster.learn.MinTimeToVisitAllPoints",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "Launch AverageOfSubtree",
             "request": "launch",
             "mainClass": "com.monster.learn.AverageOfSubtree",
