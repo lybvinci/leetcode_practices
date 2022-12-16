@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch NumWays",
+            "request": "launch",
+            "mainClass": "NumWays",
+            "projectName": "leetcode_practices_761a6a53"
+        },
+        {
+            "type": "java",
             "name": "Launch IsStraight",
             "request": "launch",
             "mainClass": "com.monster.learn.IsStraight",
